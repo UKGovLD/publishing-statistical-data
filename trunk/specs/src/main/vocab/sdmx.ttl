@@ -32,6 +32,11 @@ sdmx:ConceptScheme a rdfs:Class, owl:Class;
     rdfs:label "Concept scheme"@en;
     rdfs:subClassOf skos:ConceptScheme;
     .
+sdmx:Concept a rdfs:Class, owl:Class;
+    rdfs:label "concept"@en;
+    rdfs:subClassOf skos:Concept;
+    rdfs:comment "Denotes an SDMX concept, used in the particular SDMX terminological sense, which is in principle narrower than skos:Concept";
+    .
 sdmx:Attachable a rdfs:Class, owl:Class;
     rdfs:label "Attachable (abstract)"@en;
     rdfs:comment "Abstract superclass for everything that can have attributes and dimensions"@en;
@@ -212,7 +217,7 @@ sdmx:codeList a rdf:Property, owl:ObjectProperty;
 sdmx:concept a rdf:Property, owl:ObjectProperty;
     rdfs:label "concept"@en;
     rdfs:domain sdmx:ComponentProperty;
-    rdfs:range skos:Concept;
+    rdfs:range sdmx:Concept;
     .
 sdmx:coreType a rdf:Property, owl:ObjectProperty;
     rdfs:label "core type"@en;
