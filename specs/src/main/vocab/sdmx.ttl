@@ -224,6 +224,12 @@ sdmx:component a rdf:Property, owl:ObjectProperty;
     rdfs:domain sdmx:DataStructureDefinition;
     rdfs:range sdmx:ComponentProperty;
     .
+sdmx:componentOrder a rdf:Property, owl:ObjectProperty;
+    rdfs:label "component order"@en;
+    rdfs:domain sdmx:DataStructureDefinition;
+    rdfs:range rdf:List;
+    rdfs:comment "Optional specification of the order in which dimensions (and optionally other components) should be used. Value is an rdf:List of sdmxComponents";
+    .
 sdmx:classification a rdf:Property, owl:ObjectProperty;
     rdfs:label "classification"@en;
     rdfs:domain sdmx:DataSetOrFlow;
