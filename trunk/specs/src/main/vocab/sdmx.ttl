@@ -1,12 +1,17 @@
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix scovo:   <http://purl.org/NET/scovo#> .
-@prefix void:    <http://rdfs.org/ns/void#> .
-@prefix sdmx:    <http://purl.org/linked-data/sdmx#> .
-@prefix dcterms: <http://dublincore.org/documents/dcmi-terms/>.
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:           <http://xmlns.com/foaf/0.1/> .
+@prefix scovo:          <http://purl.org/NET/scovo#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix sdmx:           <http://purl.org/linked-data/sdmx#> .
+@prefix sdmx-concept:   <http://purl.org/linked-data/sdmx/concept#> .
+@prefix sdmx-dimension: <http://purl.org/linked-data/sdmx/dimension#> .
+@prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/attribute#> .
+@prefix sdmx-measure:   <http://purl.org/linked-data/sdmx/measure#> .
+@prefix dcterms:        <http://dublincore.org/documents/dcmi-terms/>.
 
 <http://purl.org/linked-data/sdmx>
     a owl:Ontology;
@@ -14,9 +19,10 @@
     rdfs:label "SDMX-RDF vocabulary";
     rdfs:comment "This vocabulary allows statistical data to be published in RDF, using an information model based on SDMX";
     dcterms:created "2010-02-05"^^xsd:date;
-    dcterms:modified "2010-03-11"^^xsd:date;
+    dcterms:modified "2010-04-07"^^xsd:date;
     dcterms:title "Vocabulary for publishing SDMX statistical data in RDF";
-    dcterms:subject <http:www.sdmx.org>;
+    dcterms:source <http://sdmx.org>;
+    dcterms:references <http://sdmx.org/?page_id=16#package>;
     dcterms:contributor [foaf:mbox "richard@cyganiak.de"],
                         [foaf:mbox "jeni@jenitennison.com"],
                         [foaf:mbox "arofan.gregory@earthlink.net"],
@@ -186,6 +192,12 @@ sdmx:Annotation
     rdfs:label "annotation"@en;
     rdfs:comment "A resource denoting some type of annotation on a statistic, which may be at the observation, time series or dataset level";
     .
+sdmx-attribute:dataLastUpdatedBy
+       a sdmx:AttributeProperty;
+       rdfs:label "last updated by"@en;
+       rdfs:comment "An annotation denoting the person or other agent who last updated an SDMX data item";
+       rdfs:subPropertyOf dcterms:contributor
+       .
 
 # --- Properties ----------------------------------------------------
 sdmx:dataSet a rdf:Property, owl:ObjectProperty;
