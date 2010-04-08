@@ -6,10 +6,12 @@
 @prefix scovo:   <http://purl.org/NET/scovo#> .
 @prefix void:    <http://rdfs.org/ns/void#> .
 @prefix sdmx:    <http://purl.org/linked-data/sdmx#> .
-@prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/concept#> .
-@prefix sdmx-dimension:    <http://purl.org/linked-data/sdmx/dimension#> .
-@prefix sdmx-attribute:    <http://purl.org/linked-data/sdmx/attribute#> .
-@prefix sdmx-measure:    <http://purl.org/linked-data/sdmx/measure#> .
+@prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
+@prefix sdmx-dimension:    <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix sdmx-attribute:    <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix sdmx-measure:    <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix sdmx-code:    <http://purl.org/linked-data/sdmx/2009/code#> .
+@prefix sdmx-subject:    <http://purl.org/linked-data/sdmx/2009/subject#> .
 @prefix dcterms: <http://dublincore.org/documents/dcmi-terms/>.
 
 # ACCESSIBILITY
