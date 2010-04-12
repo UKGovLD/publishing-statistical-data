@@ -192,12 +192,6 @@ sdmx:Annotation
     rdfs:label "annotation"@en;
     rdfs:comment "A resource denoting some type of annotation on a statistic, which may be at the observation, time series or dataset level";
     .
-sdmx-attribute:dataLastUpdatedBy
-       a sdmx:AttributeProperty;
-       rdfs:label "last updated by"@en;
-       rdfs:comment "An annotation denoting the person or other agent who last updated an SDMX data item";
-       rdfs:subPropertyOf dcterms:contributor
-       .
 
 # --- Properties ----------------------------------------------------
 sdmx:dataSet a rdf:Property, owl:ObjectProperty;
