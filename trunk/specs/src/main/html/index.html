@@ -196,8 +196,10 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
 <li>distinctions between dimensions, attributes and measures.</li>
 </ul>
 
-<p>The design of SDMX-RDF is informed by SCOVO, and every SCOVO dataset can also be expressed a an SDMX dataset.</p>
-
+<p>
+The design of SDMX-RDF is informed by SCOVO,
+and every SCOVO dataset can be re-expressed as an SDMX/RDF dataset.
+</p>
 
 <h3>1.5 Statistical data as a hypercube</h3>
 
@@ -218,6 +220,31 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
 
 
 <h3>1.7 Document conventions</h3>
+
+<p>
+The names of RDF entities -- classes, predicates, instances, etc -- are
+URIs. These are usually expressed using a compact notation where the
+name is written <code>prefix:localname</code>, where the <code>prefix</code>
+identifies a <i>namespace URI</i> which is to be prepended to the 
+<code>localname</code> to obtain the full URI.
+</p>
+
+<p>
+In this document we shall use the conventional prefix names for the
+standard namespaces:
+
+<table>
+<tr><td>rdf</td><td></td><td>RDF</td></tr>
+<tr><td>rdfs</td><td></td><td>RDFS</td></tr>
+<tr><td>skos</td><td></td><td>SKOS</td></tr>
+<tr><td>foaf</td><td></td><td>FOAF</td></tr>
+<tr><td>void</td><td></td><td>voID</td></tr>
+<tr><td>scovo</td><td></td><td>SCOVO</td></tr>
+</table>
+
+
+</p>
+
 
 <pre>
 - [ ] RDF namespace prefix declarations
