@@ -162,7 +162,34 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
 <hr>
 <h2 id="introduction">1. Introduction</h2>
 
-<p>@@@ Inspiring intro! Lift some text from paper</p>
+<p>
+Statistical data underpins many of the mash-ups and visualisations
+we see on the web, as well as being the foundations for policy
+prediction, planning and adjustments. The SDMX standard for
+exchanging statistical data is used by U.S. Federal Reserve
+Board, the European Central Bank, Eurostat, the WHO, the IMF,
+and the World Bank; the Organisation for Economic Cooperation
+and Development (OECD) and the UN expect the publishers of
+national statistics to use SDMX to allow aggregation across
+national boundaries. 
+</p>
+
+<p>
+SDMX is not web-friendly. The concepts, code lists, datasets,
+and observations are not named with URIs or routinely exposed
+to browsers and other web-crawlers. This makes it more difficult 
+for third parties to annotate, reference, and query that data.
+Nor is SDMX the only shape in which statistical data is published;
+data is available in specialist XML formats such as LGDx,
+de-facto semi-standards like CSV, and proprietary application
+formats like Excel spreadsheets or PDF documents.
+
+<br /> @@@ some assertions need checking!
+</p>
+
+<p>
+@@@ this will be "why RDF" ...
+</p>
 
 <p>@@@ SDMX-RDF makes use of the following great vocabularies:</p>
 
@@ -491,6 +518,9 @@ Good practices for versioning:
 
 @@@ [RDF] http://www.w3.org/standards/techs/rdf#w3c_all, RDF Current Status
 
+<br /> @@@ [SCOVE, SDMX] http://events.linkeddata.org/ldow2010/papers/ldow2010_paper03.pdf, 
+	Semantic Statistics: Bringing Together SDMX and SCOVO
+
 <h2 id="sdmx-im-ref">Appendix 1: From SDMX-IM to SDMX-RDF</h2>
 
 <p>This appendix contains a reference of concepts from the SDMX Information Model (SDMX-IM) and their translations to SDMX-RDF. When completed, this will contain an entry for every class that can be found in the UML diagrams of SDMX-IM. This might eventually become a separate document.</p>
@@ -598,16 +628,16 @@ Good practices for versioning:
 
 <h2 id="namespaces-used-appendix">Appendix 2: namespaces used in this document</h2>
 
-<table class="spare-table">
+<table class="spare-table" style="margin-left: 5ex">
 <thead>
- <tr><th>prefix</th><th>namespace URI</th><th>@@@whatitis</th></tr>
+ <tr><th>prefix</th><th>namespace URI</th><th>vocabulary</th></tr>
 </thead>
-<tr><td>rdf</td><td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td><td>RDF</td></tr>
-<tr><td>rdfs</td><td>http://www.w3.org/2000/01/rdf-schema#</td><td>RDFS</td></tr>
-<tr><td>skos</td><td>http://www.w3.org/2004/02/skos/core#</td><td>SKOS</td></tr>
-<tr><td>foaf</td><td>http://xmlns.com/foaf/0.1/</td><td>FOAF</td></tr>
-<tr><td>void</td><td>http://rdfs.org/ns/void#</td><td>voID</td></tr>
-<tr><td>scovo</td><td>http://purl.org/NET/scovo#</td><td>SCOVO</td></tr>
+<tr><td>rdf</td><td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td><td>RDF core</td></tr>
+<tr><td>rdfs</td><td>http://www.w3.org/2000/01/rdf-schema#</td><td>RDF Schema</td></tr>
+<tr><td>skos</td><td>http://www.w3.org/2004/02/skos/core#</td><td>Simple Knowledge Organization System</td></tr>
+<tr><td>foaf</td><td>http://xmlns.com/foaf/0.1/</td><td>Friend Of A Friend</td></tr>
+<tr><td>void</td><td>http://rdfs.org/ns/void#</td><td>Vocabulary of Interlinked Datasets</td></tr>
+<tr><td>scovo</td><td>http://purl.org/NET/scovo#</td><td>Statistical Core Vocabulary</td></tr>
 <tr><td>dc</td><td>http://purl.org/dc/elements/1.1/</td><td>Dublin Core</td></tr>
 </table>
 
