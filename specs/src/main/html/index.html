@@ -27,6 +27,13 @@ code { font-family: monospace }
 blockquote { background: #ddd; border-left: 0.9em solid #aaa; color: black; padding: 0.8em 1em 1em 2em; margin: 0.8em 0; }
 ul.toc { list-style-type: none; }
 .todo, .todo h2 { padding: 0.5em 1em; background: #ddf; }
+
+.spare-table { border-collapse: collapse }
+.spare-table thead { border-bottom: black 1px solid }
+.spare-table td { padding-left: 1em; padding-right: 1em }
+.spare-table td + td { border-left: black 1px solid; padding-left: 1em; padding-right: 1em }
+.spare-table th + th { border-left: black 1px solid }
+
 @media Aural {
   h1 { stress: 20; richness: 90; }
   h2 { stress: 20; richness: 90; }
@@ -234,12 +241,13 @@ In this document we shall use the conventional prefix names for the
 standard namespaces:
 
 <table>
-<tr><td>rdf</td><td></td><td>RDF</td></tr>
-<tr><td>rdfs</td><td></td><td>RDFS</td></tr>
+<tr><td>rdf</td><td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td><td>RDF</td></tr>
+<tr><td>rdfs</td><td>http://www.w3.org/2000/01/rdf-schema#</td><td>RDFS</td></tr>
 <tr><td>skos</td><td></td><td>SKOS</td></tr>
 <tr><td>foaf</td><td></td><td>FOAF</td></tr>
 <tr><td>void</td><td></td><td>voID</td></tr>
 <tr><td>scovo</td><td></td><td>SCOVO</td></tr>
+<tr><td>dc</td><td>http://purl.org/dc/elements/1.1/</td><td>Dublin Core</td></tr>
 </table>
 
 
@@ -568,6 +576,21 @@ Good practices for versioning:
 </ul>
 
 -->
+
+<h2>Appendix 2: namespaces used in this document</h2>
+
+<table class="spare-table">
+<thead>
+ <tr><th>prefix</th><th>namespace URI</th><th>@@@whatitis</th></tr>
+</thead>
+<tr><td>rdf</td><td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td><td>RDF</td></tr>
+<tr><td>rdfs</td><td>http://www.w3.org/2000/01/rdf-schema#</td><td>RDFS</td></tr>
+<tr><td>skos</td><td>http://www.w3.org/2004/02/skos/core#</td><td>SKOS</td></tr>
+<tr><td>foaf</td><td>http://xmlns.com/foaf/0.1/</td><td>FOAF</td></tr>
+<tr><td>void</td><td>http://rdfs.org/ns/void#</td><td>voID</td></tr>
+<tr><td>scovo</td><td>http://purl.org/NET/scovo#</td><td>SCOVO</td></tr>
+<tr><td>dc</td><td>http://purl.org/dc/elements/1.1/</td><td>Dublin Core</td></tr>
+</table>
 
 <hr />
 
