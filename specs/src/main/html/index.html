@@ -94,7 +94,7 @@ RDF is also widely expressed using <a href="Turtle.http://www.w3.org/TeamSubmiss
 </p>
 
 <p>
-We describe how SDMX data may be represented in RDF, which we term <i>SDMX/RDF</i>, and so 
+We describe how SDMX data may be represented in RDF, which we term <i>SDMX-RDF</i>, and so 
 made available to RDF-aware applications and presented as linked data. This representation
 exploits existing RDF vocabularies such as 
 <a href="http://www.w3.org/2004/02/skos/">SKOS</a> for concept schemas,
@@ -206,7 +206,7 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
 
 <p>
 The design of SDMX-RDF is informed by SCOVO,
-and every SCOVO dataset can be re-expressed as an SDMX/RDF dataset.
+and every SCOVO dataset can be re-expressed as an SDMX-RDF dataset.
 </p>
 
 <h3>1.5 Statistical data as a hypercube</h3>
@@ -239,29 +239,29 @@ identifies a <i>namespace URI</i> which is to be prepended to the
 
 <p>
 In this document we shall use the conventional prefix names for the
-standard namespaces:
+<a href="#namespaces-used-appendix">standard namespaces</a>:
 
-<table>
-<tr><td>rdf</td><td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td><td>RDF</td></tr>
-<tr><td>rdfs</td><td>http://www.w3.org/2000/01/rdf-schema#</td><td>RDFS</td></tr>
-<tr><td>skos</td><td></td><td>SKOS</td></tr>
-<tr><td>foaf</td><td></td><td>FOAF</td></tr>
-<tr><td>void</td><td></td><td>voID</td></tr>
-<tr><td>scovo</td><td></td><td>SCOVO</td></tr>
-<tr><td>dc</td><td>http://purl.org/dc/elements/1.1/</td><td>Dublin Core</td></tr>
-</table>
+<ul>
+  <li><code>rdf, rdfs</code> -- the core RDF namespaces</li>
+  <li><code>dc</code> -- Dublin Core</li>
+  <li><code>skos</code> -- Simple Knowledge Organization System</li>
+  <li><code>foaf</code> -- Friend Af A Friend</li>
+  <li><code>void</code> -- Vocabulary of Interlinked Datasets</li>
+  <li><code>scovo</code> -- Statistical Core Vocabulary</li>
+</ul>
 
-
+We also introduce the prefix <code>sdmx</code> for the SDMX-RDF namespace
+(yet to be formally allocated). While the new terms required to express
+SDMX concepts in RDF could have been added to the SCOVO namespace, it
+seems more appropriate to emphasise their relationship with the 
+standard they are taken from.
 </p>
 
-
 <pre>
-- [ ] RDF namespace prefix declarations
 - [ ] Usage Notes explain typical practical usage
 - [ ] Design Notes explain modelling decisions and explore alternatives
 </pre>
 
-<p>@@@ We assume an additional “sdmx” namespace that remains to be defined, to contain any new classes and properties that we did not find in existing vocabularies. We considered placing these new terms into SCOVO, but since the entire model is so obviously based on SDMX, we will call the namespace “sdmx” for now.</p>
 
 
 <h2 id="sdmx-overview">2. An overview of the SDMX model</h2>
