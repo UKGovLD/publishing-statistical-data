@@ -68,6 +68,7 @@ ul.toc { list-style-type: none; }
   <dt>Editors:</dt>
   <dd>Richard Cyganiak (<a href="http://www.deri.ie">DERI, NUI Galway</a>)</dd>
   <dd>Chris Dollin (<a href="http://www.epimorphics.com">Epimorphics Ltd</a>)</dd>
+  <dd>Dave Reynolds (<a href="http://www.epimorphics.com">Epimorphics Ltd</a>)</dd>
   <dd>@@@ add yourself!</dd>
 </dl>
 
@@ -417,17 +418,37 @@ standard they are taken from.
 
 <h3 id="categorization">5.1 Categorizing a dataset</h3>
 
-<p>Publishers of statistics often categorize their datasets into different statistical domains, such as <em>Education</em>, <em>Labour</em>, or <em>Transporation</em>.</p>
 
-<p>The Content-Oriented Guidelines contain a pre-defined set of such categories. It is recommended to re-use this category scheme if appropriate. @@@ link, URIs?</p>
+<p>Publishers of statistics often categorize their data sets into different statistical 
+domains, such as <em>Education</em>, <em>Labour</em>, or <em>Transportation</em>.
+SDMX-RDF supports the annotation of data sets (or data flows) with one or more
+classification terms using the <code>sdmx:classification</code> property. 
+The classification terms can include coarse grained classifications, such
+as the List of Subject-matter Domains from the SDMX Content-oriented Guidelines [SDMX COG SMD], 
+and fine grained classifications to support discovery of data sets.</p>
 
-<p>A CategoryScheme is simply mapped to a generic skos:ConceptScheme.</p>
+<p>The classification schemes are represented using the SKOS vocabulary, which is
+design for encoding Thesauri and other knowledge organization schemes [SKOS]. For 
+convenience the SMDX Subject-matter Domains have been encoded as a SKOS concept scheme
+at <a href="http://purl.org/linked-data/sdmx/2009/subject">http://purl.org/linked-data/sdmx/2009/subject#</a>.</p>
 
+<p>Thus a dataset about tourism in Wales might be marked up by:</p>
+
+<pre>
+eg:dataset1 a sdmx:DataSet;
+    sdmx:classification &lt;http://purl.org/linked-data/sdmx/2009/subject#2.4.5>,  eg:Wales;
+</pre>
+
+<p>where <code>eg:Wales</code> is a <code>skos:Concept</code> drawn from an appropriate controlled
+vocabulary for places.</p>
 
 
 <h3 id="agencies">5.2 Describing publishers and maintenance agencies</h3>
 
-<p>Data providers. The organisation that publishes a dataset is given via the dc:publisher relationship. Organisations are represented as instances of foaf:Agent. Organisations are also used with the sdmx:maintainer property, which indicates the maintenance agency of various SDMX artefacts, such as DSDs, code lists, and category schemes.</p>
+<p>Data providers. The organisation that publishes a dataset is given via the 
+dc:publisher relationship. Organisations are represented as instances of foaf:Agent. 
+Organisations are also used with the sdmx:maintainer property, which indicates 
+the maintenance agency of various SDMX artefacts, such as DSDs, code lists, and category schemes.</p>
 
 
 <h2 id="codelists">6. Designing code lists</h2>
@@ -520,6 +541,9 @@ Good practices for versioning:
 
 <br /> @@@ [SCOVE, SDMX] http://events.linkeddata.org/ldow2010/papers/ldow2010_paper03.pdf, 
 	Semantic Statistics: Bringing Together SDMX and SCOVO
+
+<br />
+[SDMX COG SMD] <a href="http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf</a>
 
 <h2 id="sdmx-im-ref">Appendix 1: From SDMX-IM to SDMX-RDF</h2>
 
