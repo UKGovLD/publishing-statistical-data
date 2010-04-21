@@ -959,6 +959,14 @@ sdmx-dimension:valuation a sdmx:DimensionProperty ;
     rdfs:comment """The definition of the price per unit, for goods and services flows and asset stocks."""@en ;
     rdfs:isDefinedBy <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
 
+### Binding of standard roles (represnted using subtyping) to dimensions ###
+
+sdmx-dimension:freq a sdmx:FrequencyProperty.
+
+sdmx-dimension:refPeriod a sdmx:TimeProperty.
+
+sdmx-dimension:timePeriod a sdmx:TimeProperty.
+
 ### Binding to the corresponding COG Code lists ###
 
 sdmx-dimension:currency a sdmx:CodedProperty ;
