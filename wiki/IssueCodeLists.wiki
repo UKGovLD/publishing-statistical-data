@@ -1,3 +1,5 @@
+#summary Requirements and issues for representing code values
+
 = Requirements and issues for representing code values =
 
 Issue 22 concerns the representation of code lists. It turns out there are several requirements here. This page is a place to iteratively create a write up of those requirements and constraints so we can match them up to the possible solutions.
