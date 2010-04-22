@@ -1,0 +1,4 @@
+#summary Index of design-issue analyses
+#sidebar TableOfContents
+
+To do.
