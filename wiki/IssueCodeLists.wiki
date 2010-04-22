@@ -36,6 +36,8 @@ However, for some dimensions then there are existing sets of identifiers (URIs) 
 
 Others?
 
+[In the discussion I think Richard might also have been asking for the ability to define subsets of external code lists. I haven't added that explicitly because that doesn't seem to differentiate any of the choices - by definition you have to do some duplication then. But happy to add that.]
+
 == Discussion ==
 
 === Current design ===
