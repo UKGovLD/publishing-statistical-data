@@ -36,7 +36,11 @@ However, for some dimensions then there are existing sets of identifiers (URIs) 
 
 Others?
 
-[In the discussion I think Richard might also have been asking for the ability to define subsets of external code lists. I haven't added that explicitly because that doesn't seem to differentiate any of the choices - by definition you have to do some duplication then. But happy to add that.]
+_In the discussion I think Richard might also have been asking for the ability to define subsets of external code lists. I haven't added that explicitly because that doesn't seem to differentiate any of the choices - by definition you have to do some duplication then._
+
+_We could require the ability to "close" the list so you can guarantee the enumeration is complete and can't be affected by finding more RDF statements in some other document. That isn't possible with SKOS or simple "x rdf:type t" statements, you have to use lists with all the attendant problems of SPARQL query._
+
+Happy to add any of these.
 
 == Discussion ==
 
