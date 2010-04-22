@@ -3,4 +3,4 @@
   * [Index Overview]
   * [Documentation User guides and design documents]
   * [PatternsIndex Suggested usage patterns]
-  * [Issues Index of design-issue discussions
+  * [Issues Index of design-issue discussions]
