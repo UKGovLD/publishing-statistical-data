@@ -416,8 +416,13 @@ standard they are taken from.
 
 <h2 id="metadata">5. Expressing dataset metadata</h2>
 
-<h3 id="categorization">5.1 Categorizing a dataset</h3>
+<p>DataSets should be marked up with metadata to support discovery, presentation and
+processing. Metadata such as a display label (<code>rdfs:label</code>),
+descriptive comment (<code>rdfs:comment</code>) and creation date (<code>dc:date)</code>
+are common to most resources. SDMX-RDF provides additional support for a small number
+of metadata annotations commonly needed for DataSets.</p>
 
+<h3 id="categorization">5.1 Categorizing a dataset</h3>
 
 <p>Publishers of statistics often categorize their data sets into different statistical 
 domains, such as <em>Education</em>, <em>Labour</em>, or <em>Transportation</em>.
@@ -428,7 +433,7 @@ as the List of Subject-matter Domains from the SDMX Content-oriented Guidelines 
 and fine grained classifications to support discovery of data sets.</p>
 
 <p>The classification schemes are represented using the SKOS vocabulary, which is
-design for encoding Thesauri and other knowledge organization schemes [SKOS]. For 
+designed for encoding Thesauri and other knowledge organization schemes [SKOS]. For 
 convenience the SMDX Subject-matter Domains have been encoded as a SKOS concept scheme
 at <a href="http://purl.org/linked-data/sdmx/2009/subject">http://purl.org/linked-data/sdmx/2009/subject#</a>.</p>
 
