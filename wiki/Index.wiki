@@ -1,4 +1,5 @@
 #summary Documentation on the SDMX-RDF vocabulary for encoding linked statistical data.
+#labels Featured
 #sidebar TableOfContents
 
 = Introduction =
