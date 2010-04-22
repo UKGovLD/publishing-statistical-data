@@ -1,6 +1,6 @@
 #summary Documentation on the SDMX-RDF vocabulary for encoding linked statistical data.
-
 #sidebar TableOfContents
+
 
 = Introduction =
 
