@@ -6,7 +6,7 @@ Issue 22 concerns the representation of code lists. It turns out there are sever
 
 Dimensions in SDMX are represented as _Coded values_ drawn from a controlled list. As part of defining the structure of a dataset (the DSD) you define what code list will be used for each coded property. This supports validation (you can detect illegal codes) and comparison across datasets which use the same code list.
 
-In RDF it is natural to represent an individual code as a resource (i.e. by a URI). The question is how do we represent the collection of resources make up a given controlled code list.  Among the options are:
+In RDF it is natural to represent an individual code as a resource (i.e. by a URI). The question is how do we represent the collection of resources that make up a given controlled code list.  Among the options are:
 
   * SKOS concept schemes
   * OWL classes
@@ -26,14 +26,28 @@ However, for some dimensions then there are existing sets of identifiers (URIs) 
 
   * *Reuse*. Where sets of identifiers already exist it should be easy to reuse them. It would be preferable to be able to directly use identifiers from URI Sets such as time periods, administrative regions and Schools without have to create a duplicate code list for them.
 
-  * *Enumeration*. For finite code lists it should be possible to discover the all the legal codes in that code list, particular for using in UIs.
+  * *Enumeration*. For finite code lists it should be possible to discover the all the legal codes in that code list, particular for using in UIs. Not that some code lists (e.g. reference time periods) are unbounded.
 
   * *SDMX compatibility*. Translation of domain specific SDMX code lists should be straightforward.
 
-  * *No surprises*. The solution should be sufficiently simple and familiar to not surprise developers with "unintended consequences".
+  * *Simplicity*. The solution should be simple in terms of authoring and consuming SDMX-RDF (ideally the information is written down once rather than duplicated, no intended consequences).
 
 Others?
 
+== Discussion ==
 
+=== Current design ===
 
+The current design uses `sdmx:codeList` to attach a code list to an `sdmx:CodedProperty` and the code list itself is represented as a `skos:ConceptScheme`.
 
+_Validation_. Partial. It is easy to navigate from the DSD to the code list but for hierarchical code lists the validator then needs to traverse the `skos:ConceptScheme`. Existing RDF validators such as Eyeball or Pellet-IC would not work and SPARQL based validators (Schemarama, SPIN) could not perform the hierarchy traversal.
+
+_COG_. Easy, we've already translated to the COG code lists to SKOS.
+
+_Reuse_. Problematic. The terms in the URI Sets we wish to reuse in data.gov.uk are generally not `skos:Concepts` - both in the sense that they are not declared that way at the moment and in the sense that that would be a surprising modelling. This would mean either creating a parallel SKOS thesaurus corresponding to the terms in the identifier sets or accepting the cognitive dissonance of e.g. finding that your town is also a SKOS Concept.
+
+_Enumeration_. Enumeration is possible but requires hierarchy traversal and so is not a simple lookup. A user interface would, however, tend to present the hierarchy in any case and so this may not be extra work.
+
+_SDMX Compatibility_. Good. The code list is directly attached to the Dimension declaration.
+
+_Simplicity_. Fine.
