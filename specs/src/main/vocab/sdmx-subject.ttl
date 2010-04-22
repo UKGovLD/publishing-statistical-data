@@ -186,6 +186,58 @@ Excludes:
 - research and development (2.9) 
 - telecommunication statistics (3.3.3)"""@en . 
 
+sdmx-subject:2.4.1 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Agriculture, forestry, fisheries'@en ;
+    skos:notation '2.4.1' ;
+    skos:definition """Agriculture, forestry, fisheries - includes all agriculture, forestry and fishery related statistics, e.g. agricultural monetary statistics (agricultural economic accounts), agricultural structures (farm structure), trade in agricultural products, agricultural labour input, crop and animal production, agricultural commodities, agro-industry statistics (including food production and safety), organic farming and organic food, government expenditure for agriculture, fishing and forestry, products source and use tables, forest and forest product statistics, forest resource assessment and forest fire, trade in forest products, fisheries.
+Excludes 
+- agricultural and similar prices (2.7)
+- rural development (3.2)"""@en . 
+
+sdmx-subject:2.4.2 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Energy'@en ;
+    skos:notation '2.4.2' ;
+    skos:definition """Energy - energy supply, energy use, energy balances, security of supply, energy markets, trade in energy, energy efficiency, renewable energy sources, government expenditure on energy.
+Excludes
+- energy prices (2.7)"""@en . 
+
+sdmx-subject:2.4.3 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Mining, manufacturing, construction'@en ;
+    skos:notation '2.4.3' ;
+    skos:definition """Mining, manufacturing, construction - statistics on specific industrial activities, e.g. steel, shipbuilding, and on construction, trade in specific products related to mining, manufacturing and construction.
+Excludes
+- prices of manufactured products (2.7)
+- construction prices (2.7)"""@en . 
+
+sdmx-subject:2.4.4 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Transport'@en ;
+    skos:notation '2.4.4' ;
+    skos:definition """Transport - covers statistics on all modes of transport (air, rail, road, inland waterways, sea), includes topics like transport infrastructure, equipment, traffic flows, personal mobility, safety, energy consumption, transport enterprises, passengers and freight transport, transport sector trends, road traffic accidents.
+Excludes
+- transport prices (2.7)"""@en . 
+
+sdmx-subject:2.4.5 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Tourism'@en ;
+    skos:notation '2.4.5' ;
+    skos:definition """Tourism - covers statistics regarding visitor activity (such as arrivals/departures, overnight stays, expenditures, purpose of the visit, etc.) associated to different forms of tourism (inbound, domestic and outbound), tourism industries activity and infrastructure, employment and tourism satellite accounts. 
+Excludes
+- prices for tourist services (2.7)
+- environmental impacts (3.1)"""@en . 
+
+sdmx-subject:2.4.6 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:2.4;
+    skos:prefLabel 'Banking, insurance, financial statistics'@en ;
+    skos:notation '2.4.6' ;
+    skos:definition """Banking, insurance, financial statistics - money, banking and financial market statistics, including financial accounts, money supply, interest rates, exchange rates, stock market indicators, securities, bank profitability, private sector insurance and pension fund statistics, Financial Soundness Indicators. 
+Excludes 
+- beneficiaries of private pension funds (1.6) 
+- financing of state pension and of other state social security schemes (2.5)"""@en . 
+
 sdmx-subject:2.5 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
     skos:broader sdmx-subject:2;
     skos:prefLabel 'Government finance, fiscal and public sector statistics'@en ;
@@ -257,6 +309,54 @@ sdmx-subject:3.3 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
 Excludes: 
 - multi-domain statistics based on a regional approach (3.2)
 - yearbook type of compendia or similar products by international organisations not following a specific thematic approach (3.4)"""@en . 
+
+sdmx-subject:3.3.1 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Living conditions, poverty, and cross-cutting social issues'@en ;
+    skos:notation '3.3.1' ;
+    skos:definition """Living conditions, poverty and cross-cutting social issues - includes work on multidimensional methods to measure poverty, living conditions in the broad sense, social inclusion/exclusion, social indicators, and social situation.
+Excludes:
+- purely monetary approach to poverty (1.5)
+
+Excludes: 
+- multi-domain statistics based on a regional approach (3.2)
+- yearbook type of compendia or similar products by international organisations not following a specific thematic approach (3.4)"""@en . 
+
+sdmx-subject:3.3.2 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Gender and special population groups'@en ;
+    skos:notation '3.3.2' ;
+    skos:definition """Gender and special population groups - their living conditions and role in the society: comparisons men/women and situation of special population groups like children, youth, women, elderly, disabled, minority groups, etc."""@en . 
+
+sdmx-subject:3.3.3 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Information society'@en ;
+    skos:notation '3.3.3' ;
+    skos:definition """Information society - statistics allowing to assess the use and impact of information and communication technologies on society, includes access and use of ICTs (including Internet), ICT expenditure and investment, ICT infrastructure, telecommunication networks, electronic communications, e-government, electronic commerce, e-learning, broadband penetration, ICT services, communication tariffs, network infrastructure, revenues, expenses and investment of operators, Internet indicators, trade in telecommunications equipment."""@en . 
+
+sdmx-subject:3.3.4 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Globalisation'@en ;
+    skos:notation '3.3.4' ;
+    skos:definition """Globalisation - deals with measuring the economic activities of multinational companies, as well as with attempts to measure globalisation through a variety of components from other subject areas."""@en . 
+
+sdmx-subject:3.3.5 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Indicators related to the Millennium Development Goals'@en ;
+    skos:notation '3.3.5' ;
+    skos:definition """Indicators related to the Millennium Development Goals - work on sets of indicators to monitor the achievement of the Millennium Development Goals agreed upon at the UN Millennium Summit."""@en . 
+
+sdmx-subject:3.3.6 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Sustainable development'@en ;
+    skos:notation '3.3.6' ;
+    skos:definition """Sustainable development - work on indicators and frameworks to monitor the economic, social and environmental dimensions of sustainable development."""@en . 
+
+sdmx-subject:3.3.7 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
+    skos:broader sdmx-subject:3.3;
+    skos:prefLabel 'Entrepreneurship'@en ;
+    skos:notation '3.3.7' ;
+    skos:definition """Entrepreneurship - the measurement of the determinants, performance and impact of entrepreneurial activities of people and organisations."""@en . 
 
 sdmx-subject:3.4 a skos:Concept, sdmx:Concept, sdmx-subject:SubjectMatterDomain;
     skos:broader sdmx-subject:3;
