@@ -1,0 +1,6 @@
+#Table of contents for the SDMX-RDF documentation wiki.
+
+  * [Index Overview]
+  * [Documentation User guides and design documents]
+  * [PatternsIndex Suggested usage patterns]
+  * [Issues Index of design-issue discussions
