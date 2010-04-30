@@ -99,8 +99,9 @@ We describe how SDMX data may be represented in RDF, which we term <i>SDMX-RDF</
 made available to RDF-aware applications and presented as linked data. This representation
 exploits existing RDF vocabularies such as 
 <a href="http://www.w3.org/2004/02/skos/">SKOS</a> for concept schemas,
-<a href="http://xmlns.com/foaf/0.1/">FOAF</a> for @@@someTwoWordSummary,
-and <a href="http://rdfs.org/ns/void-guide">VoiD</a> for data access.
+<a href="http://xmlns.com/foaf/0.1/">FOAF</a> for organizational information, 
+<a href="http://purl.org/dc/terms/">Dublin Core Terms</a> for metadata
+and <a href="http://rdfs.org/ns/void-guide">VoiD</a> for dataset description.
 It builds on earlier work on representing statistical data in RDF
 using <a href="http://sw.joanneum.at/scovo/schema.html">SCOVO</a>. 
 SDMX-RDF is essentially a third syntax for the SDMX information
@@ -146,8 +147,8 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
   </li>
   <li><a href="#metadata">5. Expressing dataset metadata</a>
     <ul class="toc">
-      <li><a href="#@@@">5.1 Describing publishers and maintenance agencies</a></li>
-      <li><a href="#@@@">5.2 Describing publishers and maintenance agencies</a></li>
+      <li><a href="#categorization">5.1 Categorizing a dataset</a></li>
+      <li><a href="#agencies">5.2 Describing publishers and maintenance agencies</a></li>
     </ul>
   </li>
   <li><a href="#codelists">6. Designing code lists</a></li>
@@ -199,6 +200,7 @@ formats like Excel spreadsheets or PDF documents.
   <li><a href="http://sw.joanneum.at/scovo/schema.html">SCOVO</a> for core statistical structures</li>
   <li><a href="http://rdfs.org/ns/void-guide">VoiD</a> for data access (instead of SDMX registries)</li>
   <li><a href="http://xmlns.com/foaf/0.1/">FOAF</a> for organisations</li>
+  <li><a href="http://purl.org/dc/terms/">Dublin Core Terms</a> for metadata</li>
 </ul>
 
 
@@ -447,14 +449,26 @@ eg:dataset1 a sdmx:DataSet;
 <p>where <code>eg:Wales</code> is a <code>skos:Concept</code> drawn from an appropriate controlled
 vocabulary for places.</p>
 
-
 <h3 id="agencies">5.2 Describing publishers and maintenance agencies</h3>
 
-<p>Data providers. The organisation that publishes a dataset is given via the 
-dc:publisher relationship. Organisations are represented as instances of foaf:Agent. 
-Organisations are also used with the sdmx:maintainer property, which indicates 
-the maintenance agency of various SDMX artefacts, such as DSDs, code lists, and category schemes.</p>
+<p>The organization that publishes a dataset should recorded as part of the dataset metadata.
+SDMX-RDF recommends reuse of the Dublin Core term <code>dc:publisher</code> for this.
+The organization should be represented as an instance of <code>foaf:Agent</code>. For example:</p>
 
+<pre>
+eg:dataset1 a sdmx:DataSet;
+    dc:publisher <http:www.epimorphics.com/meta#organization> ;
+    dc:date "30-04-2010"^^xsd:date .
+    
+<http:www.epimorphics.com/meta#organization> a foaf:Agent;
+    rdfs:label "Epimorphics Ltd" .    
+</pre>
+
+<p>@@@ Feel free to choose another organization for the example</p>
+
+<p>Organizations can also play the role of maintenance agency for various SDMX artifacts, such as DSDs, 
+code lists, and category schemes. This is indicated using the <code>sdmx:maintainer</code> property.
+</p>
 
 <h2 id="codelists">6. Designing code lists</h2>
 
