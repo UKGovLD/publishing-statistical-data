@@ -228,7 +228,7 @@ with the SDMX information model.</p>
 
 <h3>1.1 Characterizing statistical data</h3>
 
-<p>@@@ How does statistical data differ from other data? Why is a reified representation around observations more appropriate? Aggregate data, time series, detailed metadata…<p>
+<p>@@@ How does statistical data differ from other data? Why is a reified representation around observations more appropriate? Aggregate data, time series, detailed metadataâ€¦<p>
 
 <h3>1.2 RDF and Linked Data</h3>
 
@@ -326,7 +326,7 @@ standard they are taken from.
     - [ ] Scope of this doc -- we don't really talk about DataFlow, ProvisionAgreement etc
 </pre>
 
-<p>Mapping overview. Fig. 4 provides a high-level overview of the RDF model. At the core of SDMX is the data structure definition (DSD), which describes the structure, or metamodel, of one or more statistical datasets. Individual datasets must conform to a DSD, and are represented by instances of the sdmx:DataSet class. The sdmx:structure property connects a dataset and its DSD. The sdmx:DataSet class is defined as a subclass of SCOVO's scovo:Dataset class, and also as a subclass of void:Dataset, so VoiD properties can be used to describe access methods (SPARQL endpoint, RDF dump, etc.) to the data. VoiD covers much of the same ground as SDMX’s web service based registry module, which we therefore do not map to RDF.</p>
+<p>Mapping overview. Fig. 4 provides a high-level overview of the RDF model. At the core of SDMX is the data structure definition (DSD), which describes the structure, or metamodel, of one or more statistical datasets. Individual datasets must conform to a DSD, and are represented by instances of the sdmx:DataSet class. The sdmx:structure property connects a dataset and its DSD. The sdmx:DataSet class is defined as a subclass of SCOVO's scovo:Dataset class, and also as a subclass of void:Dataset, so VoiD properties can be used to describe access methods (SPARQL endpoint, RDF dump, etc.) to the data. VoiD covers much of the same ground as SDMXâ€™s web service based registry module, which we therefore do not map to RDF.</p>
  
 <p>Data flows and provision agreements. Two important scenarios in official statistics are the periodical publishing of datasets according to a schedule, and the aggregation of datasets from different data providers (e.g., European Union national statistics offices) into a larger collection for central dissemination (e.g., Eurostat). These scenarios are addressed via sdmx:DataFlow. A data flow represents a "feed" of datasets that all conform to the same DSD. Data flows are associated with provision agreements, which can be understood as commitments from an organisation to publish datasets into a data flow.</p>
 
@@ -552,7 +552,7 @@ above example by using the common convention that the class name is the
 same as that of the concept scheme but with leading upper case.</p>
 
 <p>The above example is based on the SDMX Content Oriented Guidelines [ref],
-though simiplified by omitting the other codes T, U and N. For convenience,
+though simplified by omitting the other codes T, U and N. For convenience,
 each of the SDMX COG code lists have been translated to this format at
 <a href="http://purl.org/linked-data/sdmx/2009/code">http://purl.org/linked-data/sdmx/2009/code</a> 
 to facilitate reuse.</p>
@@ -593,7 +593,7 @@ with a Concept in the ConceptScheme, then the corresponding XSD datatype
 <p>Most annotations of the <em>data</em> should be handled via attributes if possible. Quote from the Implementor's Guide:</p>
 
 <blockquote>
-It is also possible to associate annotations (Annotation) with both the structures described in key families and the observations contained in the data set. These annotations are a slightly atypical form of documentation, in that they are used to describe both the data itself - like other attributes - but also may be used to describe other metadata. An example of this is methodological information about some particular dimension in a data structure definition structure, attached as an annotation to the description of that dimension. Regular "footnotes" attached to the data as documentation should be declared as attributes in the appropriate places in a data structure definition – annotations are irregular documentation which may need to be attached at many points in the data structure definition or data set. 
+It is also possible to associate annotations (Annotation) with both the structures described in key families and the observations contained in the data set. These annotations are a slightly atypical form of documentation, in that they are used to describe both the data itself - like other attributes - but also may be used to describe other metadata. An example of this is methodological information about some particular dimension in a data structure definition structure, attached as an annotation to the description of that dimension. Regular "footnotes" attached to the data as documentation should be declared as attributes in the appropriate places in a data structure definition â€“ annotations are irregular documentation which may need to be attached at many points in the data structure definition or data set. 
 </blockquote>
 
 <p>Annotations in the sense of the text above are handled using SKOS. Any resource in a data structure definition, dataset, or anywhere else can be annotated using this mechanism.</p>
