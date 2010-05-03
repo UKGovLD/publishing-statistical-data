@@ -59,7 +59,7 @@ ul.toc { list-style-type: none; }
   <dd><a href="@@@">@@@</a></dd>
 -->
   <dt>Last update:</dt>
-  <dd>2010-03-30</dd>
+  <dd>2010-05-02</dd>
 <!--
   <dt>Revision:</dt>
   <dd>$Revision: 8 $</dd>
@@ -83,8 +83,6 @@ is a ISO standard for exchanging  and sharing statistical data and metadata
 among organizations. It consists of an abstract information model 
 (SDMX-IM) and concrete XML- and UN/EDIFACT- based syntaxes.
 </p>
-
-<p>@@@ is that the best URI for SDMX?</p>
 
 <p>
 <a href="http://www.w3.org/TR/REC-rdf-syntax/">RDF (Resource Description Framework)</a>
@@ -180,20 +178,44 @@ national boundaries.
 SDMX is not web-friendly. The concepts, code lists, datasets,
 and observations are not named with URIs or routinely exposed
 to browsers and other web-crawlers. This makes it more difficult 
-for third parties to annotate, reference, and query that data.
+for third parties to annotate, reference, and discover that data.
 Nor is SDMX the only shape in which statistical data is published;
 data is available in specialist XML formats such as LGDx,
 de-facto semi-standards like CSV, and proprietary application
-formats like Excel spreadsheets or PDF documents.
+formats like Excel spreadsheets or PDF documents.</p>
 
-<br /> @@@ some assertions need checking!
-</p>
+<p>RDF provides a mechanism for data publishing on the web which, through 
+the use of <a href="http://linkeddata.org/">linked data</a> principles, 
+supports easy discovery
+and cross-linking of published data. RDF is a simple but flexible
+representation in which logical statements (binary predicates) are asserted
+about resources. The resources, classes of resources and predicates are 
+identified by URIs thus supporting web-based discovery of the associated information
+model.</p>
 
-<p>
-@@@ this will be "why RDF" ...
-</p>
+<p>There are a number of benefits to being able to publish statistical
+data using RDF:</p>
+<ul>
+  <li>The individual observations, and groups of observations, become (web) addressable. 
+  This allows third party annotations and linking; for example a report can reference 
+  the specific figures it is based on allowing for fine grained provenance trace-back.</li>
+  <li>Flexible combination of data across datasets, this extends to combination 
+  between statistical and non-statistical sets within the linked data web (for 
+  example <em>find all Religious schools in census areas with high values for National 
+  Indicators pertaining to religious tolerance</em>). The statistical data becomes an 
+  integral part of the broader web of linked data.</li>	
+  <li>The ability to slice and dice the datasets in new ways, due to the 
+  fine grained representation enabled by the linked data approach.</li>
+  <li>For publishers who currently only offer static files then publishing 
+  as linked-data offers a flexible, non-proprietary, machine readable means of 
+  publication that supports an out-of-the-box web API for programmatic access.</li>
+</ul>
 
-<p>@@@ SDMX-RDF makes use of the following great vocabularies:</p>
+<p>SDMX-RDF is an RDF <em>vocabulary</em> is designed to support this. It defines
+classes and predicates to represent statistical data within RDF, compatible
+with the SDMX information model.</p>
+
+<p>SDMX-RDF makes use of the following existing RDF vocabularies:</p>
 
 <ul>
   <li><a href="http://www.w3.org/2004/02/skos/">SKOS</a> for ItemSchemes</li>
@@ -206,7 +228,7 @@ formats like Excel spreadsheets or PDF documents.
 
 <h3>1.1 Characterizing statistical data</h3>
 
-<p>@@@ How does statistical data differ from other data? Why is a “reified” representation around observations more appropriate? Aggregate data, time series, detailed metadata…<p>
+<p>@@@ How does statistical data differ from other data? Why is a reified representation around observations more appropriate? Aggregate data, time series, detailed metadata…<p>
 
 <h3>1.2 RDF and Linked Data</h3>
 
@@ -231,7 +253,7 @@ formats like Excel spreadsheets or PDF documents.
 <ul>
 <li>definition and publication of the structure of a dataset independent from concrete data,</li>
 <li>data flows which group together datasets that share the same structure, for example from different national data providers,</li>
-<li>definition of “slices” through a dataset, such as an individual time series or cross-section, for individual annotation,</li>
+<li>definition of "slices" through a dataset, such as an individual time series or cross-section, for individual annotation,</li>
 <li>distinctions between dimensions, attributes and measures.</li>
 </ul>
 
@@ -304,9 +326,9 @@ standard they are taken from.
     - [ ] Scope of this doc -- we don't really talk about DataFlow, ProvisionAgreement etc
 </pre>
 
-<p>Mapping overview. Fig. 4 provides a high-level overview of the RDF model. At the core of SDMX is the data structure definition (DSD), which describes the structure, or metamodel, of one or more statistical datasets. Individual datasets must conform to a DSD, and are represented by instances of the sdmx:DataSet class. The sdmx:structure property connects a dataset and its DSD. The sdmx:DataSet class is defined as a subclass of SCOVO’s scovo:Dataset class, and also as a subclass of void:Dataset, so VoiD properties can be used to describe access methods (SPARQL endpoint, RDF dump, etc.) to the data. VoiD covers much of the same ground as SDMX’s web service based registry module, which we therefore do not map to RDF.</p>
+<p>Mapping overview. Fig. 4 provides a high-level overview of the RDF model. At the core of SDMX is the data structure definition (DSD), which describes the structure, or metamodel, of one or more statistical datasets. Individual datasets must conform to a DSD, and are represented by instances of the sdmx:DataSet class. The sdmx:structure property connects a dataset and its DSD. The sdmx:DataSet class is defined as a subclass of SCOVO's scovo:Dataset class, and also as a subclass of void:Dataset, so VoiD properties can be used to describe access methods (SPARQL endpoint, RDF dump, etc.) to the data. VoiD covers much of the same ground as SDMX’s web service based registry module, which we therefore do not map to RDF.</p>
  
-<p>Data flows and provision agreements. Two important scenarios in official statistics are the periodical publishing of datasets according to a schedule, and the aggregation of datasets from different data providers (e.g., European Union national statistics offices) into a larger collection for central dissemination (e.g., Eurostat). These scenarios are addressed via sdmx:DataFlow. A data flow represents a “feed” of datasets that all conform to the same DSD. Data flows are associated with provision agreements, which can be understood as commitments from an organisation to publish datasets into a data flow.</p>
+<p>Data flows and provision agreements. Two important scenarios in official statistics are the periodical publishing of datasets according to a schedule, and the aggregation of datasets from different data providers (e.g., European Union national statistics offices) into a larger collection for central dissemination (e.g., Eurostat). These scenarios are addressed via sdmx:DataFlow. A data flow represents a "feed" of datasets that all conform to the same DSD. Data flows are associated with provision agreements, which can be understood as commitments from an organisation to publish datasets into a data flow.</p>
 
 
 <h3>2.1 Data structure definitions</h3>
@@ -329,7 +351,7 @@ standard they are taken from.
 
 <p>@@@ About time series, cross sections, and groups</p>
 
-<p>Data set details. SDMX offers two approaches to organising the data inside a dataset. Either the dataset is a collection of time series (a set of observations that share the same dimension values except for the time dimension), or it is a collection of cross-sections (a set of observations that share the same dimension values except for one or more non-time “wildcard dimensions”). In our RDF mapping, we unify both models into a simpler yet more verbose model that can be more easily interrogated with SPARQL queries (see Fig. 6). The observation values are modeled as instances of sdmx:Observation, a subclass of scovo:Item. Each observation instance is directly connected to the sdmx:DataSet via the sdmx:dataset property. An observation must have a value for each dimension property defined in the DSD. The actual observation value is recorded using rdf:value.</p>
+<p>Data set details. SDMX offers two approaches to organising the data inside a dataset. Either the dataset is a collection of time series (a set of observations that share the same dimension values except for the time dimension), or it is a collection of cross-sections (a set of observations that share the same dimension values except for one or more non-time "wildcard dimensions"). In our RDF mapping, we unify both models into a simpler yet more verbose model that can be more easily interrogated with SPARQL queries (see Fig. 6). The observation values are modeled as instances of sdmx:Observation, a subclass of scovo:Item. Each observation instance is directly connected to the sdmx:DataSet via the sdmx:dataset property. An observation must have a value for each dimension property defined in the DSD. The actual observation value is recorded using rdf:value.</p>
 
 <p>The time series and cross-sections found in SDMX data are still translated to RDF, in order to make any metadata attached to them available in the RDF view. The same applies to groups, which are another organisational tool that can be used to apply metadata to sections of a dataset, for example to monthly, quarterly and annual timelines of the same measure.</p>
 
@@ -347,7 +369,7 @@ standard they are taken from.
 
 <p>Concepts could be modeled as properties, and could be associated with components using rdfs:subPropertyOf. Instead, we model them as skos:Concepts, and introduce a new property for associating them with the component. This takes advantage of the easier management, wider reusability, and fine-grained mapping features of SKOS vocabularies compared to RDFS-defined properties.</p>
 
-<p>The main part of a key family are the dimensions, attributes, and measures. We model them as RDF properties. We define subclasses of rdf:Property that are used to map the “components” to RDF:</p>
+<p>The main part of a key family are the dimensions, attributes, and measures. We model them as RDF properties. We define subclasses of rdf:Property that are used to map the components to RDF:</p>
 
 <ul>
 <li>DimensionProperty</li>
@@ -383,7 +405,7 @@ standard they are taken from.
 <dd>This is the actual data, the measured numbers. In a statistical table, the observations would be the numbers in the table cells.</dd>
 
 <dt>Organizational structure</dt>
-<dd>To locate an observation within the hypercube, one has at least to know the value of each dimension at which the observation is located, so these values must be specified for each observation. Datasets can have additional organizational structure in the form of <em>time series</em> and <em>groups</em>. Both are “slices” through the cube along certain dimensions and are used for attaching metadata to areas of the cube.</dd>
+<dd>To locate an observation within the hypercube, one has at least to know the value of each dimension at which the observation is located, so these values must be specified for each observation. Datasets can have additional organizational structure in the form of <em>time series</em> and <em>groups</em>. Both are slices through the cube along certain dimensions and are used for attaching metadata to areas of the cube.</dd>
 
 <dt>Internal metadata</dt>
 <dd>Having located an observation, we need certain metadata in order to be able to interpret it. What is the unit of measurement? Is it a normal value or a series break? Is the value measured or estimated? These metadata are provided as <em>attributes</em> and can be attached to individual observations, or to higher levels (time series, groups, entire datasets), which makes them apply to all observations in the region.</dd>
@@ -413,7 +435,7 @@ standard they are taken from.
 
 <p>In the basic representation, an RDF resource is created for each observation and typed as sdmx:Observation. It is connected to the sdmx:DataSet via the sdmx:dataset property. Optionally, instances of sdmx:TimeSeries, sdmx:Section, and sdmx:Group can be created. The dataset resource connects to each of those via sdmx:key. Each of them connects to the observations contained within the time series/section/group via sdmx:observation.</p>
 
-<p>Values for the attributes, dimensions and measurements are attached directly to the observation. Remember that atts, dims and measurements are all RDF properties, so we use them as the predicate and the respective value as the object of RDF statements. Instead of attaching statements directly to the Observations, they can also be “pulled up” to any of the groupings or even up to the dataset if they are always identical within the group. <em>(@@@ but attachment levels are not visible at all within the @@@)</em></p>
+<p>Values for the attributes, dimensions and measurements are attached directly to the observation. Remember that atts, dims and measurements are all RDF properties, so we use them as the predicate and the respective value as the object of RDF statements. Instead of attaching statements directly to the Observations, they can also be "pulled up" to any of the groupings or even up to the dataset if they are always identical within the group. <em>(@@@ but attachment levels are not visible at all within the @@@)</em></p>
 
 
 <h2 id="metadata">5. Expressing dataset metadata</h2>
@@ -464,7 +486,7 @@ eg:dataset1 a sdmx:DataSet;
     rdfs:label "Epimorphics Ltd" .    
 </pre>
 
-<p>@@@ Feel free to choose another organization for the example</p>
+<p>@@@ Feel free to switch to another organization for the example</p>
 
 <p>Organizations can also play the role of maintenance agency for various SDMX artifacts, such as DSDs, 
 code lists, and category schemes. This is indicated using the <code>sdmx:maintainer</code> property.
@@ -472,22 +494,98 @@ code lists, and category schemes. This is indicated using the <code>sdmx:maintai
 
 <h2 id="codelists">6. Designing code lists</h2>
 
-<p>All item schemes are mapped to SKOS. The scheme itself becomes a skos:ConceptScheme. Each item becomes a skos:Concept. The item's id is attached to the concept using skos:notation. The name of the item is attached as a skos:prefLabel, the description as skos:note.</p>
+<p>The value for each dimension and attribute within a dataset 
+should be indicated by a code drawn from a code list. 
+In SDMX-RDF then such codes are denoted by URI resources (so they 
+can be dereferenced and further annotated) and are 
+normally of type <code>skos:Concept</code>. The set of codes 
+which make up a code list are represented using <code>skos:ConceptScheme</code>.
+</p>
 
-<p><em>@@@ skos:notation is supposed to be used with a custom datatype. I don't think that's useful. It feels redundant, because the URIs of the ConceptScheme and if the datatype do somehow represent the same underlying structure.</em></p>
+<p>For example:</p>
+<pre>
+sdmx-code:sex a skos:ConceptScheme, sdmx:CodeList;
+    skos:prefLabel "Code list for Sex (SEX) - codelist scheme"@en;
+    rdfs:label 'Code list for Sex (SEX) - codelist scheme"@en;
+    skos:notation "CL_SEX";
+    skos:note "This  code list provides the gender."@en;
+    skos:definition &lt;http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf> ;
+    rdfs:seeAlso sdmx-code:Sex ;
+    sdmx-code:sex skos:hasTopConcept sdmx-code:sex-F ;
+    sdmx-code:sex skos:hasTopConcept sdmx-code:sex-M .
 
-<p>In hierarchical schemes, an item is linked to its children (hierarchy) via skos:narrower. All items are linked to the scheme via skos:inScheme.</p>
+sdmx-code:Sex a rdfs:Class, owl:Class;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Code list for Sex (SEX) - codelist class"@en;
+    rdfs:comment "This  code list provides the gender."@en;
+    rdfs:seeAlso sdmx-code:sex .
 
-<p><em>@@@ In item schemes, any concept can only have one parent. Should this be somehow expressed in SKOS?</em></p>
+sdmx-code:sex-F a skos:Concept, sdmx:Concept, sdmx-code:Sex;
+    skos:topConceptOf sdmx-code:sex;
+    skos:prefLabel "Female"@en ;
+    skos:notation "F" ;
+    skos:inScheme sdmx-code:sex .
+
+sdmx-code:sex-M a skos:Concept, sdmx:Concept, sdmx-code:Sex;
+    skos:topConceptOf sdmx-code:sex;
+    skos:prefLabel "Male"@en ;
+    skos:notation "M" ;	
+    skos:inScheme sdmx-code:sex .
+</pre>
+
+<p><code>skos:prefLabel</code> is used to give a name to the code, 
+<code>skos:note</code> gives a description and <code>skos:notation</code> can be used 
+to record a short form code which might appear in other serializations. 
+The SKOS specification [ref] recommends the generation of a custom datatype for
+each use of <code>skos:notation</code> but here the notation is not going to be used
+within RDF encodings, it merely documents the notation used in other representations of the code.</p>
 
 <p>The skos:ConceptScheme derived from the ItemScheme is also typed as an sdmx:CodeList.</p>
 
-<p><em>@@@ We define classes for some kinds of ItemSchemes (CodeList and ConceptScheme). Should we also define classes for the Items (Code, Concept) or would that be overkill? We resolved to define sdmx:Concept as well.</em></p>
+<p>It is convenient and good practice when developing a code list to also 
+create a an <code>owl:Class</code> to denote all the codes within the code
+list, irrespective of hierarchical structure. This allows the range of an
+<code>sdmx:componentProperty</code> to be defined by using <code>rdfs:range</code>
+which then permits standard RDF closed-world checkers to validate use of the
+code list without requiring custom SDXM-RDF-aware tooling. We do that in the
+above example by using the common convention that the class name is the
+same as that of the concept scheme but with leading upper case.</p>
+
+<p>The above example is based on the SDMX Content Oriented Guidelines [ref],
+though simiplified by omitting the other codes T, U and N. For convenience,
+each of the SDMX COG code lists have been translated to this format at
+<a href="http://purl.org/linked-data/sdmx/2009/code">http://purl.org/linked-data/sdmx/2009/code</a> 
+to facilitate reuse.</p>
+
+<p>In some cases a controlled set of URI resources might already exist but not
+as a SKOS concept scheme, for
+example identifiers existing for things like geographic entities and time periods.
+It is not necessary to duplicate such resources as <code>skos:Concept</code>s
+within a <code>skos:ConceptScheme</code>, the resources can be used directly.
+In that case the OWL (or RDFS) Class which denotes the set of resources can be
+used in the definition of the corresponding dimension or attribute property.</p>
+
+<p>@@@ Describe how that is done, once we've agreed on it.</p>
+
+<p>In some cases code lists have a hierarchical structure. In particular, this is 
+used in SDMX when the data cube includes aggregations of data values 
+(e.g. aggregating a measure across geographic regions).
+Hierarchical code lists lists should be represented using the 
+<code>skos:narrower</code> relationship to link from the <code>skos:hasTopConcept</code>
+codes down through the tree or lattice of child codes. 
+In some publishing tool chains the corresponding transitive closure 
+<code>skos:narrowerTransitive</code> will be automatically inferred. 
+The use of <code>skos:narrower</code> makes it possible to declare new 
+concept schemes which extend an existing scheme by adding additional aggregation layers on top.
+All items are linked to the scheme via <code>skos:inScheme</code>.</p>
 
 
 <h2 id="conceptschemes">7. Designing concept schemes</h2>
 
-<p>The resource derived from a ConceptScheme should be typed as skos:ConceptScheme and sdmx:ConceptScheme. Each concept is an sdmx:Concept. If there is a datatype associated with a Concept in the ConceptScheme, then the corresponding XSD datatype (such as xsd:string, xsd:integer) is attached to the Concept using sdmx:coreType.</p>
+<p>The resource derived from a ConceptScheme should be typed as skos:ConceptScheme and 
+sdmx:ConceptScheme. Each concept is an sdmx:Concept. If there is a datatype associated 
+with a Concept in the ConceptScheme, then the corresponding XSD datatype 
+(such as xsd:string, xsd:integer) is attached to the Concept using sdmx:coreType.</p>
 
 
 <h2 id="annotations">8. Annotations</h2>
@@ -495,7 +593,7 @@ code lists, and category schemes. This is indicated using the <code>sdmx:maintai
 <p>Most annotations of the <em>data</em> should be handled via attributes if possible. Quote from the Implementor's Guide:</p>
 
 <blockquote>
-It is also possible to associate annotations (Annotation) with both the structures described in key families and the observations contained in the data set. These annotations are a slightly atypical form of documentation, in that they are used to describe both the data itself - like other attributes - but also may be used to describe other metadata. An example of this is methodological information about some particular dimension in a data structure definition structure, attached as an annotation to the description of that dimension. Regular “footnotes” attached to the data as documentation should be declared as attributes in the appropriate places in a data structure definition – annotations are irregular documentation which may need to be attached at many points in the data structure definition or data set. 
+It is also possible to associate annotations (Annotation) with both the structures described in key families and the observations contained in the data set. These annotations are a slightly atypical form of documentation, in that they are used to describe both the data itself - like other attributes - but also may be used to describe other metadata. An example of this is methodological information about some particular dimension in a data structure definition structure, attached as an annotation to the description of that dimension. Regular "footnotes" attached to the data as documentation should be declared as attributes in the appropriate places in a data structure definition – annotations are irregular documentation which may need to be attached at many points in the data structure definition or data set. 
 </blockquote>
 
 <p>Annotations in the sense of the text above are handled using SKOS. Any resource in a data structure definition, dataset, or anywhere else can be annotated using this mechanism.</p>
@@ -521,8 +619,8 @@ URIs should be, if possible:
 
 - globally unique
 - resolvable
-- “dual-use” (for people and machines)
-- allow metadata (“Cool URIs” compatible)
+- "dual-use" (for people and machines)
+- allow metadata ("Cool URIs" compatible)
 
 Good practices for versioning:
 
@@ -592,15 +690,15 @@ Good practices for versioning:
 <dd>
 <p>@@@ This currently just discusses how to interpret some of the XS stuff and convert it to time series style.</p>
 
-<p>Each XSObservation has exactly one “number” in it, attached to property “value”.</p>
+<p>Each XSObservation has exactly one "number" in it, attached to property "value".</p>
 
-<p>Each XSObservation has a reference to exactly one “XSMeasure”.</p>
+<p>Each XSObservation has a reference to exactly one "XSMeasure".</p>
 
-<p>The XSMeasures are defined in the DSD. They could be “Weight”, “Volume” and “Price”. Since XSMeasure inherits from Measure, each of these XSMeasures is associated with a concept. In a simple design, this would be everything that XSMeasure does: It would merely form a connection from a concept to the DSD.</p>
+<p>The XSMeasures are defined in the DSD. They could be "Weight", "Volume" and "Price". Since XSMeasure inherits from Measure, each of these XSMeasures is associated with a concept. In a simple design, this would be everything that XSMeasure does: It would merely form a connection from a concept to the DSD.</p>
 
-<p>To support the transformation of a cross-sectional dataset to a time series dataset, the following trick is used: The DSD contains one or more fake dimensions, called MeasureTypeDimensions. The code list for this dimension could be "w", "v", "p". Each XSMeasure is associated with one MeasureTypeDimension, and with one code from the MeasureTypeDimension's code list. For example, the “Weight” XSMeasure could be associated with the “w” code.</p>
+<p>To support the transformation of a cross-sectional dataset to a time series dataset, the following trick is used: The DSD contains one or more fake dimensions, called MeasureTypeDimensions. The code list for this dimension could be "w", "v", "p". Each XSMeasure is associated with one MeasureTypeDimension, and with one code from the MeasureTypeDimension's code list. For example, the "Weight" XSMeasure could be associated with the "w" code.</p>
 
-<p>When the cross-sectional dataset is transformed to a time series dataset, each XSObservation is turned into one normal Observation associated to a TimeSeries. These normal observations have no association with an XSMeaure. In order not to lose this association, the Observation's time series will have an additional dimension -- the MeasureTypeDimension. The Observation will be attached to a TimeSeries where the value of the MeasureTypeDimension matches the XSMeasure. For example, an XSObservation attached to the “Weight” XSMeasure would end up on a time series whose MeasureTypeDimension value is “w”.</p></dd>
+<p>When the cross-sectional dataset is transformed to a time series dataset, each XSObservation is turned into one normal Observation associated to a TimeSeries. These normal observations have no association with an XSMeaure. In order not to lose this association, the Observation's time series will have an additional dimension -- the MeasureTypeDimension. The Observation will be attached to a TimeSeries where the value of the MeasureTypeDimension matches the XSMeasure. For example, an XSObservation attached to the "Weight" XSMeasure would end up on a time series whose MeasureTypeDimension value is "w".</p></dd>
 
 </dl>
 
@@ -616,7 +714,7 @@ Good practices for versioning:
 
 <h3>IdentifiableArtifact</h3>
 
-<p>id is not used; all resources are identified either via full URIs, or are blank nodes (which have an ID of local scope). Note that a URI can be derived from an id value “LOCAL_ID” by using a relative URI: <#LOCAL_ID>. This mapping does not prescribe wether URIs are resolvable, but certain publishing styles, especially Linked Data, require resolvability. <em>(@@@ should we prescribe that a URI must be derived from the id? When no uri is present, or always?)</em></p>
+<p>id is not used; all resources are identified either via full URIs, or are blank nodes (which have an ID of local scope). Note that a URI can be derived from an id value "LOCAL_ID" by using a relative URI: <#LOCAL_ID>. This mapping does not prescribe wether URIs are resolvable, but certain publishing styles, especially Linked Data, require resolvability. <em>(@@@ should we prescribe that a URI must be derived from the id? When no uri is present, or always?)</em></p>
 
 <p>uri becomes the identifier of the resource.</p>
 
