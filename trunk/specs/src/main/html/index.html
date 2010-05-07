@@ -452,15 +452,15 @@ standard they are taken from.
 <p>DataSets should be marked up with metadata to support discovery, presentation and
 processing. Metadata such as a display label (<code>rdfs:label</code>),
 descriptive comment (<code>rdfs:comment</code>) and creation date (<code>dc:date)</code>
-are common to most resources. SDMX-RDF provides additional support for a small number
-of metadata annotations commonly needed for DataSets.</p>
+are common to most resources. We recommend use of Dublin Core Terms
+for representing the key metadata annotations commonly needed for DataSets.</p>
 
 <h3 id="categorization">5.1 Categorizing a dataset</h3>
 
 <p>Publishers of statistics often categorize their data sets into different statistical 
 domains, such as <em>Education</em>, <em>Labour</em>, or <em>Transportation</em>.
 SDMX-RDF supports the annotation of data sets (or data flows) with one or more
-classification terms using the <code>sdmx:classification</code> property. 
+classification terms using the <code>dct:subject</code> property. 
 The classification terms can include coarse grained classifications, such
 as the List of Subject-matter Domains from the SDMX Content-oriented Guidelines [SDMX COG SMD], 
 and fine grained classifications to support discovery of data sets.</p>
@@ -474,7 +474,7 @@ at <a href="http://purl.org/linked-data/sdmx/2009/subject">http://purl.org/linke
 
 <pre>
 eg:dataset1 a sdmx:DataSet;
-    sdmx:classification &lt;http://purl.org/linked-data/sdmx/2009/subject#2.4.5>,  eg:Wales;
+    dct:subject &lt;http://purl.org/linked-data/sdmx/2009/subject#2.4.5>,  eg:Wales;
 </pre>
 
 <p>where <code>eg:Wales</code> is a <code>skos:Concept</code> drawn from an appropriate controlled
@@ -657,14 +657,14 @@ frequency of sets within the flow.</p>
 
 <p>In SDMX-RDF then a DataFlow is represented by an instance of the class
 <code>sdmx:DataFlow</code>. Like a DataSet a DataFlow can be classified
-using <code>sdmx:classification</code> to reference a concept within
+using <code>dct:subject</code> to reference a concept within
 some concept scheme and is linked to a DataStructureDefintion via
 <code>sdmx:structure</code>.  The individual data sets within a flow
 are linked to the flow using <code>sdmx:dataFlow</code>. For example:</p>
 
 <pre>
   eg:unemploymentDataFlow a sdmx:DataFlow ;
-      sdmx:classification sdmx-subject:1.2 ;   # Labour market
+      dct:subject sdmx-subject:1.2 ;   # Labour market
       rdfs:label "Unemployment data flow"@en ;
       rdfs:comment "fictitious set of quarterly data unemployment statistics"@en ;
       sdmx-attribute:freq sdmx-code:#freq-Q ;
@@ -676,7 +676,7 @@ are linked to the flow using <code>sdmx:dataFlow</code>. For example:</p>
       rdfs:comment "unemployment statistics for 2009 quarter 4"@en ;
       # ... other metadata omitted
       sdmx:structure eg:unemploymentDSD ;
-      sdmx:classification sdmx-subject:1.2 ;   # Labour market
+      dct:subject sdmx-subject:1.2 ;   # Labour market
       sdmx:dataFlow   eg:unemploymentDataFlow ;
       .
 </pre>
@@ -694,7 +694,9 @@ report. </p>
 such collections. Reports can be used to group DataSets, DataFlows
 or other Reports together into arbitrary groupings. The individual
 components of a report are linked to the <code>sdmx:Report</code>
-through use of the <code>sdmx:reportContains property.</code>  </p>
+through use of the <code>sdmx:reportContains property. A Report can be
+annotated with metadata using the same Dublic Core terms and conventions
+described above for DataSets and DataFlows.</code>  </p>
 
 <h2 id="publishing">10. URIs, resolvability and publishing</h2>
 
