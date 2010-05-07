@@ -962,29 +962,38 @@ sdmx-attribute:valuation a sdmx:AttributeProperty ;
 ### Binding to the corresponding COG Code lists ###
 
 sdmx-attribute:currency a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:currency ;
     rdfs:range sdmx-code:Currency .
 
 sdmx-attribute:area a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:area ;
     rdfs:range sdmx-code:Area .
 
 sdmx-attribute:decimals a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:decimals ;
     rdfs:range sdmx-code:Decimals .
 
 sdmx-attribute:freq a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:freq ;
     rdfs:range sdmx-code:Freq .
 
 sdmx-attribute:confStatus a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:confStatus ;
     rdfs:range sdmx-code:ConfStatus .
 
 sdmx-attribute:obsStatus a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:obsStatus ;
     rdfs:range sdmx-code:ObsStatus .
 
 sdmx-attribute:sex a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:sex ;
     rdfs:range sdmx-code:Sex .
 
 sdmx-attribute:timeFormat a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:timeFormat ;
     rdfs:range sdmx-code:TimeFormat .
 
 sdmx-attribute:unitMult a sdmx:CodedProperty ;
+    sdmx:codeList sdmx-code:unitMult ;
     rdfs:range sdmx-code:UnitMult .
 

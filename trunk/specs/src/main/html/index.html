@@ -473,7 +473,7 @@ vocabulary for places.</p>
 
 <h3 id="agencies">5.2 Describing publishers and maintenance agencies</h3>
 
-<p>The organization that publishes a dataset should recorded as part of the dataset metadata.
+<p>The organization that publishes a dataset should be recorded as part of the dataset metadata.
 SDMX-RDF recommends reuse of the Dublin Core term <code>dc:publisher</code> for this.
 The organization should be represented as an instance of <code>foaf:Agent</code>. For example:</p>
 
@@ -506,7 +506,7 @@ which make up a code list are represented using <code>skos:ConceptScheme</code>.
 <pre>
 sdmx-code:sex a skos:ConceptScheme, sdmx:CodeList;
     skos:prefLabel "Code list for Sex (SEX) - codelist scheme"@en;
-    rdfs:label 'Code list for Sex (SEX) - codelist scheme"@en;
+    rdfs:label "Code list for Sex (SEX) - codelist scheme"@en;
     skos:notation "CL_SEX";
     skos:note "This  code list provides the gender."@en;
     skos:definition &lt;http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf> ;
@@ -536,36 +536,54 @@ sdmx-code:sex-M a skos:Concept, sdmx:Concept, sdmx-code:Sex;
 <p><code>skos:prefLabel</code> is used to give a name to the code, 
 <code>skos:note</code> gives a description and <code>skos:notation</code> can be used 
 to record a short form code which might appear in other serializations. 
-The SKOS specification [ref] recommends the generation of a custom datatype for
-each use of <code>skos:notation</code> but here the notation is not going to be used
-within RDF encodings, it merely documents the notation used in other representations of the code.</p>
+The SKOS specification [SKOS] recommends the generation of a custom datatype for
+each use of <code>skos:notation</code> but here the notation is not intended for use
+within RDF encodings, it merely documents the notation used in other representations 
+(which do not use such a datatype).</p>
 
 <p>The skos:ConceptScheme derived from the ItemScheme is also typed as an sdmx:CodeList.</p>
 
 <p>It is convenient and good practice when developing a code list to also 
-create a an <code>owl:Class</code> to denote all the codes within the code
+create an <code>owl:Class</code> to denote all the codes within the code
 list, irrespective of hierarchical structure. This allows the range of an
 <code>sdmx:componentProperty</code> to be defined by using <code>rdfs:range</code>
 which then permits standard RDF closed-world checkers to validate use of the
-code list without requiring custom SDXM-RDF-aware tooling. We do that in the
+code list without requiring custom SDMX-RDF-aware tooling. We do that in the
 above example by using the common convention that the class name is the
 same as that of the concept scheme but with leading upper case.</p>
 
-<p>The above example is based on the SDMX Content Oriented Guidelines [ref],
+<p>The above example is based on the SDMX Content Oriented Guidelines [SDMX COG CL],
 though simplified by omitting the other codes T, U and N. For convenience,
 each of the SDMX COG code lists have been translated to this format at
-<a href="http://purl.org/linked-data/sdmx/2009/code">http://purl.org/linked-data/sdmx/2009/code</a> 
+<a href="http://purl.org/linked-data/sdmx/2009/code">http://purl.org/linked-data/sdmx/2009/code#</a> 
 to facilitate reuse.</p>
 
+<p>This code list can then be associated with a coded property, such as dimension:</p>
+
+<pre>
+  eg:sed a sdmx:DimensionProperty, sdmx:CodedProperty;
+      sdmx:codeList sdmx-code:sex ;
+      rdfs:range sdmx-code:Sex .
+</pre>
+
+<p>Though for those SDMX COG Code Lists which have corresponding SDMX COG dimensions
+or attributes then this binding has already been provided in: </p>
 <p>In some cases a controlled set of URI resources might already exist but not
 as a SKOS concept scheme, for
-example identifiers existing for things like geographic entities and time periods.
+example identifiers exist for things like geographic entities and time periods.
 It is not necessary to duplicate such resources as <code>skos:Concept</code>s
 within a <code>skos:ConceptScheme</code>, the resources can be used directly.
 In that case the OWL (or RDFS) Class which denotes the set of resources can be
 used in the definition of the corresponding dimension or attribute property.</p>
 
-<p>@@@ Describe how that is done, once we've agreed on it.</p>
+<pre>
+  eg:refArea a sdmx:DimensionProperty, sdmx:CodedProperty;
+      sdmx:codeList eg:GeographicAreaClass ;
+      rdfs:range eg:GeographicAreaClass .
+</pre>
+
+<p>The use of rdfs:range
+</p>
 
 <p>In some cases code lists have a hierarchical structure. In particular, this is 
 used in SDMX when the data cube includes aggregations of data values 
@@ -656,11 +674,14 @@ Good practices for versioning:
 
 @@@ [RDF] http://www.w3.org/standards/techs/rdf#w3c_all, RDF Current Status
 
-<br /> @@@ [SCOVE, SDMX] http://events.linkeddata.org/ldow2010/papers/ldow2010_paper03.pdf, 
+<br /> @@@ [SCOVO, SDMX] http://events.linkeddata.org/ldow2010/papers/ldow2010_paper03.pdf, 
 	Semantic Statistics: Bringing Together SDMX and SCOVO
 
-<br />
+<br /> @@@
 [SDMX COG SMD] <a href="http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf</a>
+
+<br /> @@@
+[SDMX COG CL] <a href="http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf</a>
 
 <h2 id="sdmx-im-ref">Appendix 1: From SDMX-IM to SDMX-RDF</h2>
 
