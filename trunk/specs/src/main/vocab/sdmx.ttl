@@ -52,23 +52,24 @@ sdmx:Observation a rdfs:Class, owl:Class;
     rdfs:subClassOf sdmx:Attachable;
     owl:equivalentClass scovo:Item;
     .
-sdmx:Key a rdfs:Class, owl:Class;
-    rdfs:label "Key"@en;
+sdmx:Slice a rdfs:Class, owl:Class;
+    rdfs:label "Slice"@en;
+    rdfs:comment "Denotes an subset of a DataSet such as a Group, Section or TimeSeries"@en;
     .
 sdmx:TimeSeries a rdfs:Class, owl:Class;
     rdfs:label "Time series"@en;
     rdfs:subClassOf sdmx:Attachable;
-    rdfs:subClassOf sdmx:Key;
+    rdfs:subClassOf sdmx:Slice;
     .
 sdmx:Section a rdfs:Class, owl:Class;
     rdfs:label "Section"@en;
     rdfs:subClassOf sdmx:Attachable;
-    rdfs:subClassOf sdmx:Key;
+    rdfs:subClassOf sdmx:Slice;
     .
 sdmx:Group a rdfs:Class, owl:Class;
     rdfs:label "Group"@en;
     rdfs:subClassOf sdmx:Attachable;
-    rdfs:subClassOf sdmx:Key;
+    rdfs:subClassOf sdmx:Slice;
     .
 sdmx:DataStructureDefinition a rdfs:Class, owl:Class;
     rdfs:label "Data structure definition"@en;
@@ -256,14 +257,15 @@ sdmx:dataSet a rdf:Property, owl:ObjectProperty;
     rdfs:range sdmx:DataSet;
     owl:equivalentProperty scovo:dataset;
     .
-sdmx:key a rdf:Property, owl:ObjectProperty;
-    rdfs:label "key"@en;
+sdmx:slice a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice"@en;
+    rdfs:comment "Links a data set to a subset such as a Group, Section or TimeSeries"@en;
     rdfs:domain sdmx:DataSet;
-    rdfs:range sdmx:Key;
+    rdfs:range sdmx:Slice;
     .
 sdmx:observation a rdf:Property, owl:ObjectProperty;
     rdfs:label "observation"@en;
-    rdfs:domain sdmx:Key;
+    rdfs:domain sdmx:Slice;
     rdfs:range sdmx:Observation;
     .
 sdmx:structure a rdf:Property, owl:ObjectProperty;
