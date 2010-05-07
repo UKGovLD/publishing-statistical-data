@@ -185,6 +185,61 @@ sdmx:EntityProperty a rdfs:Class, owl:Class;
     owl:disjointWith sdmx:MeasureProperty;
     .
 
+# --- Concept roles, provisional ---------------------------------------------------
+
+sdmx:frequencyComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "frequency"@en; 
+    rdfs:comment "identifies the Concept that plays the role of frequency"@en ;
+    rdfs:range sdmx:DimensionOrAttributeProperty ;
+    .
+sdmx:countComponent a owl:ObjectProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "count"@en; 
+    rdfs:comment "identifies the Concept that plays the role of an identifier where the identifier is taken from a known system of counts"@en ; 
+    rdfs:range sdmx:DimensionOrAttributeProperty ;
+    .
+sdmx:measureTypeComponent a owl:ObjectProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "measureType"@en; 
+    rdfs:comment "identifies the Concept that plays the role of identifying a type of measure"@en ;  
+    rdfs:range sdmx:DimensionProperty ;
+    .
+sdmx:entityComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "entity"@en; 
+    rdfs:comment "identifies the Concept that plays the role of the subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en ;  
+    rdfs:range sdmx:DimensionOrAttributeProperty ;
+    .
+sdmx:timeComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "time"@en; 
+    rdfs:comment "identifies the Concept that specifies the time of the observation of the primaryMeasure"@en ;  
+    rdfs:range sdmx:DimensionProperty ;
+    .
+sdmx:nonObsTimeComponent a owl:ObjectProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "nonObsTime"@en; 
+    rdfs:comment "identifies the Concept that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en ;  
+    rdfs:range sdmx:DimensionOrAttributeProperty ;
+    .
+sdmx:primaryMeasureComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "primaryMeasure"@en; 
+    rdfs:comment "identifies the Concept that plays the role of the observation in a time series"@en ;  
+    rdfs:range sdmx:MeasureProperty ;
+    .
+sdmx:identityComponent a owl:ObjectProperty; 
+    rdfs:subPropertyOf  sdmx:component;
+    rdfs:label "identity"@en; 
+    rdfs:comment "identifies the Concept that plays the role of an identifier which is taken from a known scheme of identifiers"@en ;  
+    rdfs:range sdmx:DimensionOrAttributeProperty ;
+    .
+sdmx:DimensionOrAttributeProperty a rdfs:Class, owl:class;
+    rdfs:label "dimension or attribute"@en;
+    rdfs:comment "union of the class of dimension or attribute properties, used to denote allowed range for some roles"@en;
+    owl:unionOf (sdmx:DimensionProperty sdmx:AttributeProperty) ;
+    .
 # --- Annotations ---------------------------------------------------
 
 sdmx:Annotation
@@ -194,6 +249,7 @@ sdmx:Annotation
     .
 
 # --- Properties ----------------------------------------------------
+
 sdmx:dataSet a rdf:Property, owl:ObjectProperty;
     rdfs:label "data set"@en;
     rdfs:domain sdmx:Observation;
@@ -283,3 +339,28 @@ sdmx:annotation
     rdfs:comment "Attaches an annotation to an observation";
     rdfs:range sdmx:Annotation;
     .
+    
+# --- Reporting taxonomies ----------------------------------------------------
+
+sdmx:Report a owl:Class, rdfs:Class;
+    rdfs:label "Report"@en ;
+    rdfs:comment "Represents a collection of data sets or flows which aren't required to have the same structure"@en;
+    .
+    
+sdmx:reportContains a owl:ObjectProperty ;
+    rdfs:label "report contains"@en;
+    rdfs:comment "designates a component of a report, may be a data set, data flow or nested report"@en;
+    rdfs:subPropertyOf dcterms:hasPart ;
+    rdfs:range sdmx:ReportEntry ;
+    rdfs:domain sdmx:Report ;
+    .
+    
+sdmx:ReportEntry a owl:Class, rdfs:Class;
+    rdfs:label "report entry"@en;
+    rdfs:comment "Represents the type of things that can be contained in reports" ;
+    .
+sdmx:DataSet rdfs:subClassOf sdmx:ReportEntry .
+sdmx:DataFlow rdfs:subClassOf sdmx:ReportEntry .
+sdmx:Report rdfs:subClassOf sdmx:ReportEntry .
+    
+    
