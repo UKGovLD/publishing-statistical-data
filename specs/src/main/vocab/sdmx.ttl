@@ -299,11 +299,6 @@ sdmx:componentOrder a rdf:Property, owl:ObjectProperty;
     rdfs:range rdf:List;
     rdfs:comment "Optional specification of the order in which dimensions (and optionally other components) should be used. Value is an rdf:List of sdmxComponents";
     .
-sdmx:classification a rdf:Property, owl:ObjectProperty;
-    rdfs:label "classification"@en;
-    rdfs:domain sdmx:DataSetOrFlow;
-    rdfs:range skos:Concept;
-    .
 sdmx:dataFlow a rdf:Property, owl:ObjectProperty;
     rdfs:label "data flow"@en;
     rdfs:domain sdmx:DataSet;
