@@ -124,7 +124,7 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
 <ul class="toc">
   <li><a href="#introduction">1. Introduction</a>
     <ul class="toc">
-      <li><a href="#@@@">1.1 Characterizing statistical data</a></li>
+      <li><a href="#characterizing">1.1 Characterizing statistical data</a></li>
       <li><a href="#@@@">1.2 RDF and Linked Data</a></li>
       <li><a href="#@@@">1.3 About SDMX</a></li>
       <li><a href="#@@@">1.4 Relationship to SCOVO</a></li>
@@ -208,19 +208,22 @@ data using RDF:</p>
   <li>The individual observations, and groups of observations, become (web) addressable. 
   This allows third party annotations and linking; for example a report can reference 
   the specific figures it is based on allowing for fine grained provenance trace-back.</li>
+  
   <li>Flexible combination of data across datasets, this extends to combination 
   between statistical and non-statistical sets within the linked data web (for 
   example <em>find all Religious schools in census areas with high values for National 
   Indicators pertaining to religious tolerance</em>). The statistical data becomes an 
   integral part of the broader web of linked data.</li>	
+  
   <li>The ability to slice and dice the datasets in new ways, due to the 
   fine grained representation enabled by the linked data approach.</li>
+  
   <li>For publishers who currently only offer static files then publishing 
   as linked-data offers a flexible, non-proprietary, machine readable means of 
   publication that supports an out-of-the-box web API for programmatic access.</li>
 </ul>
 
-<p>SDMX-RDF is an RDF <em>vocabulary</em> is designed to support this. It defines
+<p>SDMX-RDF is an RDF <em>vocabulary</em> designed to support this. It defines
 classes and predicates to represent statistical data within RDF, compatible
 with the SDMX information model.</p>
 
@@ -235,13 +238,39 @@ with the SDMX information model.</p>
 </ul>
 
 
-<h3>1.1 Characterizing statistical data</h3>
+<h3 id="characterizing">1.1 Characterizing statistical data</h3>
 
-<p>@@@ How does statistical data differ from other data? Why is a reified representation around observations more appropriate? Aggregate data, time series, detailed metadataâ€¦<p>
+<p>A statistical data set comprises a collection of observations made 
+at some points across a logical space. For example statistics for monitoring 
+government performance typically comprise some set of indicators (e.g. economic activity,
+health) measured at particular times, across some set of geographic regions and 
+population samples. The data set can be characterized by a set of dimensions
+which define what the observation applies to (time, area, population) and the 
+observations themselves form a <em>hypercube</em> or <em>multi-dimensional space</em> indexed by those dimensions.
+In addition, the data set needs to convey, directly or indirectly, how to
+interpret those observations - attributes defining units of measurement, scale etc -
+along with metadata to support discovery and provide context to the data. 
+The defining feature of such statistical datasets is this regular structure
+of dimensions and attributes around which the observations are grouped.</p>
+
+<p>Many approaches to representing statistical data follow this hypercube model
+and individual observations can only be located and interpreted via their
+address within a fixed surrounding cube. This approach is convenient for storage and 
+manipulation of a single data set.</p>
+
+<p>However, when we wish to arbitrarily combine datasets, to annotate and track
+provenance of individual observations or arbitrary subsets of observations, to
+like observations to non-stastitical datasets we need a different approach.
+We need to represent each observation as a separate entity which has an
+observed value along with its attributes and location within the
+multi-dimensional space. This is the approach taken in SDMX-RDF, which in
+turn is based on the earlier [SCOVO] model. </p>
 
 <h3>1.2 RDF and Linked Data</h3>
 
-<p>@@@ talk a bit about RDF and the linked data vision. What can it do for statistical data? Some text from the paper might be useful</p>
+<p>@@@ talk a bit about RDF and the linked data vision. 
+What can it do for statistical data? 
+Some text from the paper might be useful</p>
 
 
 <h3>1.3 About SDMX</h3>
