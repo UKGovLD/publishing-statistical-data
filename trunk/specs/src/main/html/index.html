@@ -433,7 +433,7 @@ standard they are taken from.
 
 <p>The measured value is provided as the value of the <a href="#primary-measure">primary measure property</a> (typically <tt>sdmx:obsValue</tt>).</p>
 
-<p>In the basic representation, an RDF resource is created for each observation and typed as sdmx:Observation. It is connected to the sdmx:DataSet via the sdmx:dataset property. Optionally, instances of sdmx:TimeSeries, sdmx:Section, and sdmx:Group can be created. The dataset resource connects to each of those via sdmx:key. Each of them connects to the observations contained within the time series/section/group via sdmx:observation.</p>
+<p>In the basic representation, an RDF resource is created for each observation and typed as sdmx:Observation. It is connected to the sdmx:DataSet via the sdmx:dataset property. Optionally, instances of sdmx:TimeSeries, sdmx:Section, and sdmx:Group can be created. The dataset resource connects to each of those via sdmx:slice. Each of them connects to the observations contained within the time series/section/group via sdmx:observation.</p>
 
 <p>Values for the attributes, dimensions and measurements are attached directly to the observation. Remember that atts, dims and measurements are all RDF properties, so we use them as the predicate and the respective value as the object of RDF statements. Instead of attaching statements directly to the Observations, they can also be "pulled up" to any of the groupings or even up to the dataset if they are always identical within the group. <em>(@@@ but attachment levels are not visible at all within the @@@)</em></p>
 
