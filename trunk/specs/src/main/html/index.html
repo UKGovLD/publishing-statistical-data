@@ -108,9 +108,12 @@ model.
 
 <h2 id="status">Status of this document</h2>
 
-<p>This is an editor's draft without any formal standing. It is not endorsed by any organisation. In particular, it has not been submitted for review to the SDMX sponsors, although the authors are planning to do so in the future.</p>
+<p>This is an editor's draft without any formal standing. It is not endorsed by any organisation. 
+In particular, it has not been submitted for review to the SDMX sponsors, although the 
+authors are planning to do so in the future.</p>
 
-<p>Anything in this document is still subject to change at this point. The editors seek feedback on the document. Please send any comments
+<p>Anything in this document is still subject to change at this point. 
+The editors seek feedback on the document. Please send any comments
 to the <a href="http://groups.google.com/group/publishing-statistical-data">project's Google Group</a>.</p>
 
 
@@ -152,11 +155,17 @@ to the <a href="http://groups.google.com/group/publishing-statistical-data">proj
   <li><a href="#codelists">6. Designing code lists</a></li>
   <li><a href="#conceptschemes">7. Designing concept schemes</a></li>
   <li><a href="#annotations">8. Annotations</a></li>
-  <li><a href="#publishing">9. URIs, resolvability and publishing</a></li>
+  <li><a href="#collections">9. Collections of DataSets</a></li>
+    <ul class="toc">
+      <li><a href="#dataflows">9.1 DataFlows</a></li>
+      <li><a href="#reports">9.2 Reports</a></li>
+    </ul>
+  <li><a href="#publishing">10. URIs, resolvability and publishing</a></li>
   <li><a href="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#references">References</a></li>
   <li><a href="#sdmx-im-ref">Appendix 1: From SDMX-IM to SDMX-RDF</a></li>
   <li><a href="#namespaces-used-appendix">Appendix 2: namespaces used in this document</a></li>
+  
 </ul>
 
 <hr>
@@ -558,16 +567,21 @@ each of the SDMX COG code lists have been translated to this format at
 <a href="http://purl.org/linked-data/sdmx/2009/code">http://purl.org/linked-data/sdmx/2009/code#</a> 
 to facilitate reuse.</p>
 
-<p>This code list can then be associated with a coded property, such as dimension:</p>
+<p>This code list can then be associated with a coded property, such as a dimension:</p>
 
 <pre>
-  eg:sed a sdmx:DimensionProperty, sdmx:CodedProperty;
+  eg:sex a sdmx:DimensionProperty, sdmx:CodedProperty;
       sdmx:codeList sdmx-code:sex ;
       rdfs:range sdmx-code:Sex .
 </pre>
 
-<p>Though for those SDMX COG Code Lists which have corresponding SDMX COG dimensions
-or attributes then this binding has already been provided in: </p>
+<p>For those SDMX COG Code Lists which have corresponding SDMX COG dimensions
+or attributes  (including sdmx-dimension:sex) then this binding has already been provided in: 
+<a href="http://purl.org/linked-data/sdmx/2009/attribute#">http://purl.org/linked-data/sdmx/2009/attribute#</a>,
+<a href="http://purl.org/linked-data/sdmx/2009/dimension#">http://purl.org/linked-data/sdmx/2009/dimension#</a>, and
+<a href="http://purl.org/linked-data/sdmx/2009/measure#">http://purl.org/linked-data/sdmx/2009/measure#</a>.
+</p>
+
 <p>In some cases a controlled set of URI resources might already exist but not
 as a SKOS concept scheme, for
 example identifiers exist for things like geographic entities and time periods.
@@ -581,9 +595,6 @@ used in the definition of the corresponding dimension or attribute property.</p>
       sdmx:codeList eg:GeographicAreaClass ;
       rdfs:range eg:GeographicAreaClass .
 </pre>
-
-<p>The use of rdfs:range
-</p>
 
 <p>In some cases code lists have a hierarchical structure. In particular, this is 
 used in SDMX when the data cube includes aggregations of data values 
@@ -629,8 +640,63 @@ rdf:type     | extension point for annotations that are to be processed in a
 
 <p>@@@ Example</p>
 
+<h2 id="collections">9. Collections of DataSets</h2>
 
-<h2 id="publishing">9. URIs, resolvability and publishing</h2>
+<p>SDMX-RDF provides two methods for group DataSets into aggregate
+structures - DataFlows (periodic sequences of DataSets with a common structure)
+and Reports (arbitrary collections of DataSets, DataFlows and nested reports).</p>
+
+<h3 id="dataflows">9.1 DataFlows</h3>
+
+<p>SDMX defines the notion of a <em>DataFlow</em> to represent a
+regular sequence of DataSet publications. This is used to support
+publication and notification of DataSets within some series and 
+often there will be a provision agreement between a data provider and
+data consumers concerning the structure (DataStructureDefinition) and
+frequency of sets within the flow.</p>
+
+<p>In SDMX-RDF then a DataFlow is represented by an instance of the class
+<code>sdmx:DataFlow</code>. Like a DataSet a DataFlow can be classified
+using <code>sdmx:classification</code> to reference a concept within
+some concept scheme and is linked to a DataStructureDefintion via
+<code>sdmx:structure</code>.  The individual data sets within a flow
+are linked to the flow using <code>sdmx:dataFlow</code>. For example:</p>
+
+<pre>
+  eg:unemploymentDataFlow a sdmx:DataFlow ;
+      sdmx:classification sdmx-subject:1.2 ;   # Labour market
+      rdfs:label "Unemployment data flow"@en ;
+      rdfs:comment "fictitious set of quarterly data unemployment statistics"@en ;
+      sdmx-attribute:freq sdmx-code:#freq-Q ;
+      sdmx:structure eg:unemploymentDSD ;
+      .
+      
+  eg:unemployment2009Q4 a sdmx:DataSet ;
+      rdfs:label "unemployment 2009 Q4"@en ;
+      rdfs:comment "unemployment statistics for 2009 quarter 4"@en ;
+      # ... other metadata omitted
+      sdmx:structure eg:unemploymentDSD ;
+      sdmx:classification sdmx-subject:1.2 ;   # Labour market
+      sdmx:dataFlow   eg:unemploymentDataFlow ;
+      .
+</pre>
+
+<h3 id="reports">9.2 Reports</h3>
+
+<p>DataFlows are one way of relating DataSets together but they are specific
+to regular publication work flows and only group DataSets with the same
+logical structure. In some situations an agency publishes a collection
+of statistics as a bundle which cover different topics, have different
+DataStructureDefinitions but are related together as some for of coherent
+report. </p>
+
+<p>SDMX-RDF provides a class <code>sdmx:Report</code> to represent
+such collections. Reports can be used to group DataSets, DataFlows
+or other Reports together into arbitrary groupings. The individual
+components of a report are linked to the <code>sdmx:Report</code>
+through use of the <code>sdmx:reportContains property.</code>  </p>
+
+<h2 id="publishing">10. URIs, resolvability and publishing</h2>
 
 <pre>
 URIs should be, if possible:
