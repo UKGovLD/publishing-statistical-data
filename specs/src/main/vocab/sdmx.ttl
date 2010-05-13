@@ -183,59 +183,62 @@ sdmx:EntityProperty a rdfs:Class, owl:Class;
 
 # --- Concept roles, provisional ---------------------------------------------------
 
-sdmx:frequencyComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+sdmx:frequencyProperty a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "frequency"@en; 
+    rdfs:label "frequency property"@en; 
     rdfs:comment "identifies the Concept that plays the role of frequency"@en ;
     rdfs:range sdmx:DimensionOrAttributeProperty ;
     .
-sdmx:countComponent a owl:ObjectProperty; 
+sdmx:countProperty a rdf:Property, owl:ObjectProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "count"@en; 
+    rdfs:label "count property"@en; 
     rdfs:comment "identifies the Concept that plays the role of an identifier where the identifier is taken from a known system of counts"@en ; 
     rdfs:range sdmx:DimensionOrAttributeProperty ;
     .
-sdmx:measureTypeComponent a owl:ObjectProperty; 
+sdmx:measureTypeProperty a rdf:Property, owl:ObjectProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "measureType"@en; 
+    rdfs:label "measure type property"@en; 
     rdfs:comment "identifies the Concept that plays the role of identifying a type of measure"@en ;  
     rdfs:range sdmx:DimensionProperty ;
     .
-sdmx:entityComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+sdmx:entityProperty a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "entity"@en; 
+    rdfs:label "entity property"@en; 
     rdfs:comment "identifies the Concept that plays the role of the subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en ;  
     rdfs:range sdmx:DimensionOrAttributeProperty ;
     .
-sdmx:timeComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+sdmx:timeProperty a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "time"@en; 
+    rdfs:label "time property"@en; 
     rdfs:comment "identifies the Concept that specifies the time of the observation of the primaryMeasure"@en ;  
     rdfs:range sdmx:DimensionProperty ;
     .
-sdmx:nonObsTimeComponent a owl:ObjectProperty; 
+sdmx:nonObsTimeProperty a rdf:Property, owl:ObjectProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "nonObsTime"@en; 
+    rdfs:label "non-observational time property"@en; 
     rdfs:comment "identifies the Concept that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en ;  
     rdfs:range sdmx:DimensionOrAttributeProperty ;
     .
-sdmx:primaryMeasureComponent a owl:ObjectProperty, owl:FunctionalProperty; 
+sdmx:primaryMeasureProperty a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "primaryMeasure"@en; 
+    rdfs:label "primary measure property"@en; 
     rdfs:comment "identifies the Concept that plays the role of the observation in a time series"@en ;  
     rdfs:range sdmx:MeasureProperty ;
     .
-sdmx:identityComponent a owl:ObjectProperty; 
+sdmx:identityProperty a rdf:Property, owl:ObjectProperty; 
     rdfs:subPropertyOf  sdmx:component;
-    rdfs:label "identity"@en; 
+    rdfs:label "identity property"@en; 
     rdfs:comment "identifies the Concept that plays the role of an identifier which is taken from a known scheme of identifiers"@en ;  
     rdfs:range sdmx:DimensionOrAttributeProperty ;
     .
+    
 sdmx:DimensionOrAttributeProperty a rdfs:Class, owl:class;
     rdfs:label "dimension or attribute"@en;
     rdfs:comment "union of the class of dimension or attribute properties, used to denote allowed range for some roles"@en;
-    owl:unionOf (sdmx:DimensionProperty sdmx:AttributeProperty) ;
-    .
+    owl:unionOf (sdmx:DimensionProperty sdmx:AttributeProperty) .
+sdmx:DimensionProperty rdfs:subClassOf sdmx:DimensionOrAttributeProperty .
+sdmx:AttributeProperty rdfs:subClassOf sdmx:DimensionOrAttributeProperty .
+  
 # --- Annotations ---------------------------------------------------
 
 sdmx:Annotation
@@ -339,7 +342,7 @@ sdmx:Report a owl:Class, rdfs:Class;
     rdfs:comment "Represents a collection of data sets or flows which aren't required to have the same structure"@en;
     .
     
-sdmx:reportContains a owl:ObjectProperty ;
+sdmx:reportComponent a rdf:Property, owl:ObjectProperty ;
     rdfs:label "report contains"@en;
     rdfs:comment "designates a component of a report, may be a data set, data flow or nested report"@en;
     rdfs:subPropertyOf dcterms:hasPart ;
