@@ -29,11 +29,6 @@
                         [foaf:mbox "ian@epimorphics.com"],
                         [foaf:mbox "dave@epimorphics.com"];
     .
-
-sdmx:CodeList a rdfs:Class, owl:Class;
-    rdfs:label "Code list"@en;
-    rdfs:subClassOf skos:ConceptScheme;
-    .
 sdmx:ConceptScheme a rdfs:Class, owl:Class;
     rdfs:label "Concept scheme"@en;
     rdfs:subClassOf skos:ConceptScheme;
@@ -276,7 +271,7 @@ sdmx:structure a rdf:Property, owl:ObjectProperty;
 sdmx:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
     rdfs:domain sdmx:CodedProperty;
-    rdfs:range sdmx:CodeList;
+    rdfs:range skos:ConceptScheme;
     .
 sdmx:concept a rdf:Property, owl:ObjectProperty;
     rdfs:label "concept"@en;
