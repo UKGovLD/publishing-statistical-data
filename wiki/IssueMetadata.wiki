@@ -1,0 +1,54 @@
+#summary Notes on MetadataSet and Metadata Structure Definition issue
+
+= SDMX Metadata sets =
+
+== Background ==
+
+SDMX-RDF (or Stats RDF or whatever it gets renamed to) currently supports publication of data sets and associated structure definitions but doesn't yet cover the publication of Reference Metadata. This is a feature of SDMX that we need to support. This page gives outline background and working space in which to develop a proposal.
+
+== SDMX structures ==
+
+SDMX supports publication of _reference metadata_, that is metadata which is not integral with the data but independent from the datasets themselves. Such metadata can be attached at all levels from observations, through time series and datasets, up to data flows and agencies though it is typically used for the dataset and above levels.
+
+In the SDMX Information Model reference metadata is supported by a structure which directly mirrors the DataSet structure, indeed both are specializations of the generic Structure/StructureUsage pattern which is part of the SDMX Base Layer.
+
+The key concepts are:
+
+   * Metadata Structure Definition (MSD), analogous to Dataset Structure Definition, which defines:
+      * where the metadata can be attached
+      * the index key that defines that attachment
+      * the structure of a Metadata Report which comprises a nestable hierarchical set of metadata attributes
+
+   * MetadataSet, analogous to a DataSet, which comprises:
+      * an attachment key which connects the MetadataSet to the allowed attachment level in the corresponding data flow
+      * a series of MetadataAttributeValues which give values for the attributes allow in the MSD
+      * an effectiveDate stamp for the metadata
+
+   * MetadataAttribute, defines an individual attribute that can be included in a metadata report
+      * can have an associated concept defining the the semantics of the attribute
+      * can have a local type declaration to override the type of the concept
+      * can have a local representation declaration to override the representation of the concpet
+      * can be Coded or Uncoded
+      * can be arrange in parent/child hierarchy - this is purely for presentation purposes and does not affect semantics, represented in SMDX-ML as nesting of the MetadataAttribute declarations
+      * have have associated AttributeProperty annotations  which "allows the MetadataAttribute to have identifiable text such as a URL"
+      * can be declared, within the MSD, as  optional or mandatory
+
+== Proposed changes to SDMX-RDF ==
+
+The proposed approach is to directly mirror the DSD structure to handle MSDs and use the same machinery of component properties for MetadataAttributes including generating COG-based predefined attributes.
+
+There are a number of omissions and simplifications in this first proposal that are discussed later.
+
+=== Metadata Structure Definition ===
+
+=== Structure and Structure Usage ===
+
+=== MetadataSet ===
+
+
+== Notes ==
+
+=== Attachment level ===
+
+=== AttributeProperty annotations ===
+
