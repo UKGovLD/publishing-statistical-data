@@ -10,7 +10,7 @@ SDMX-RDF (or Stats RDF or whatever it gets renamed to) currently supports public
 
 SDMX supports publication of _reference metadata_, that is metadata which is not integral with the data but independent from the datasets themselves. Such metadata can be attached at all levels from observations, through time series and datasets, up to data flows and agencies though it is typically used for the dataset and above levels.
 
-In the SDMX Information Model reference metadata is supported by a structure which directly mirrors the DataSet structure, indeed both are specializations of the generic Structure/!StructureUsage pattern which is part of the SDMX Base Layer.
+In the SDMX Information Model reference metadata is supported by a structure which directly mirrors the !DataSet structure, indeed both are specializations of the generic Structure/!StructureUsage pattern which is part of the SDMX Base Layer.
 
 The key concepts are:
 
@@ -21,7 +21,7 @@ The key concepts are:
 
    * !MetadataSet, analogous to a !DataSet, which comprises:
       * an attachment key which connects the !MetadataSet to the allowed attachment level in the corresponding data flow
-      * a series of !MetadataAttributeValues which give values for the attributes allow in the MSD
+      * a series of !MetadataAttributeValues which give values for the attributes allowed by the MSD
       * an effectiveDate stamp for the metadata
 
    * !MetadataAttribute, defines an individual attribute that can be included in a metadata report
@@ -69,21 +69,19 @@ While not necessary to make this work, the cleanest way to plumb this in seems t
 
 sdmx:Structure a rdfs:Class, owl:Class;
     rdfs:label "Structure"@en;
-    rdfs:comment """Abstract class for defining the structure (ComponentProperties) 
-                   that can be used in some data or metadata set"""@en;
+    rdfs:comment "Abstract class for defining the structure (ComponentProperties) that can be used in some data or metadata set"@en;
     .
 
-sdmx:DataSet rdfs:subClassOf sdmx:Structure .
-sdmx:DataFlow rdfs:subClassOf sdmx:Structure .
+sdmx:DataStructureDefinition rdfs:subClassOf sdmx:Structure .
+sdmx:MetadataStructureDefinition rdfs:subClassOf sdmx:Structure .
 
 sdmx:Structured a rdfs:Class, owl:Class;
     rdfs:label "Structured"@en;
-    rdfs:comment """Abstract class for things whose Structure can be defined by an
-                  sdmx:Structure declaration, alternative name: StructureUsage"""@en;
+    rdfs:comment """Abstract class for things whose Structure can be defined by an sdmx:Structure declaration, alternative name: StructureUsage"""@en;
     .
 
-sdmx:DataStructureDefinition rdfs:subClassOf sdmx:Structured .
-sdmx:MetadataStructureDefinition rdfs:subClassOf sdmx:Structured .
+sdmx:DataSet rdfs:subClassOf sdmx:Structured .
+sdmx:DataFlow rdfs:subClassOf sdmx:Structured .
 
 sdmx:structure a rdf:Property, owl:ObjectProperty;
     rdfs:label "structure"@en;
@@ -109,7 +107,7 @@ sdmx:componentOrder a rdf:Property, owl:ObjectProperty;
 
 === Nesting ===
 
-One feature of MetadataSets is that they support grouping of properties. For example, a CONTACT metadata field might group together NAME, ADDRESS and PHONE metadata fields. In SDMX this is used purely for presentational purposes.
+One feature of !MetadataSets is that they support grouping of properties. For example, a CONTACT metadata field might group together NAME, ADDRESS and PHONE metadata fields. In SDMX this is used purely for presentational purposes.
 
 To support this in SDMX-RDF we need to at least represent the hierarchical structure of metadata fields as part of the MSD. The proposal is to do this as part of the component order machinery. So, as presaged in the modified comment on `sdmx:componentOrder`, the component order list can contain structured entries which indicate nesting. Conveniently this gives us a hook for attaching additional annotations to `sdmx:ComponentProperty` occurrences within the `Structure`. In particular, we also need to be able to indicate whether a metadata field is required or optional.
 
@@ -119,7 +117,7 @@ To support this in SDMX-RDF we need to at least represent the hierarchical struc
 sdmx:ComponentSpecification a rdfs:Class, owl:Class ;
     rdfs:label "Component specification"@en;
     rdfs:comment """Used to define properties of a component (attribute, dimension etc)
-           which are specific to its usage in a DSD or MDS. This is used by including 
+           which are specific to its usage in a DSD or MSD. This is used by including 
            instances of sdmx:COmponentSpecification in place of the 
            sdmx:ComponentProperty in an sdmx:componentOrder list"""@en;
     .
@@ -143,9 +141,9 @@ sdmx:commponentRequired a rdf:Property, owl:DatatypeProperty;
 
 Note that by applying the Structure pattern and extending it this way this provides a solution to the core of Issue 30.
 
-Note that, as currently, we would still have `sdmx:component` links for each metadata property in the MSD, including nested properties. This gives a flat easy to query structure as a parallel to the complex nested lists of `sdmx:componentOrder`.
+Note that, as currently, we would still have `sdmx:component` links for each metadata property in the MSD, including nested properties. This gives a flat easy to query structure as a parallel to the complex lists of `sdmx:componentOrder`.
 
-Now we have this generic machinery for annotating component properties then to representing nesting we just need:
+Now we have this generic machinery for annotating component properties then to represent nesting we just need:
 
 {{{
 sdmx:childComponents a rdf:Property, owl:ObjectProperty;
@@ -153,7 +151,7 @@ sdmx:childComponents a rdf:Property, owl:ObjectProperty;
     rdfs:comment """Used primarily in sdmx:MetadataStructureDefinitions to indicate a
             grouping of the metadata properties used for presentational purposes.
             The sub components should still be listed as sdmx:components of the 
-            structure but in the sdmx:componentList the group is represented by a 
+            structure but in the sdmx:componentOrder the group is represented by a 
             single sdmx:ComponentSpecification which in turn lists the child 
             components by means of this property"""@en;
     rdfs:domain sdmx:ComponentSpecification;
@@ -188,7 +186,7 @@ _Alternatively, the !MetadataSet could be entirely flat and the nesting structur
 
 === Flows ===
 
-Finally we need the notion of a !MetadataFlow analogous to a !DataFlow. Again it seems easiest to implement a generic Flow pattern and which the metadata and data cases then instantiate:
+Finally we need the notion of a !MetadataFlow analogous to a !DataFlow. Again it seems easiest to implement a generic Flow pattern, which the metadata and data cases then instantiate:
 
 {{{
 
@@ -202,7 +200,7 @@ sdmx:metadataFlow a rdf:Property, owl:ObjectProperty;
     rdfs:label "metadata flow"@en;
     rdfs:comment """gives the metadata flow associated with a metadata set"""@en;
     rdfs:domain sdmx:MetadataSet;
-    rdfs:range  sdmx:MetaDataFlow;
+    rdfs:range  sdmx:MetadataFlow;
     .
 
 # --- Flow pattern --------------------------
@@ -227,11 +225,9 @@ sdmx:controllingAgreement a rdf:Property, owl:ObjectProperty;
 
 Many of the COG (Concept Oriented Guidelines) concepts are suited to use in specifying metadata. I propose to generate a set of `sdmx:MetadataProperty` instances, analogous to the existing dimension, attribute and measure instances.
 
-For some common metadata components there are existing RDF vocabularies that consumers would expect to see used. My default proposal is that publishers use COG, or properties corresponding to their own existing schemes, as the default. 
+For some common metadata components there are existing RDF vocabularies that consumers would expect to see used. My default proposal is that publishers use COG, or properties corresponding to their own existing schemes, as the default. Where they can identify equivalences they be declared via `owl:equivalentProperty` or `rdfs:subPropertyOf` assertions and corresponding inferred assertions should also be made.
 
-Where they can identify equivalences they be declared via `owl:equivalentProperty` or `rdfs:subPropertyOf` assertions and corresponding inferred assertions should also be made.
-
-Other approaches would be possible.
+Alterantively we could generate a short list of common RDF properties that could be linked in this way. 
 
 == Omissions ==
 
