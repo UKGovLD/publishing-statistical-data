@@ -237,9 +237,12 @@ Other approaches would be possible.
 
 === Attachment level ===
 
+The current proposal does not include attachment levels. In principle a key or partial key defining the legal attachment restrictions could be added to `sdmx:MetadataStructureDefinition`. However, such information seems to be more useful as a guide for publication. For this initial pass at SDMX-RDF we are aiming at support for consumption and free use of `sdmx:metadata` at any level may be a sufficient starting point.
 
 === !AttributeProperty annotations ===
 
+SDMX also supports attachment of attribute properties to metadata properties within an MSD. This could easily be supported via the `sdmx:ComponentSpecification` machinery but we would need additional guidance and examples to provide a concrete proposal.
+
 == Worked example ==
 
-@@ discussion on metadata properties that already exist in RDF
+_TBD_
