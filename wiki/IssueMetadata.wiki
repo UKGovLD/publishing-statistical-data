@@ -176,6 +176,13 @@ sdmx:metadata a rdf:Property, owl:ObjectProperty;
     rdfs:comment """Links an entity (from Observation up to DataFlow) to a corresponding metadata record."""@en;
     rdfs:range sdmx:MetadataSet;
     .
+
+sdmx:effectiveDate a rdf:Property, owl:DatatypeProperty;
+    rdfs:label "effective date"@en;
+    rdfs:comment """The date on which all the effectiveDate metadata in the metadata set is effective."""@en;
+    rdfs:subPropertyOf dcterms:date;
+    rdfs:range xsd:dateTime;
+    .
 }}}
 
 So an instance of `sdmx:MetadataSet` would link to the corresponding MSD via `sdmx:structure` and to metadata values via instances of the specified `sdmx:MetadataProperty` properties.
