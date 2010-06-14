@@ -230,11 +230,13 @@ sdmx:controllingAgreement a rdf:Property, owl:ObjectProperty;
 
 === Metadata properties ===
 
-Many of the COG (Concept Oriented Guidelines) concepts are suited to use in specifying metadata. I propose to generate a set of `sdmx:MetadataProperty` instances, analogous to the existing dimension, attribute and measure instances.
+Many of the COG (Concept Oriented Guidelines) concepts are suited to use in specifying metadata. I've generated a set of `sdmx:MetadataProperty` instances, analogous to the existing dimension, attribute and measure instances in the vocab area.
 
 For some common metadata components there are existing RDF vocabularies that consumers would expect to see used. My default proposal is that publishers use COG, or properties corresponding to their own existing schemes, as the default. Where they can identify equivalences they be declared via `owl:equivalentProperty` or `rdfs:subPropertyOf` assertions and corresponding inferred assertions should also be made.
 
-Alterantively we could generate a short list of common RDF properties that could be linked in this way. 
+The draft sdmx-metadata.ttl file in vocabs contains a set of example such mappings (rdfs:comment plus the contact details). However, those should be reviewed since specifying the format for contact details as using vcard is an extra burden on format converters.
+
+Alternatively we could generate a short list of common RDF properties that could be linked in this way. 
 
 == Omissions ==
 
