@@ -9,8 +9,7 @@ SDMX-RDF (or Stats RDF or whatever it gets renamed to) currently supports public
 == SDMX structures ==
 
 SDMX supports publication of _reference metadata_, that is metadata which is not integral with the data but independent from the datasets themselves. Such metadata can be attached at all levels from observations, through time series and datasets, up to data flows and agencies though it is typically used for the dataset and above levels.
-
-In the SDMX Information Model reference metadata is supported by a structure which directly mirrors the !DataSet structure, indeed both are specializations of the generic Structure/!StructureUsage pattern which is part of the SDMX Base Layer.
+ the SDMX Information Model reference metadata is supported by a structure which directly mirrors the !DataSet structure, indeed both are specializations of the generic Structure/!StructureUsage pattern which is part of the SDMX Base Layer.
 
 The key concepts are:
 
@@ -284,4 +283,122 @@ SDMX also supports attachment of attribute properties to metadata properties wit
 
 == Worked example ==
 
-_TBD_
+=== Example source ===
+
+We start with the example metadata samples provided in SDMX 2.0 section 3b "SDMX-ML Schemas and Samples".
+
+The MSD sample from `ContactMDStructureSample.xml` is:
+
+{{{
+<structure:MetadataStructureDefinition id="SDDS_CONTACT_INFO" agencyID="IMF">
+  <structure:Name>SDDS Contact Info</structure:Name>
+  <structure:TargetIdentifiers> ...  </structure:TargetIdentifiers>
+  <structure:ReportStructure id="PRIMARY_CONTACT_REPORT_COMPONENT" target="COMPONENT">
+    <structure:Name>Report for Primary Contact Information</structure:Name>
+    <structure:MetadataAttribute conceptRef="PRIMARY_CONTACT" ... usageStatus="Conditional">
+      <structure:MetadataAttribute conceptRef="NAME" ... usageStatus="Conditional">
+        <structure:TextFormat/>
+      </structure:MetadataAttribute>
+      <structure:MetadataAttribute conceptRef="ADDRESS" ... usageStatus="Conditional">
+        <structure:TextFormat/>
+      </structure:MetadataAttribute>
+      <structure:MetadataAttribute conceptRef="TELEPHONE" ... usageStatus="Conditional">
+        <structure:TextFormat/>
+      </structure:MetadataAttribute>
+     <structure:MetadataAttribute conceptRef="E-MAIL" ... usageStatus="Conditional">
+       <structure:TextFormat/>
+     </structure:MetadataAttribute>
+   </structure:MetadataAttribute>
+  </structure:ReportStructure>
+  ... other ReportStructures ...
+</structure:MetadataStructureDefinition>
+}}}
+
+Each of the concepts used for the MetadataAttributes is taken from an IMF scheme included in the sample file. 
+However, all of the leaf concepts are also present in the COG, we will reuse those and so the only concept scheme information we require in the translation is:
+
+{{{
+imf:sdds-contacts-concept-scheme a skos:ConceptScheme, sdmx:CodeList;
+    skos:prefLabel "Contact information"@en;
+    rdfs:label "Contact information"@en;
+    skos:notation "CONTACT" ;
+    skos:hasTopConcept imf:sdds-contacts-concept-primary-contact .
+
+imf:sdds-contacts-concept-primary-contact a skos:Concept, sdmx:Concept;
+    skos:topConceptOf imf:sdds-contacts-concept-scheme;
+    skos:inScheme     imf:sdds-contacts-concept-scheme;
+    skos:notation "PRIMARY_CONTACT" .
+    skos:prefLabel "Primary contact"@en .
+
+imf:sdds-contacts-primary-contact a sdmx:MetadataComponent;
+    sdmx:concept imf:sdds-contacts-concept-primary-contact;
+    rdfs:label  "Primary contact"@en .
+}}}
+
+Then the structure defintion would translate as:
+
+{{{
+imf:sdds-contact-info-msd a sdmx:MetadataStructureDefinition;
+    rdfs:label "SDDS Contact Info";
+    sdmx:metadataReportStructure  imf:primary-contact-report-structure .
+
+imf:primary-contact-report-structure a sdmx:MetadataReportStructure;
+    rdfs:label "Report for Primary Contact Information";
+    sdmx:component imf:sdds-contacts-concept-primary-contact,
+                   sdmx-metadata:contactName,
+                   sdmx-metadata:contactMail,
+                   sdmx-metadata:contactPhone,
+                   sdmx-metadata:contactEmail;
+    sdmx:componentOrder (
+        [a sdmx:ComponentSpecification;
+         sdmx:specifiedComponent imf:sdds-contacts-primary-contact;
+         sdmx:childComponents (
+             [a sdmx:ComponentSpecification; sdmx:specifiedComponent sdmx-metadata:contactName;  sdmx:componentRequired false];
+             [a sdmx:ComponentSpecification; sdmx:specifiedComponent sdmx-metadata:contactMail;  sdmx:componentRequired false];
+             [a sdmx:ComponentSpecification; sdmx:specifiedComponent sdmx-metadata:contactPhone; sdmx:componentRequired false];
+             [a sdmx:ComponentSpecification; sdmx:specifiedComponent sdmx-metadata:contactEmail; sdmx:componentRequired false];
+         )
+        ]
+    ) .
+}}}
+
+
+The corresponding MetadataSet from `MetadataReportSample.xml` is:
+
+{{{
+<imfc:MetadataSet>
+  <metadatareport:MetadataStructureRef>SDDS_CONTACT_INFO</metadatareport:MetadataStructureRef>
+  <metadatareport:MetadataStructureAgencyRef>IMF</metadatareport:MetadataStructureAgencyRef>
+  <imfc:PRIMARY_CONTACT_INFO>
+    <imfc:PRIMARY_CONTACT_INFOTarget>
+      <imfc:METADATAFLOW>SDDS</imfc:METADATAFLOW>
+      <imfc:CATEGORY>EXT_DEBT</imfc:CATEGORY>
+      <imfc:DATA_PROVIDER>MX</imfc:DATA_PROVIDER>
+    </imfc:PRIMARY_CONTACT_INFOTarget>
+    <imfc:NAME>Maria Rodrigues</imfc:NAME>
+    <imfc:ADDRESS>5335 Zocalo, Mexico DF, Mexico 46578</imfc:ADDRESS>
+    <imfc:TELEPHONE>675-908-9999</imfc:TELEPHONE>
+    <imfc:E-MAIL>mrodriguez@bmex.org</imfc:E-MAIL>			
+  </imfc:PRIMARY_CONTACT_INFO>
+  ... other reports ...
+</imfc:MetadataSet>
+}}}
+
+which would in turn translate as:
+
+{{{
+imf:sdds-contact-info-metadata-set a sdmx:MetadataSet;
+    sdmx:metadataReport imf:sdds-contact-info-metadata-primary-contact-info .
+
+imf:sdds-contact-info-metadata-primary-contact-info a sdmx:MetadataReport;
+    imf:sdds-contacts-primary-contact [
+        sdmx-metadata:contactName "Maria Rodrigues";
+        sdmx-metadata:contactMail "5335 Zocalo, Mexico DF, Mexico 46578";
+        sdmx-metadata:contactPhone "675-908-9999";
+        sdmx-metadata:contactEmail <mailto:mrodriguez@bmex.org>;
+    ] .
+}}}
+
+Here we are not assuming vCard compatibility for the sdmx-metadata properties which would require information not included in the sample data.
+
+The `imf:sdds-contact-info-metadata-set` would then be attached to the resource corresponding to the Metadataflow designated in the key.
