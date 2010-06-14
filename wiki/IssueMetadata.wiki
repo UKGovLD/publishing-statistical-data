@@ -39,7 +39,7 @@ The proposed approach is to directly mirror the DSD structure to handle MSDs and
 
 === Metadata Structure Definition ===
 
-The proposed top level structure is quite simple:
+The proposed top level structure is:
 
 {{{
 sdmx:MetadataStructureDefinition a rdfs:Class, owl:Class;
@@ -48,6 +48,18 @@ sdmx:MetadataStructureDefinition a rdfs:Class, owl:Class;
     rdfs:subClassOf sdmx:Structure;
     .
 
+sdmx:MetadataReportStructure a rdfs:Class, owl:Class;
+    rdfs:label "Metadata report structure"@en;
+    rdfs:comment "Defines the structure of a single report within an MSD"@en;
+	.
+	
+sdmx:metadataReportStructure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "metadata report structure"@en;
+    rdfs:comment """designates a single report structure within an overall metadata structure definition"""@en;
+    rdfs:domain sdmx:MetadataStructureDefinition;
+    rdfs:range  sdmx:MetadataReportStructure ;
+	.
+	
 sdmx:MetadataProperty a rdfs:Class, owl:Class;
     rdfs:label "Metadata property"@en;
     rdfs:comment """Class of properties used to provide metadata values in 
@@ -59,6 +71,9 @@ sdmx:MetadataProperty a rdfs:Class, owl:Class;
     .
 
 }}}
+
+Note that the is some disagreement here between the SDMX Information Model and SDMX-ML. 
+According to the information model there is a 1:1 correspondence between the !MetadataStructure definition and the !ReportStructure which would mean that in SDMX-RDF we could merge those two structures. However, SDMX-ML usages allows multiple nested reports we cater for that here.
 
 === Structure and Structure Usage ===
 
@@ -182,6 +197,25 @@ sdmx:effectiveDate a rdf:Property, owl:DatatypeProperty;
     rdfs:comment """The date on which all the effectiveDate metadata in the metadata set is effective."""@en;
     rdfs:subPropertyOf dcterms:date;
     rdfs:range xsd:dateTime;
+    .
+
+sdmx:MetadataReport a rdfs:Class, owl:Class;
+     rdfs:label "Metadata report"@en;
+     rdfs:comment """A metadata report (within an overall Metadata set) containing metadata via attached MetadataProperties"""@en;
+     .
+
+sdmx:metadataReport a rdf:Property, owl:ObjectProperty;
+    rdfs:label "metadata report"@en;
+    rdfs:comment """Links a Metadata set to one or more component reports"""@en;
+    rdfs:domain sdmx:MetadataSet;
+    rdfs:domain sdmx:MetadataReport;
+    .
+    
+sdmx:reportStructure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "report structure"@en;
+    rdfs:comment """Links an individual metadata report to the report structure it corresponds to"""@en;
+    rdfs:domain sdmx:MetadataReport ;
+    rdfs:range  sdmx:MetadataReportStructure ;
     .
 }}}
 
