@@ -25,6 +25,18 @@ sdmx:MetadataStructureDefinition a rdfs:Class, owl:Class;
     rdfs:subClassOf sdmx:Structure;
     .
 
+sdmx:MetadataReportStructure a rdfs:Class, owl:Class;
+    rdfs:label "Metadata report structure"@en;
+    rdfs:comment "Defines the structure of a single report within an MSD"@en;
+	.
+	
+sdmx:metadataReportStructure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "metadata report structure"@en;
+    rdfs:comment """designates a single report structure within an overall metadata structure definition"""@en;
+    rdfs:domain sdmx:MetadataStructureDefinition;
+    rdfs:range  sdmx:MetadataReportStructure ;
+	.
+	
 sdmx:MetadataProperty a rdfs:Class, owl:Class;
     rdfs:label "Metadata property"@en;
     rdfs:comment """Class of properties used to provide metadata values in metadata reports (sdmx:MetadataSet)"""@en;
@@ -43,7 +55,7 @@ sdmx:childComponents a rdf:Property, owl:ObjectProperty;
 
 sdmx:MetadataSet a rdfs:Class, owl:Class;
      rdfs:label "Metadata set"@en;
-     rdfs:comment """A report containing metadata via attached MetadataProperties"""@en;
+     rdfs:comment """A collection of metadata resports"""@en;
      .
 
 sdmx:metadata a rdf:Property, owl:ObjectProperty;
@@ -52,6 +64,25 @@ sdmx:metadata a rdf:Property, owl:ObjectProperty;
     rdfs:range sdmx:MetadataSet;
     .
 
+sdmx:MetadataReport a rdfs:Class, owl:Class;
+     rdfs:label "Metadata report"@en;
+     rdfs:comment """A metadata report (within an overall Metadata set) containing metadata via attached MetadataProperties"""@en;
+     .
+
+sdmx:metadataReport a rdf:Property, owl:ObjectProperty;
+    rdfs:label "metadata report"@en;
+    rdfs:comment """Links a Metadata set to one or more component reports"""@en;
+    rdfs:domain sdmx:MetadataSet;
+    rdfs:domain sdmx:MetadataReport;
+    .
+    
+sdmx:reportStructure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "report structure"@en;
+    rdfs:comment """Links an individual metadata report to the report structure it corresponds to"""@en;
+    rdfs:domain sdmx:MetadataReport ;
+    rdfs:range  sdmx:MetadataReportStructure ;
+    .
+    
 sdmx:effectiveDate a rdf:Property, owl:DatatypeProperty;
     rdfs:label "effective date"@en;
     rdfs:comment """The date on which all the effectiveDate metadata in the metadata set is effective."""@en;
