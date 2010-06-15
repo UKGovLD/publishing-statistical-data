@@ -391,6 +391,7 @@ imf:sdds-contact-info-metadata-set a sdmx:MetadataSet;
     sdmx:metadataReport imf:sdds-contact-info-metadata-primary-contact-info .
 
 imf:sdds-contact-info-metadata-primary-contact-info a sdmx:MetadataReport;
+    sdmx:reportStructure imf:primary-contact-report-structure;
     imf:sdds-contacts-primary-contact [
         sdmx-metadata:contactName "Maria Rodrigues";
         sdmx-metadata:contactMail "5335 Zocalo, Mexico DF, Mexico 46578";
@@ -401,4 +402,4 @@ imf:sdds-contact-info-metadata-primary-contact-info a sdmx:MetadataReport;
 
 Here we are not assuming vCard compatibility for the sdmx-metadata properties which would require information not included in the sample data.
 
-The `imf:sdds-contact-info-metadata-set` would then be attached to the resource corresponding to the Metadataflow designated in the key.
+The `imf:sdds-contact-info-metadata-set` would then be attached to the resource corresponding to the Metadataflow designated in the key, using the `sdmx:metadata` property.
