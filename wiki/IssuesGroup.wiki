@@ -1,6 +1,6 @@
 #summary Discussion on handling of SDMX Groups
 
-## Groups
+== Groups ==
 
 The SDMX Information Model supports a notion of Groups which group TimeSeries or Sections within an overall DataSet container. 
 
@@ -14,14 +14,13 @@ XSDataSet > Group > Section > XSObservation
 }}}
 whereas with TimeSeries the GroupKey level is optional.
 
-## Vocabulary extensions
+== Vocabulary extensions ==
 
 We need to:
    * represent the containment structure
    * attach dimensions (in the case of Groups of Sections) and attributes to Groups
    * decide how attachment levels work and whether the Group attachments are replicated downwards
-
-### Containment structure ###
+=== Containment structure ===
 
 We already have `sdmx:Group` as a grouping structure but no property for representing the containment hierarchy.
 
@@ -29,11 +28,11 @@ We already have `sdmx:Group` as a grouping structure but no property for represe
 
 [An alternative is introduce more specific relations `sdmx:group` (`sdmx:DataSet` -> `sdmx:Group`) and `sdmx:part` (`sdmx:Group` -> `sdmx:Section` or `sdmx:TimeSeries`).]
 
-### Attaching dimensions and attributes ###
+=== Attaching dimensions and attributes ===
 
 Nothing more needed. The domain of instances of `sdmx:ComponentProperty` is already open so we simply document that they can be attached to Groups to denote attributes and dimensions we are shared across all the TimeSeries/Sections (and enclosed observations) within the Group.
 
-### Attachment levels ###
+=== Attachment levels ===
 
 Our resolution to issue 12 already says that we can publish attributes at the attachment level called for in the DSD but that tools chains may replicate the information down to the observations for consumption purposes.
 
@@ -44,4 +43,4 @@ Currently Issue 12 proposes `sdmx:FlatDataSet` and `sdmx:TimeSeriesDataSet` to d
 @@ DSD notes
 
 
-## Worked example
+== Worked example ==
