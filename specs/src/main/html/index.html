@@ -102,8 +102,14 @@ exploits existing RDF vocabularies such as
 and <a href="http://rdfs.org/ns/void-guide">VoiD</a> for dataset description.
 It builds on earlier work on representing statistical data in RDF
 using <a href="http://sw.joanneum.at/scovo/schema.html">SCOVO</a>. 
-SDMX-RDF is essentially a third syntax for the SDMX information
-model.
+</p>
+
+<p>
+SDMX-RDF provides a general means to publish statistical data in RDF (exploiting
+the SDMX information model). It also allows for RDF publication of data already in SDMX.
+It is not, at this stage, a complete implementation of the whole of the SDMX Information Model
+and is not intended as an alternative means for loss-less exchange of SDMX along existing statistical data flows. 
+<em>@@ Please check if this restated positioning is acceptable - Dave.</em>
 </p>
 
 <h2 id="status">Status of this document</h2>
@@ -260,7 +266,7 @@ manipulation of a single data set.</p>
 
 <p>However, when we wish to arbitrarily combine datasets, to annotate and track
 provenance of individual observations or arbitrary subsets of observations, to
-like observations to non-stastitical datasets we need a different approach.
+link observations to non-statistical datasets we need a different approach.
 We need to represent each observation as a separate entity which has an
 observed value along with its attributes and location within the
 multi-dimensional space. This is the approach taken in SDMX-RDF, which in
@@ -268,30 +274,84 @@ turn is based on the earlier [SCOVO] model. </p>
 
 <h3>1.2 RDF and Linked Data</h3>
 
-<p>@@@ talk a bit about RDF and the linked data vision. 
-What can it do for statistical data? 
-Some text from the paper might be useful</p>
+<p><em>Linked data</em> is an approach to publication of data on the web.
+It is a set of best practices to enable systems to use the Web to connect
+related data that wasn't previously linked, or lower the barriers 
+to linking data currently linked using other methods. The approach [@@ref] recommends
+use of HTTP URIs to name the entities and concepts so that consumers of the data can 
+lookup those URIs to get more information, including links to other related URIs.
+RDF [@@ref] provides a standard for the representation of the information that 
+describes those entities and concepts, and is returned by dereferencing the URIs.  
+</p>
 
+<p>When applied to statistical data this linked data approach implies
+identifying datasets, time series and individual observations by means of HTTP URIs. 
+These then enable both publishers and third parties to annotate and reference
+statistical data on the web, which helps to build trust with those
+engaging in conversations about the data. Using the RDF data
+model enables consumers to query statistical data in standard
+ways and to enhance statistical data by mixing it with other linked
+data.</p>
 
 <h3>1.3 About SDMX</h3>
 
-<p>@@@ talk a bit about SDMX -- use text from paper</p>
+<p>The Statistical Data and Metadata Exchange (SDMX) Initiative
+was organised in 2001 by seven international organisations (BIS,
+ECB, Eurostat, IMF, OECD, World Bank and the UN) to
+realise greater efficiencies in statistical practice. These organisations all
+collect significant amounts of data, mostly from the national level,
+to support policy. They also disseminate data at the supra-national
+and international levels.</p>
 
-<p>The task of mapping SDMX to RDF is greatly aided by the fact that the SDMX standard is separated into an abstract information model (SDMX-IM) and concrete XML and UN/EDIFACT based syntaxes. SDMX-RDF is essentially a third syntax for the SDMX information model.</p>
+<p>
+There have been several important results from this work: two
+versions of a set of technical specifications - ISO:TS 17369
+(SDMX) - and the release of several recommendations for
+structuring and harmonising cross-domain statistics, the SDMX
+Content-Oriented Guidelines. All of the products are available at
+<a href="http://www.sdmx.org">www.sdmx.org</a>. 
+The standards are now being widely adopted
+around the world for the collection, exchange, processing, and
+dissemination of aggregate statistics by official statistical
+organisations. The UN Statistical Commission recommended
+SDMX as the preferred standard for statistics in 2007.
+</p>
 
-<p>A key component of the SDMX standards package are the <strong>Content-Oriented Guidelines</strong> (COGs), a set of cross-domain concepts, code lists, and categories that support interoperability and comparability between datasets by providing a shared language between SDMX implementors. RDF versions of these artefacts are available as part of SDMX-RDF, and should be re-used whenever possible. Throughout the sections of this document, resources from the COGs will be mentioned when available.</p>
+<p>The SDMX specification defines a core <em>information model</em> 
+which is reflected in concrete form in two syntaxes - SDMX-ML (and XML syntax) and SDMX-EDI.
+SDMX-RDF builds up that same SDMX information model, showing how to expressing the same information
+in RDF form.</p>
+
+<p>A key component of the SDMX standards package are
+the <strong>Content-Oriented Guidelines</strong> (COGs), a set of
+cross-domain concepts, code lists, and categories that support
+interoperability and comparability between datasets by providing a
+shared language between SDMX implementors. RDF versions of these
+artefacts are available as part of SDMX-RDF, and should be re-used
+whenever possible. Throughout the sections of this document, resources
+from the COGs will be mentioned when available.</p>
 
 
 <h3>1.4 Relationship to SCOVO</h3>
 
-<p>@@@ talk a bit about SCOVO, see paper</p>
+<p>The Statistical Core Vocabulary (SCOVO) [@@ref] is a lightweight
+RDF vocabulary for expressing statistical data. Its relative
+simplicity allows easy adoption by data producers and consumers, and
+it can be combined with other RDF vocabularies for greater effect. The
+model is extensible both on the schema and the instance level for more
+specialized use cases.</p>
 
-<p>While SCOVO addresses the basic use case of expressing statistical data in RDF, its minimalist design is limiting, and it does not support important scenarios that occur in statistical publishing, such as:</p>
+<p>While SCOVO addresses the basic use case of expressing statistical
+data in RDF, its minimalist design is limiting, and it does not
+support important scenarios that occur in statistical publishing, such
+as:</p>
 
 <ul>
 <li>definition and publication of the structure of a dataset independent from concrete data,</li>
-<li>data flows which group together datasets that share the same structure, for example from different national data providers,</li>
-<li>definition of "slices" through a dataset, such as an individual time series or cross-section, for individual annotation,</li>
+<li>data flows which group together datasets that share the same
+structure, for example from different national data providers,</li>
+<li>definition of "slices" through a dataset, such as an individual
+time series or cross-section, for individual annotation,</li>
 <li>distinctions between dimensions, attributes and measures.</li>
 </ul>
 
@@ -302,20 +362,30 @@ and every SCOVO dataset can be re-expressed as an SDMX-RDF dataset.
 
 <h3>1.5 Statistical data as a hypercube</h3>
 
-<p>@@@ briefly introduce the cube metaphor, as we will use it frequently later on</p>
-
+<p>A statistical data set comprises a collection of observations made
+at some points across a logical space. The set can be characterized by
+a set of dimensions that define what the observation applies to (time,
+area, population) along with metadata describing what has been
+measured (e.g. economic activity), how it was measured and how the
+observations are expressed (e.g. units, multipliers, status).  We thus
+think of the statistical space as a hyper-cube or multi-dimensional
+space indexed by those dimensions. This concept of a <em>cube</em> of
+data is a common way to describe and think of such statistical
+datasets.</p>
 
 <h3>1.6 Audience and scope</h3>
 
-<pre>
-- [ ] Audience and Scope
-    - [ ] More about expressing data that is not yet available in SDMX;
-          translation from other SDMX data should be discussed
-          separately elsewhere
-    - [ ] SDMX in RDF is about publishing statistics as RDF
-    - [ ] No round-tripping to other SDMX formats, although this might
-          come later
-</pre>
+<p>This document describes the vocabulary for SDMX-RDF and how it
+relates to the SDMX model. It is aimed at people wishing to publish
+statistical data in RDF but does not assume that the data is already
+available in SDMX. Mechanics of cross-format translation from other
+SDMX formats to SDMX-RDF will be covered elsewhere.</p>
+
+<p>The scope for SDMX-RDF itself is to enable publication of
+statistics as linked data using RDF. While we can regard it is a third
+syntax for the SDMX information model it is not aimed at complete
+round-tripping to other SDMX formats, though it might be extended to
+support that in the future.</p>
 
 
 <h3>1.7 Document conventions</h3>
