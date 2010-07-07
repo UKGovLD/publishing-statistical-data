@@ -1,0 +1,23 @@
+#summary Topic list from SDMX-RDF breakout from ODaF 2010
+
+*Scope discussion*
+
+== High level topics ==
+
+   * DDI and micro data
+   * registry
+   * naming, standardization, maintainability
+   * classification and comparibility
+
+== SDMX-RDF closure ==
+
+   * Property reuse
+   * COG usage
+   * round tripping
+   * validation
+   * datatypes
+   * metadata & MSDs
+   * groups
+   * reports
+   * attachment level, optionality
+   * cross-sections
