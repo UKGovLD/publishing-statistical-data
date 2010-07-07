@@ -7,7 +7,7 @@
    * DDI and micro data
    * registry
    * naming, standardization, maintainability
-   * classification and comparibility
+   * classification and comparability
 
 == SDMX-RDF closure ==
 
