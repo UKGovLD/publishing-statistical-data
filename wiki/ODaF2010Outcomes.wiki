@@ -1,0 +1,11 @@
+#summary Outcomes from ODaF 2010 SDMX-RDF work
+
+=  Outcomes from ODaF 2010 SDMX-RDF work =
+
+Roadmap, modular vocabs
+
+Partitioning and defn of cube vocab
+
+Modified open issue list
+
+... TBD ...
