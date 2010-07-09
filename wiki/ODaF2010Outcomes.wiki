@@ -15,26 +15,60 @@ There are further potential use cases for linked data in statistics beyond the c
 aggregated data targeted by SDMX-RDF. In particular, representing micro-data (survey information as supported by [http://www.ddialliance.org/ DDI]) or rather metadata for it would complement SDMX-RDF and, for example, support deep provenance track back.
 
 We identified a need for a common core vocabulary for linked data publication of 
-data cubes for web-dissemination. The cube models for SDMX and DDI are already compatible, by design so a single vocabulary for cubes could be extended by further 
+data cubes for web-dissemination. The cube models for SDMX and DDI are already compatible, by design, so a single vocabulary for cubes could be extended by further 
 modular vocabularies for SDMX specific, microdata/DDI specific and other usages (e.g. 
 reference metadata, classifications). We partitioned the existing SDMX-RDF proposals 
-identifying this reusable data cube core and clarified a number of the associated 
+identifying the core data cube vocabulary and clarified a number of the associated 
 open issues.
 
-Several of the current open issues are either not relevant to the data cube core, were resolved or are simply a matter of doing the work. The primary open issues requiring further investigation before final resolution are:
+Several of the current open issues are either not relevant to the data cube core, were resolved, or are simply a matter of doing the work. The primary open issues requiring further investigation before final resolution are:
 
-   * flattening - whether dimension and attribute values should (always) be flattened
-down to the observation level
+   * flattening - whether dimension and attribute values should (always) be flattened down to the observation level
    * standardized URI schemes for identifying elements below DataSets
    * validation
 
 == Data Cube vocabulary ==
 
+The concepts from the current SDMX-RDF draft which should be in a core Data Cube vocabulary are:
+
+   * DataSet
+   * Observation
+   * Dimension/Attribute/Measure and the associated packaging as ComponentProperties
+   * DataStructureDefinition
+      * enumeration of dims/attributes
+      * code lists (via URI reference)
+      * optionality
+      * ordering
+      * maybe attachment level (relates to _Flattening_ issue)
+   * ConceptRoles (as subclasses of Dimension, no need for role properties)
+   * Slice (an m-dimensional sub-cube)
+
+=== Slices ===
+
+It was felt that the ability is identify a slice of a DataSet, often but not always 1-dimensional vector, is needed in the core. This is necessary to enable publishers to call out and annotate slices and for UIs to use these slices as the basis for presentation.
+
+It was felt that emphasis on TimeSeries slices is specific to the statistics usage and should be in the SDMX vocabulary whereas the core Data Cube vocab should have a generic mechanism supporting m-dimensional slices.
+
+Representing slices will require both a concept to represent the sub-key in the DSD and an concept for the collection of observations which make up a given slice instance. However, the slice is not intended to represent an arbitrary sparse pick from observations. 
+
+=== SDMX extension ===
+
+The concepts which should be in an extension SDMX vocabulary are everything else, specifically including:
+
+   * DataFlow
+   * Reporting Taxonomies
+   * Section (1-dim slice)
+   * TimeSeries (1-dim slice, over time dim)
+   * Group
+   * Constraints (arb. bounded/projected sub cubes)
+   * DataProvider, Provision agreement ...
+   * Annotation
 
 == Substantive Issues list ==
 
 
-==
+== Other issues ==
+
 Roadmap, modular vocabs
 
 Partitioning and defn of cube vocab
