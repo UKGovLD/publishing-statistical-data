@@ -2,7 +2,7 @@
 
 = SDMX-RDF process at ODaF 2010 =
 
-This page summarizes outcome from the SDMX-RDF working discussions at
+This page summarizes outcomes from the SDMX-RDF working discussions at
 the Open Data Foundation (ODaF) 2010 meeting at Tilburg.
 
 == Summary points ==
@@ -17,7 +17,7 @@ aggregated data targeted by SDMX-RDF. In particular, representing micro-data (su
 We identified a need for a common core vocabulary for linked data publication of 
 data cubes for web-dissemination. The cube models for SDMX and DDI are already compatible, by design, so a single vocabulary for cubes could be extended by further 
 modular vocabularies for SDMX specific, microdata/DDI specific and other usages (e.g. 
-reference metadata, classifications). We partitioned the existing SDMX-RDF proposals 
+reference metadata, classifications). We partitioned the existing SDMX-RDF proposal 
 identifying the core data cube vocabulary and clarified a number of the associated 
 open issues.
 
@@ -43,9 +43,9 @@ The concepts from the current SDMX-RDF draft which should be in a core Data Cube
    * !ConceptRoles (as subclasses of Dimension, no need for role properties)
    * Slice (an m-dimensional sub-cube)
 
-=== Slices ===
+=== Note on Slices ===
 
-It was felt that the ability is identify a slice of a !DataSet, often but not always 1-dimensional vector, is needed in the core. This is necessary to enable publishers to call out and annotate slices and for UIs to use these slices as the basis for presentation.
+It was felt that the ability is identify a slice of a !DataSet, often but not always a 1-dimensional vector, is needed in the core. This is necessary to enable publishers to call out and annotate slices and for UIs to use these slices as the basis for presentation.
 
 It was felt that emphasis on !TimeSeries slices is specific to the statistics usage and should be in the SDMX vocabulary whereas the core Data Cube vocab should have a generic mechanism supporting m-dimensional slices.
 
@@ -86,7 +86,7 @@ The agreed way forward for this issue is to work through a concrete test case in
 === Validation ===
 
 The target use case of web dissemination means that we expect to normally be taking 
-well structured data sets and simply making them available. So validation in the
+well-structured data sets and simply making them available. So validation in the
 sense of testing internal consistency in the source data is out of scope.
 
 However, it is also important for consuming clients to be sure that they have obtained an intact and appropriate projection
@@ -125,3 +125,4 @@ The other issues mentioned during the discussions were:
    * Draft and review Data Cube vocabulary
    * Draft and review documentation for Data Cube vocabulary
    * Test case driven investigation into flattening issue
+   * Refine (subset) COG RDF mapping
