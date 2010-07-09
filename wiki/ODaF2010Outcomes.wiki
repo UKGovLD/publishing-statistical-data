@@ -1,7 +1,40 @@
 #summary Outcomes from ODaF 2010 SDMX-RDF work
 
-=  Outcomes from ODaF 2010 SDMX-RDF work =
+= SDMX-RDF process at ODaF 2010 =
 
+This page summarizes outcome from the SDMX-RDF working discussions at
+the Open Data Foundation (ODaF) 2010 meeting at Tilburg.
+
+== Summary points ==
+
+The meeting reinforced the value of establishing
+standards and practice now for how to publish statistical and related data
+in linked data form to avoid the chaos of multiple incompatible approaches evolving.
+
+There are further potential use cases for linked data in statistics beyond the core
+aggregated data targeted by SDMX-RDF. In particular, representing micro-data (survey information as supported by [http://www.ddialliance.org/ DDI]) or rather metadata for it would complement SDMX-RDF and, for example, support deep provenance track back.
+
+We identified a need for a common core vocabulary for linked data publication of 
+data cubes for web-dissemination. The cube models for SDMX and DDI are already compatible, by design so a single vocabulary for cubes could be extended by further 
+modular vocabularies for SDMX specific, microdata/DDI specific and other usages (e.g. 
+reference metadata, classifications). We partitioned the existing SDMX-RDF proposals 
+identifying this reusable data cube core and clarified a number of the associated 
+open issues.
+
+Several of the current open issues are either not relevant to the data cube core, were resolved or are simply a matter of doing the work. The primary open issues requiring further investigation before final resolution are:
+
+   * flattening - whether dimension and attribute values should (always) be flattened
+down to the observation level
+   * standardized URI schemes for identifying elements below DataSets
+   * validation
+
+== Data Cube vocabulary ==
+
+
+== Substantive Issues list ==
+
+
+==
 Roadmap, modular vocabs
 
 Partitioning and defn of cube vocab
