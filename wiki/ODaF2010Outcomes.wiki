@@ -1,6 +1,6 @@
 #summary Outcomes from ODaF 2010 SDMX-RDF work
 
-= SDMX-RDF process at ODaF 2010 =
+= SDMX-RDF progress at ODaF 2010 =
 
 This page summarizes outcomes from the SDMX-RDF working discussions at
 the Open Data Foundation (ODaF) 2010 meeting at Tilburg.
