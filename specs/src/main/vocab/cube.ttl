@@ -1,0 +1,94 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:           <http://xmlns.com/foaf/0.1/> .
+@prefix scovo:          <http://purl.org/NET/scovo#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+
+<http://purl.org/linked-data/data-cube>
+    a owl:Ontology;
+    owl:versionInfo "0.1";
+    rdfs:label "The data cube vocabulary";
+    rdfs:comment "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).";
+    dcterms:created "2010-07-12"^^xsd:date;
+    dcterms:modified "2010-07-12"^^xsd:date;
+    dcterms:title "Vocabulary for multi-dimensional (e.g. statistical) data publishing";
+    dcterms:contributor [foaf:mbox "richard@cyganiak.de"],
+                        [foaf:mbox "jeni@jenitennison.com"],
+                        [foaf:mbox "arofan.gregory@earthlink.net"],
+                        [foaf:mbox "ian@epimorphics.com"],
+                        [foaf:mbox "dave@epimorphics.com"];
+    .
+    
+# --- DataSets ---------------------------
+
+sdmx:DataSet a rdfs:Class, owl:Class;
+    rdfs:label "Data set"@en;
+    rdfs:comment "Represents a collection of observations, possibly organized into various slices, conforming to some common dimensional structure."@en;
+    rdfs:subClassOf sdmx:Attachable;
+    owl:equivalentClass scovo:Dataset;
+    .
+    
+# --- Slices ---------------------------
+
+sdmx:Slice a rdfs:Class, owl:Class;
+    rdfs:label "Slice"@en;
+    rdfs:comment "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en;
+    rdfs:subClassOf sdmx:Attachable;
+    .
+
+# TODO slice definition
+# TODO link to slice definition
+    
+# --- Observations ---------------------------
+    
+# --- Dimensions, Attributes, Measures ---------------------------
+
+sdmx:Attachable a rdfs:Class, owl:Class;
+    rdfs:label "Attachable (abstract)"@en;
+    rdfs:comment "Abstract superclass for everything that can have attributes and dimensions"@en;
+    .
+    
+sdmx:ComponentProperty a rdfs:Class, owl:Class;
+    rdfs:label "Component property (abstract)"@en;
+    rdfs:subClassOf rdf:Property;
+    rdfs:comment "Abstract super-property of all properties representing dimensions, attributes or measures"@en;
+    .
+sdmx:DimensionProperty a rdfs:Class, owl:Class;
+    rdfs:label "Dimension property"@en;
+    rdfs:subClassOf sdmx:ComponentProperty;
+    rdfs:subClassOf sdmx:CodedProperty;
+    owl:disjointWith sdmx:MeasureProperty;
+    .
+sdmx:AttributeProperty a rdfs:Class, owl:Class;
+    rdfs:label "Attribute property"@en;
+    rdfs:subClassOf sdmx:ComponentProperty;
+    owl:disjointWith sdmx:MeasureProperty;
+    .
+sdmx:MeasureProperty a rdfs:Class, owl:Class;
+    rdfs:label "Measure property"@en;
+    rdfs:subClassOf sdmx:ComponentProperty;
+    owl:disjointWith sdmx:AttributeProperty;
+    owl:disjointWith sdmx:DimensionProperty;
+    .
+sdmx:CodedProperty a rdfs:Class, owl:Class;
+    rdfs:label "Coded property"@en;
+    rdfs:subClassOf sdmx:ComponentProperty;
+    rdfs:comment "Superclass of all coded ComponentProperties"@en;
+    .
+
+# --- Data Structure Definitions ---------------------------
+    
+sdmx:structure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "structure"@en;
+    rdfs:comment "indicates the structure to which this data set conforms"@en;
+    rdfs:domain sdmx:DataSet;
+    rdfs:range sdmx:DataStructureDefinition;
+    .
+
+# --- Concept roles ---------------------------
+            
+            
