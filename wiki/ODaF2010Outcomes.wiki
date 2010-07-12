@@ -45,7 +45,7 @@ The concepts from the current SDMX-RDF draft which should be in a core Data Cube
 
 === Note on Slices ===
 
-It was felt that the ability is identify a slice of a !DataSet, often but not always a 1-dimensional vector, is needed in the core. This is necessary to enable publishers to call out and annotate slices and for UIs to use these slices as the basis for presentation.
+It was felt that the ability to identify a slice of a !DataSet, often but not always a 1-dimensional vector, is needed in the core. This is necessary to enable publishers to call out and annotate slices and for UIs to use these slices as the basis for presentation.
 
 It was felt that emphasis on !TimeSeries slices is specific to the statistics usage and should be in the SDMX vocabulary whereas the core Data Cube vocab should have a generic mechanism supporting m-dimensional slices.
 
