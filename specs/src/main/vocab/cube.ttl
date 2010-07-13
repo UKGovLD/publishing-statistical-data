@@ -238,4 +238,23 @@ qb:DimensionOrAttributeProperty a rdfs:Class, owl:Class;
     .
 qb:DimensionProperty rdfs:subClassOf qb:DimensionOrAttributeProperty .            
 qb:AttributeProperty rdfs:subClassOf qb:DimensionOrAttributeProperty .            
+
+# --- Concept schemes ---------------------------
+            
+qb:ConceptScheme a rdfs:Class, owl:Class;
+    rdfs:label "Concept scheme"@en;
+    rdfs:subClassOf skos:ConceptScheme;
+    .
+    
+qb:Concept a rdfs:Class, owl:Class;
+    rdfs:label "concept"@en;
+    rdfs:subClassOf skos:Concept;
+    rdfs:comment "Denotes an SDMX concept, used in the particular SDMX terminological sense, which is in principle narrower than skos:Concept";
+    .
+    
+qb:codeList a rdf:Property, owl:ObjectProperty;
+    rdfs:label "code list"@en;
+    rdfs:domain qb:CodedProperty;
+    rdfs:range  qb:ConceptScheme;
+    .
     
