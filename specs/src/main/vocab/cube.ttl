@@ -7,6 +7,7 @@
 @prefix scovo:          <http://purl.org/NET/scovo#> .
 @prefix void:           <http://rdfs.org/ns/void#> .
 @prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix dcterms:        <http://dublincore.org/documents/dcmi-terms/>.
 
 <http://purl.org/linked-data/data-cube>
     a owl:Ontology;
@@ -25,70 +26,216 @@
     
 # --- DataSets ---------------------------
 
-sdmx:DataSet a rdfs:Class, owl:Class;
+qb:DataSet a rdfs:Class, owl:Class;
     rdfs:label "Data set"@en;
     rdfs:comment "Represents a collection of observations, possibly organized into various slices, conforming to some common dimensional structure."@en;
-    rdfs:subClassOf sdmx:Attachable;
+    rdfs:subClassOf qb:Attachable;
     owl:equivalentClass scovo:Dataset;
     .
     
 # --- Slices ---------------------------
 
-sdmx:Slice a rdfs:Class, owl:Class;
+qb:Slice a rdfs:Class, owl:Class;
     rdfs:label "Slice"@en;
     rdfs:comment "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en;
-    rdfs:subClassOf sdmx:Attachable;
+    rdfs:subClassOf qb:Attachable;
     .
 
-# TODO slice definition
-# TODO link to slice definition
-    
+qb:slice a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice"@en;
+    rdfs:comment "Indicates a subset of a DataSet defined by fixing a subset of the dimensional values"@en;
+    rdfs:domain qb:DataSet;
+    rdfs:range qb:Slice;
+    .
+     
 # --- Observations ---------------------------
+
+qb:Observation a rdfs:Class, owl:Class;
+    rdfs:label "Observation"@en;
+    rdfs:subClassOf qb:Attachable;
+    owl:equivalentClass scovo:Item;
+    .
+
+qb:dataSet a rdf:Property, owl:ObjectProperty;
+    rdfs:label "data set"@en;
+    rdfs:domain qb:Observation;
+    rdfs:range qb:DataSet;
+    owl:equivalentProperty scovo:dataset;
+    .
     
+qb:observation a rdf:Property, owl:ObjectProperty;
+    rdfs:label "observation"@en;
+    rdfs:domain qb:Slice;
+    rdfs:range qb:Observation;
+    .
+        
 # --- Dimensions, Attributes, Measures ---------------------------
 
-sdmx:Attachable a rdfs:Class, owl:Class;
+qb:Attachable a rdfs:Class, owl:Class;
     rdfs:label "Attachable (abstract)"@en;
     rdfs:comment "Abstract superclass for everything that can have attributes and dimensions"@en;
     .
     
-sdmx:ComponentProperty a rdfs:Class, owl:Class;
+qb:ComponentProperty a rdfs:Class, owl:Class;
     rdfs:label "Component property (abstract)"@en;
     rdfs:subClassOf rdf:Property;
     rdfs:comment "Abstract super-property of all properties representing dimensions, attributes or measures"@en;
     .
-sdmx:DimensionProperty a rdfs:Class, owl:Class;
+qb:DimensionProperty a rdfs:Class, owl:Class;
     rdfs:label "Dimension property"@en;
-    rdfs:subClassOf sdmx:ComponentProperty;
-    rdfs:subClassOf sdmx:CodedProperty;
-    owl:disjointWith sdmx:MeasureProperty;
+    rdfs:subClassOf qb:ComponentProperty;
+    rdfs:subClassOf qb:CodedProperty;
+    owl:disjointWith qb:MeasureProperty;
     .
-sdmx:AttributeProperty a rdfs:Class, owl:Class;
+qb:AttributeProperty a rdfs:Class, owl:Class;
     rdfs:label "Attribute property"@en;
-    rdfs:subClassOf sdmx:ComponentProperty;
-    owl:disjointWith sdmx:MeasureProperty;
+    rdfs:subClassOf qb:ComponentProperty;
+    owl:disjointWith qb:MeasureProperty;
     .
-sdmx:MeasureProperty a rdfs:Class, owl:Class;
+qb:MeasureProperty a rdfs:Class, owl:Class;
     rdfs:label "Measure property"@en;
-    rdfs:subClassOf sdmx:ComponentProperty;
-    owl:disjointWith sdmx:AttributeProperty;
-    owl:disjointWith sdmx:DimensionProperty;
+    rdfs:subClassOf qb:ComponentProperty;
+    owl:disjointWith qb:AttributeProperty;
+    owl:disjointWith qb:DimensionProperty;
     .
-sdmx:CodedProperty a rdfs:Class, owl:Class;
+qb:CodedProperty a rdfs:Class, owl:Class;
     rdfs:label "Coded property"@en;
-    rdfs:subClassOf sdmx:ComponentProperty;
+    rdfs:subClassOf qb:ComponentProperty;
     rdfs:comment "Superclass of all coded ComponentProperties"@en;
     .
 
 # --- Data Structure Definitions ---------------------------
-    
-sdmx:structure a rdf:Property, owl:ObjectProperty;
+
+qb:DataStructureDefinition a rdfs:Class, owl:Class;
+    rdfs:label "Data structure definition"@en;
+    rdfs:comment "Defines the structure of a DataSet or slice"@en;
+    rdfs:subClassOf qb:ComponentSet ;
+    .
+   
+qb:structure a rdf:Property, owl:ObjectProperty;
     rdfs:label "structure"@en;
     rdfs:comment "indicates the structure to which this data set conforms"@en;
-    rdfs:domain sdmx:DataSet;
-    rdfs:range sdmx:DataStructureDefinition;
+    rdfs:domain qb:DataSet;
+    rdfs:range qb:DataStructureDefinition;
     .
+
+qb:ComponentSet a rdfs:Class, owl:Class;
+    rdfs:label "Component set"@en;
+    rdfs:comment "Abstraction of structure definitions which reference a set of ComponentProperties"@en;
+    . 
+    
+qb:component a rdf:Property, owl:ObjectProperty;
+    rdfs:label "component"@en;
+    rdfs:comment "indicates a ComponentProperty in the component set, e.g. an expected attribute/dimension on a DataSet, or a dimension fixed in a SliceKey"@en;
+    rdfs:domain qb:ComponentSet;
+    rdfs:range qb:ComponentProperty;
+    .
+    
+qb:componentOrder a rdf:Property, owl:ObjectProperty;
+    rdfs:label "component order"@en;
+    rdfs:domain qb:DataStructureDefinition;
+    rdfs:range rdf:List;
+    rdfs:comment """Optional specification of the order in which dimensions (and optionally other components) should be used. Value is an rdf:List of qb:ComponentProperties or qb:ComponentSpecifications"""@en;
+    .
+
+# --- Component specifications - for qualifying component use in a DSD ---------------------------
+
+qb:ComponentSpecification a rdfs:Class, owl:Class ;
+    rdfs:label "Component specification"@en;
+    rdfs:comment """Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD. This is used by including instances of qb:ComponentSpecification in place of the qb:ComponentProperty in an qb:componentOrder list"""@en;
+    rdfs:subClassOf qb:ComponentSet ;
+    .
+
+qb:commponentRequired a rdf:Property, owl:DatatypeProperty;
+    rdfs:label "component required"@en;
+    rdfs:comment """Indicates whether a component property is required (true) or optional (false) in the context of a DSD or MSD"""@en;
+    rdfs:domain qb:ComponentSpecifition;
+    rdfs:range  xsd:boolean;
+    .
+
+qb:componentAttachment a rdf:Property;
+    rdfs:label "component attachment"@en;
+    rdfs:comment """Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation"""@en;
+    rdfs:domain qb:ComponentSpecifition;
+    rdfs:range  rdfs:Class;
+    .
+
+# --- Slice definitions ---------------------------
+
+qb:SliceKey a rdfs:Class, owl:Class;
+    rdfs:label "Slice key"@en;
+    rdfs:comment "Denotes a subset of the component properties of a DataSet which are fixed in the corresponding slices"@en;
+    rdfs:subClassOf qb:ComponentSet ;
+    .
+    
+qb:sliceKey a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice key"@en;
+    rdfs:comment "indicates the sub-key corresponding to this slice"@en;
+    rdfs:domain qb:Slice;
+    rdfs:range  qb:SliceKey;
+    .    
 
 # --- Concept roles ---------------------------
             
+qb:ConceptRoleProperty a rdfs:Class, owl:Class;
+    rdfs:label "Concept role property (abstract)"@en;
+    rdfs:subClassOf qb:ComponentProperty;
+    rdfs:comment "Abstract superclass for all properties representing ConceptRoleTypes"@en;
+    .
+qb:FrequencyProperty a rdfs:Class, owl:Class;
+    rdfs:label "Frequency property"@en;
+    rdfs:comment "a dimension or attribute that plays the role of frequency"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionOrAttributeProperty;
+    .
+qb:CountProperty a rdfs:Class, owl:Class;
+    rdfs:label "Count property"@en;
+    rdfs:comment "a dimension or attribute that plays the role of an identifier where the identifier is taken from a known system of counts (e.g. the Nth current dataset update for a given day)"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionOrAttributeProperty;
+    .
+qb:EntityProperty a rdfs:Class, owl:Class;
+    rdfs:label "Entity property"@en;
+    rdfs:comment "a dimension or attribute that plays the role of the DataAttribute subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionOrAttributeProperty;
+    .
+qb:TimeProperty a rdfs:Class, owl:Class;
+    rdfs:label "Time property"@en;
+    rdfs:comment "a dimension that specifies the time of the observation of the primaryMeasure"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionProperty;
+    .
+qb:MeasureTypeProperty a rdfs:Class, owl:Class;
+    rdfs:label "Measure type property"@en;
+    rdfs:comment "a dimension that plays the role of identifying a type of measure"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionProperty;
+    .
+qb:NonObsTimeProperty a rdfs:Class, owl:Class;
+    rdfs:label "Non-observation time property"@en;
+    rdfs:comment "a dimension or attribute that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionOrAttributeProperty;
+    .
+qb:IdentityProperty a rdfs:Class, owl:Class;
+    rdfs:label "Identity property"@en;
+    rdfs:comment "a dimenion or attribute that plays the role of an identifier which is taken from a known scheme of identifiers."@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:DimensionOrAttributeProperty;
+    .
+qb:PrimaryMeasureProperty a rdfs:Class, owl:Class;
+    rdfs:label "Primary measure property"@en;
+    rdfs:comment "a measure that plays the role of the observation in a time series"@en;
+    rdfs:subClassOf qb:ConceptRoleProperty;
+    rdfs:subClassOf qb:MeasureProperty;
+    .
             
+qb:DimensionOrAttributeProperty a rdfs:Class, owl:Class;
+    rdfs:label "Dimension or Attribute property"@en;
+    rdfs:comment "Superclass of component properties which can be dimenions or attributes but not measures"@en;
+    owl:disjointWith qb:MeasureProperty;
+    .
+qb:DimensionProperty rdfs:subClassOf qb:DimensionOrAttributeProperty .            
+qb:AttributeProperty rdfs:subClassOf qb:DimensionOrAttributeProperty .            
+    
