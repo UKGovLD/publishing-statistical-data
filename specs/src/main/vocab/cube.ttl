@@ -146,7 +146,7 @@ qb:ComponentSpecification a rdfs:Class, owl:Class ;
     rdfs:subClassOf qb:ComponentSet ;
     .
 
-qb:commponentRequired a rdf:Property, owl:DatatypeProperty;
+qb:componentRequired a rdf:Property, owl:DatatypeProperty;
     rdfs:label "component required"@en;
     rdfs:comment """Indicates whether a component property is required (true) or optional (false) in the context of a DSD or MSD"""@en;
     rdfs:domain qb:ComponentSpecifition;
