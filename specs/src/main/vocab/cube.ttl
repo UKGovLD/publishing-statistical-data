@@ -252,6 +252,13 @@ qb:Concept a rdfs:Class, owl:Class;
     rdfs:comment "Denotes an SDMX concept, used in the particular SDMX terminological sense, which is in principle narrower than skos:Concept";
     .
     
+qb:concept a rdf:Property, owl:ObjectProperty;
+    rdfs:label "concept"@en;
+    rdfs:comment "gives the concept which is being measured or indicated by a ComponentProperty"@en; 
+    rdfs:domain qb:ComponentProperty;
+    rdfs:range qb:Concept;
+    .
+        
 qb:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
     rdfs:domain qb:CodedProperty;
