@@ -45,7 +45,9 @@ ul.toc { list-style-type: none; }
 }
   </style>
 </head>
+
 <body>
+
 <div class="head">
 <h1 id="title">The RDF Data Cube vocabulary</h1>
 <dl class="frontmatter">
@@ -70,6 +72,7 @@ Ltd</a>)</dd>
 </dl>
 <hr>
 </div>
+
 <h2 id="abstract">Abstract</h2>
 <p>There are many situations were it would be useful to be able to
 publish
@@ -85,6 +88,7 @@ statistical data and metadata among organizations. The Data Cube
 vocabulary is intended to support extension
 vocabularies which can enable publication of other aspects of
 statistical data flow.</p>
+
 <h2 id="status">Status of this document</h2>
 <p>This is an editor's draft without any formal standing. It is not
 endorsed by any organisation. Anything in this document is still
@@ -93,7 +97,9 @@ document. Please send any comments
 to the <a
  href="http://groups.google.com/group/publishing-statistical-data">project's
 Google Group</a>.</p>
+
 <hr>
+
 <h2 id="toc">Table of Contents</h2>
 <ul class="toc">
   <li><a href="#introduction">1. Introduction</a>
@@ -108,16 +114,14 @@ Google Group</a>.</p>
   </li>
   <li><a href="#data-cubes">2. Data cubes</a>
     <ul class="toc">
-      <li><a href="#cubes-model">2.1 The cube model - dimensions,
-attributes, measures</a></li>
+      <li><a href="#cubes-model">2.1 The cube model - dimensions, attributes, measures</a></li>
       <li><a href="#cubes-slices">2.2 Slices</a></li>
     </ul>
   </li>
   <li><a href="#example">3. An example</a></li>
   <li><a href="#dsd">4. Creating data structure definitions</a></li>
   <li><a href="#datasets">5. Expressing datasets</a> </li>
-  <li><a href="#schemes">6. Concepts schemes and code lists</a> mention
-COG </li>
+  <li><a href="#schemes">6. Concepts schemes and code lists</a> </li>
   <li><a href="#collections">7. Collections of data sets</a> </li>
   <li><a href="#metadata">8. DataSet metadata</a> </li>
   <li><a href="#publishing">9. Publishing</a></li>
@@ -127,7 +131,9 @@ COG </li>
 in this document</a></li>
 </ul>
 <hr>
+
 <h2 id="introduction">1. Introduction</h2>
+
 <h3 id="intro-cube">1.1 A Data Cube vocabulary</h3>
 <p>
 Statistical data underpins many of the mash-ups and visualisations
@@ -136,6 +142,7 @@ prediction, planning and adjustments. There is strong interest
 in being able to publish statistical data in a web-friendly format
 to enable it to be linked and combined with related information.
 </p>
+
 <p>
 At the heart of a statistical dataset is a set of observed values
 organized along a group of dimensions, along with associated metadata.
@@ -149,21 +156,19 @@ for statistical data exchange. This <em>cube</em> model is very
 general and so the Data Cube vocabulary can be used for other data sets
 such as survey data, spreadsheets and OLAP [@@ref] data cubes.
 </p>
+
 <p>
 The Data Cube vocabulary has been kept deliberately scoped to the web
 publication of multi-dimensional data. We envisage a series of module
 vocabularies being developed which extend this core foundation. In
-particular,
-we see the need for a SDMX extension vocabulary to support the
-publication
-additional context to statistical data (such as the encompassing Data
-Flows and
-associated Provision Agreements). Other extensions are possible to
-support metadata
-for surveys (so called "micro-data", as encompassed by <a
+particular, we see the need for a SDMX extension vocabulary to support the
+publication additional context to statistical data (such as the encompassing Data
+Flows and associated Provision Agreements). Other extensions are possible to
+support metadata for surveys (so called "micro-data", as encompassed by <a
  href="http://www.ddialliance.org/">DDI</a>)
 or publication of statistical reference metadata.
 </p>
+
 <p>The Data Cube in turn builds upon the following existing RDF
 vocabularies:</p>
 <ul>
@@ -176,20 +181,20 @@ core statistical structures</li>
   <li><a href="http://purl.org/dc/terms/">Dublin Core Terms</a> for
 metadata</li>
 </ul>
+
 <h3 id="intro-rdf">1.2 RDF and Linked Data</h3>
-<p><em>Linked data</em> is an approach to publication of data on the
-web.
-It is a set of best practices to enable systems to use the Web to
-connect
+
+<p><em>Linked data</em> is an approach to publication of data on the web.
+It is a set of best practices to enable systems to use the Web to connect
 related data that wasn't previously linked, or lower the barriers to
 linking data currently linked using other methods. The approach [@@ref]
-recommends
-use of HTTP URIs to name the entities and concepts so that consumers of
+recommends use of HTTP URIs to name the entities and concepts so that consumers of
 the data can lookup those URIs to get more information, including links
 to other related URIs.
 RDF [@@ref] provides a standard for the representation of the
 information that describes those entities and concepts, and is returned
 by dereferencing the URIs. </p>
+
 <p>There are a number of benefits to being able to publish statistical
 and similar data using RDF and the linked data approach:</p>
 <ul>
@@ -207,7 +212,9 @@ publishing as linked-data offers a flexible, non-proprietary, machine
 readable means of publication that supports an out-of-the-box web API
 for programmatic access.</li>
 </ul>
+
 <h3 id="intro-sdmx">1.3 SDMX and related standards</h3>
+
 <p>The Statistical Data and Metadata Exchange (SDMX) Initiative
 was organised in 2001 by seven international organisations (BIS,
 ECB, Eurostat, IMF, OECD, World Bank and the UN) to
@@ -216,6 +223,7 @@ organisations all
 collect significant amounts of data, mostly from the national level,
 to support policy. They also disseminate data at the supra-national
 and international levels.</p>
+
 <p>
 There have been several important results from this work: two
 versions of a set of technical specifications - ISO:TS 17369
@@ -229,12 +237,14 @@ dissemination of aggregate statistics by official statistical
 organisations. The UN Statistical Commission recommended
 SDMX as the preferred standard for statistics in 2007.
 </p>
+
 <p>The SDMX specification defines a core <em>information model</em>
 which is reflected in concrete form in two syntaxes - SDMX-ML (and XML
 syntax) and SDMX-EDI.
 The Data Cube vocabulary builds upon the core of the SDMX information
 model.
 </p>
+
 <p>A key component of the SDMX standards package are
 the <strong>Content-Oriented Guidelines</strong> (COGs), a set of
 cross-domain concepts, code lists, and categories that support
@@ -243,7 +253,9 @@ shared language between SDMX implementors. RDF versions of these
 artifacts are available separately for use along with the Data Cube
 vocabulary.
 </p>
+
 <h3 id="intro-scovo">1.4 Relationship to SCOVO</h3>
+
 <p>The Statistical Core Vocabulary (SCOVO) [@@ref] is a lightweight
 RDF vocabulary for expressing statistical data. Its relative
 simplicity allows easy adoption by data producers and consumers, and
@@ -254,6 +266,7 @@ specialized use cases.</p>
 data in RDF, its minimalist design is limiting, and it does not
 support important scenarios that occur in statistical publishing, such
 as:</p>
+
 <ul>
   <li>definition and publication of the structure of a dataset
 independent from concrete data,</li>
@@ -263,17 +276,22 @@ structure, for example from different national data providers,</li>
 time series or cross-section, for individual annotation,</li>
   <li>distinctions between dimensions, attributes and measures.</li>
 </ul>
+
 <p>
 The design of the Data Cube vocabulary is informed by SCOVO,
 and every SCOVO dataset can be re-expressed within the vocabulary.
 </p>
+
 <h3 id="intro-audience">1.5 Audience and scope</h3>
+
 <p>This document describes the Data Cube vocabulary
 It is aimed at people wishing to publish
 statistical or other multi-dimension data in RDF.
 Mechanics of cross-format translation from other
 formats such as SDMX-ML will be covered elsewhere.</p>
+
 <h3>1.7 Document conventions</h3>
+
 <p>
 The names of RDF entities -- classes, predicates, instances, etc -- are
 URIs. These are usually expressed using a compact notation where the
@@ -281,6 +299,7 @@ name is written <code>prefix:localname</code>, where the <code>prefix</code>
 identifies a <i>namespace URI</i> which is to be prepended to the <code>localname</code>
 to obtain the full URI.
 </p>
+
 <p>
 In this document we shall use the conventional prefix names for the
 <a href="#namespaces-used-appendix">well-known namespaces</a>:
@@ -293,12 +312,14 @@ In this document we shall use the conventional prefix names for the
   <li><code>void</code> -- Vocabulary of Interlinked Datasets</li>
   <li><code>scovo</code> -- Statistical Core Vocabulary</li>
 </ul>
-We also introduce the prefix <code>qb</code> for the Data Cube
-namespace.
-<p></p>
+<p>We also introduce the prefix <code>qb</code> for the Data Cube
+namespace.</p>
+
 <h2 id="data-cubes">2. Data cubes</h2>
+
 <h3 id="cubes-model">2.1 The cube model - dimensions, attributes,
 measures</h3>
+
 <p>A statistical data set comprises a collection of observations made
 at some points across a logical space. The set can be characterized by
 a set of dimensions that define what the observation applies to (time,
@@ -313,32 +334,37 @@ literally, it is not meant to imply that
 there are exactly three dimensions (there can be more or fewer) nor
 that
 all the dimensions are somehow similar in size.</p>
-<p>More specifically the cube is organized according to a set of <em>dimensions</em>,
 
+<p>More specifically the cube is organized according to a set of <em>dimensions</em>,
 <em>attributes</em> and <em>measures</em> (which we collectively call <em>components</em>).</p>
+
 <p>The <em>dimension</em> components serve to both identify
 and describe the observations. A set of values for all the dimension
 components
 is sufficient to identify a single observation. Examples of dimensions
 include the
 time to which the observation applies or a geographic region.</p>
+
 <p>The <em>measure</em> components represent the phenomena being
 observed. <em>@@ Expand on this if we can get advice on how multiple
 measures are really used.</em></p>
+
 <p>The <em>attribute</em> components allow use to qualify and
 interpret the observed value. They allow us specify the units of
 measures, any scaling factors and important metadata such as the status
 of the observation (e.g. <em>estimated</em>, <em>provisional</em>).</p>
+
 <h3 id="cubes-slices">2.2 Slices</h3>
+
 <p>It is frequently useful to group subsets of observations within a
 dataset, in particular to fix all but one (or a small subset) of the
 dimensions and be able to refer to all observations with those
 dimension values as a unit. We call such a selection a <em>slice</em>
-through
-the cube. For example, a slice in which in which the only free
+through the cube. For example, a slice in which in which the only free
 dimension is time, through a data
 on regional performance indicators, would represent a time series of
 observations of a given indicator at the same location.</p>
+
 <p>A data publisher may identify slices through the data for various
 purposes. The may be used to associate metadata, for example to note a
 change in measurement process which
@@ -348,6 +374,7 @@ user. This allows a consuming application
 to easily construct the appropriate graph or chart for presentation.
 Though consuming applications can, in principle, select different
 subsets of the whole cube if they are available to them.</p>
+
 <p>In statistical applications it is common to work with
 slices in which a single dimension is free, i.e. vectors through the
 cube. In particular,
@@ -357,14 +384,17 @@ Within the Data Cube vocabulary we allow arbitrary dimensionality
 slices and do not give different names to particular vector slices but
 extension vocabularies such as SDMX-RDF can easily add such additional
 concept labels.</p>
+
 <h2 id="example">3. An example</h2>
+
 <p>In order to illustrate the use of the data cube vocabulary we will
 use a small demonstration
-data set extracted from <a
- href="http://statswales.wales.gov.uk/index.htm">StatsWales</a> report
+data set extracted from
+<a href="http://statswales.wales.gov.uk/index.htm">StatsWales</a> report
 number 003311 which describes life expectancy broken down by region
 (unitary authority), age and time. The small extract is:<br>
 </p>
+
 <table style="text-align: left; width: 80%;" border="1" cellpadding="2"
  cellspacing="0">
   <tbody>
@@ -479,15 +509,31 @@ Tydfil<br>
   region, sex. Each observation represents a life expectancy in years for that population
 so wee.</p>
 
+<h2 id="dsd">4. Creating data structure definitions</h2>
+
+<h2 id="datasets">5. Expressing datasets</h2>
+
+<h2 id="schemes">6. Concepts schemes and code lists</h2>
+mention COG
+
+<h2 id="collections">7. Collections of data sets</h2>
+
+<h2 id="metadata">8. DataSet metadata</h2>
+
+<h2 id="publishing">9. Publishing</h2>
+  
 <h2 id="acknowledgements">Acknowledgements</h2>
+
 <p>This work is based on a collaboration that was initiated in a
 workshop on Publishing statistical datasets in SDMX and the semantic
 web, hosted by ONS in Sunningdale, United Kingdom in February 2010 and
 continued at the ODaF 2010 workshop in Tilburg. The authors would like
 to thank all the participants at those workshops for their input into
 this work.</p>
+
 <p>The authors would also like to thank John Sheridan for his comments,
 suggestions and support for this work.</p>
+
 <h2 id="references">References</h2>
 @@@ [SCOVO] http://sw.joanneum.at/scovo/schema.html, The Statistical
 Core Vocabulary
@@ -513,8 +559,9 @@ Semantic Statistics: Bringing Together SDMX and SCOVO
 @@@
 [SDMX COG CL] <a
  href="http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf</a>
-<h2 id="namespaces-used-appendix">Appendix 1: namespaces used in this
-document</h2>
+ 
+<h2 id="namespaces-used-appendix">Appendix 1: namespaces used in this document</h2>
+
 <table class="spare-table" style="margin-left: 5ex;">
   <thead> <tr>
     <th>prefix</th>
@@ -561,8 +608,10 @@ document</h2>
   </tbody>
 </table>
 <hr>
+
 <div class="todo">
 <h2>Questions</h2>
 </div>
+
 </body>
 </html>
