@@ -119,12 +119,14 @@ Google Group</a>.</p>
     </ul>
   </li>
   <li><a href="#example">3. An example</a></li>
-  <li><a href="#dsd">4. Creating data structure definitions</a></li>
-  <li><a href="#datasets">5. Expressing datasets</a> </li>
-  <li><a href="#schemes">6. Concepts schemes and code lists</a> </li>
-  <li><a href="#collections">7. Collections of data sets</a> </li>
-  <li><a href="#metadata">8. DataSet metadata</a> </li>
-  <li><a href="#publishing">9. Publishing</a></li>
+  <li><a href="#outline">4. Outline of the vocabulary</a></li>
+  <li><a href="#dsd">5. Creating data structure definitions</a></li>
+  <li><a href="#datasets">6. Expressing datasets</a> </li>
+  <li><a href="#schemes">7. Concepts schemes and code lists</a> </li>
+  <li><a href="#collections">8. Collections of data sets</a> </li>
+  <li><a href="#metadata">9. DataSet metadata</a> </li>
+  <li><a href="#publishing">10. Publishing</a></li>
+  <li><a href="#reference">11. Vocabulary reference</a></li>
   <li><a href="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#references">References</a></li>
   <li><a href="#namespaces-used-appendix">Appendix 1: namespaces used
@@ -249,7 +251,7 @@ model.
 the <strong>Content-Oriented Guidelines</strong> (COGs), a set of
 cross-domain concepts, code lists, and categories that support
 interoperability and comparability between datasets by providing a
-shared language between SDMX implementors. RDF versions of these
+shared language between SDMX implementers. RDF versions of these
 artifacts are available separately for use along with the Data Cube
 vocabulary.
 </p>
@@ -506,21 +508,48 @@ Tydfil<br>
 </table>
 
 <p>We can see that there are three dimensions - time period (averages over two year timespans),
-  region, sex. Each observation represents a life expectancy in years for that population
-so wee.</p>
+  region, sex. Each observation represents the life expectancy for that population
+so will need an attribute to define the units (years) and the topic (life expectancy).</p>
 
-<h2 id="dsd">4. Creating data structure definitions</h2>
+<h2 id="outline">4. Outline of the vocabulary</h2>
 
-<h2 id="datasets">5. Expressing datasets</h2>
+@@ Overview diagram (once it's stable!)
 
-<h2 id="schemes">6. Concepts schemes and code lists</h2>
+@@ short cut reference links to reference section (auto generate?)
+
+<h2 id="dsd">5. Creating data structure definitions</h2>
+
+<p>A <em>data structure definition</em> defines the structure of a particular
+dataset. In particular, it defines the dimensions, attributes and measures 
+used in the dataset along with qualifying information such as ordering of
+  dimensions and whether attributes are required or optional. For well-formed
+  data sets much of this information is implicit within the RDF component properties
+  found on the observations. However, the explicit declaration of the structure has
+  several benefits:</p>
+
+<ul>
+  <li>enables verification that the data set matches the expected structure,
+   in particular helps with detection of incoherent sets obtained by 
+   combining differently structured source data;</li>
+  <li>allows a consumer to easily determine what dimensions are available for query
+    and their presentational order, which in turn simplifies UI construction;</li>
+  <li>supports transmission of the structure information in associated SDMX data flows.</li>
+</ul>
+
+@@@@
+
+<h2 id="datasets">6. Expressing datasets</h2>
+
+<h2 id="schemes">7. Concepts schemes and code lists</h2>
 mention COG
 
-<h2 id="collections">7. Collections of data sets</h2>
+<h2 id="collections">8. Collections of data sets</h2>
 
-<h2 id="metadata">8. DataSet metadata</h2>
+<h2 id="metadata">9. DataSet metadata</h2>
 
-<h2 id="publishing">9. Publishing</h2>
+<h2 id="publishing">10. Publishing</h2>
+
+<h2 id="reference">11. Vocabulary Reference</h2>
   
 <h2 id="acknowledgements">Acknowledgements</h2>
 
@@ -605,12 +634,24 @@ Semantic Statistics: Bringing Together SDMX and SCOVO
       <td>http://purl.org/dc/elements/1.1/</td>
       <td>Dublin Core</td>
     </tr>
+    <tr>
+      <td>qb</td>
+      <td>http://purl.org/linked-data/cube#</td>
+      <td>The Data Cube vocabulary</td>
+    </tr>
   </tbody>
 </table>
 <hr>
 
 <div class="todo">
 <h2>Questions</h2>
+
+<ul>
+  <li>Representation of the topic in single-topic datasets?</li>
+  <li>Structured values as in OLAP cubes, how does that map?</li>
+  <li>What exactly <em>is</em> a measure again? The SDMX docs are rather coy about offering a definition and we need to be clearer here.</li>
+</ul>
+
 </div>
 
 </body>
