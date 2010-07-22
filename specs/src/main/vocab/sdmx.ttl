@@ -39,44 +39,44 @@
 
 # --- Concept Roles ---------------------------
 
-qb:FrequencyProperty a rdfs:Class, owl:Class;
+qb:FrequencyRole a rdfs:Class, owl:Class;
     rdfs:label "Frequency property"@en;
-    rdfs:comment "a dimension or attribute that plays the role of frequency"@en;
+    rdfs:comment "concept for a dimension or attribute that plays the role of frequency"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:CountProperty a rdfs:Class, owl:Class;
+qb:CountRole a rdfs:Class, owl:Class;
     rdfs:label "Count property"@en;
-    rdfs:comment "a dimension or attribute that plays the role of an identifier where the identifier is taken from a known system of counts (e.g. the Nth current dataset update for a given day)"@en;
+    rdfs:comment "concept for a dimension or attribute that plays the role of an identifier where the identifier is taken from a known system of counts (e.g. the Nth current dataset update for a given day)"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:EntityProperty a rdfs:Class, owl:Class;
+qb:EntityRole a rdfs:Class, owl:Class;
     rdfs:label "Entity property"@en;
-    rdfs:comment "a dimension or attribute that plays the role of the DataAttribute subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en;
+    rdfs:comment "concept for a dimension or attribute that plays the role of the DataAttribute subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:TimeProperty a rdfs:Class, owl:Class;
+qb:TimeRole a rdfs:Class, owl:Class;
     rdfs:label "Time property"@en;
-    rdfs:comment "a dimension that specifies the time of the observation of the primaryMeasure"@en;
+    rdfs:comment "concept for a dimension that specifies the time of the observation of the primaryMeasure"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:MeasureTypeProperty a rdfs:Class, owl:Class;
+qb:MeasureTypeRole a rdfs:Class, owl:Class;
     rdfs:label "Measure type property"@en;
-    rdfs:comment "a dimension that plays the role of identifying a type of measure"@en;
+    rdfs:comment "concept for a dimension that plays the role of identifying a type of measure"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:NonObsTimeProperty a rdfs:Class, owl:Class;
+qb:NonObsTimeRole a rdfs:Class, owl:Class;
     rdfs:label "Non-observation time property"@en;
-    rdfs:comment "a dimension or attribute that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en;
+    rdfs:comment "concept for a dimension or attribute that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:IdentityProperty a rdfs:Class, owl:Class;
+qb:IdentityRole a rdfs:Class, owl:Class;
     rdfs:label "Identity property"@en;
-    rdfs:comment "a dimenion or attribute that plays the role of an identifier which is taken from a known scheme of identifiers."@en;
+    rdfs:comment "concept for a dimension or attribute that plays the role of an identifier which is taken from a known scheme of identifiers."@en;
     rdfs:subClassOf qb:ConceptRole;
     .
-qb:PrimaryMeasureProperty a rdfs:Class, owl:Class;
+qb:PrimaryMeasureRole a rdfs:Class, owl:Class;
     rdfs:label "Primary measure property"@en;
-    rdfs:comment "a measure that plays the role of the observation in a time series"@en;
+    rdfs:comment "concept for a measure that plays the role of the observation in a time series"@en;
     rdfs:subClassOf qb:ConceptRole;
     .
             
