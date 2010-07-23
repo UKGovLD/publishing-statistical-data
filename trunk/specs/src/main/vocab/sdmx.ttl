@@ -37,46 +37,65 @@
 # Future work will develop the SDMX vocabulary in more detail, based upon 
 # the earlier SDMX-RDF draft.
 
-# --- Concept Roles ---------------------------
+# --- Concepts ---------------------------
+            
+sdmx:CodeList a rdfs:Class, owl:Class;
+    rdfs:label "Concept scheme"@en;
+    rdfs:subClassOf skos:ConceptScheme;
+    .
+    
+sdmx:Concept a rdfs:Class, owl:Class;
+    rdfs:label "concept"@en;
+    rdfs:subClassOf skos:Concept;
+    rdfs:comment "Denotes an SDMX concept, used in the particular SDMX terminological sense, which is in principle narrower than skos:Concept";
+    .
 
-qb:FrequencyRole a rdfs:Class, owl:Class;
+# --- Concept Roles ---------------------------
+            
+sdmx:ConceptRole a rdfs:Class, owl:Class;
+    rdfs:label "Concept role (abstract)"@en;
+    rdfs:subClassOf sdmx:Concept;
+    rdfs:comment "Abstract superclass of classes denoting statistical roles which be played by concepts"@en;
+    .
+
+sdmx:FrequencyRole a rdfs:Class, owl:Class;
     rdfs:label "Frequency property"@en;
     rdfs:comment "concept for a dimension or attribute that plays the role of frequency"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:CountRole a rdfs:Class, owl:Class;
+sdmx:CountRole a rdfs:Class, owl:Class;
     rdfs:label "Count property"@en;
     rdfs:comment "concept for a dimension or attribute that plays the role of an identifier where the identifier is taken from a known system of counts (e.g. the Nth current dataset update for a given day)"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:EntityRole a rdfs:Class, owl:Class;
+sdmx:EntityRole a rdfs:Class, owl:Class;
     rdfs:label "Entity property"@en;
     rdfs:comment "concept for a dimension or attribute that plays the role of the DataAttribute subject to whom the data refers (e.g. the reporting agent for primary reporting, the country for secondary reporting)"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:TimeRole a rdfs:Class, owl:Class;
+sdmx:TimeRole a rdfs:Class, owl:Class;
     rdfs:label "Time property"@en;
     rdfs:comment "concept for a dimension that specifies the time of the observation of the primaryMeasure"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:MeasureTypeRole a rdfs:Class, owl:Class;
+sdmx:MeasureTypeRole a rdfs:Class, owl:Class;
     rdfs:label "Measure type property"@en;
     rdfs:comment "concept for a dimension that plays the role of identifying a type of measure"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:NonObsTimeRole a rdfs:Class, owl:Class;
+sdmx:NonObsTimeRole a rdfs:Class, owl:Class;
     rdfs:label "Non-observation time property"@en;
     rdfs:comment "concept for a dimension or attribute that plays the role of a date/time identifier in the KeyFamily which is not related to the time of the observation"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:IdentityRole a rdfs:Class, owl:Class;
+sdmx:IdentityRole a rdfs:Class, owl:Class;
     rdfs:label "Identity property"@en;
     rdfs:comment "concept for a dimension or attribute that plays the role of an identifier which is taken from a known scheme of identifiers."@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
-qb:PrimaryMeasureRole a rdfs:Class, owl:Class;
+sdmx:PrimaryMeasureRole a rdfs:Class, owl:Class;
     rdfs:label "Primary measure property"@en;
     rdfs:comment "concept for a measure that plays the role of the observation in a time series"@en;
-    rdfs:subClassOf qb:ConceptRole;
+    rdfs:subClassOf sdmx:ConceptRole;
     .
             
