@@ -119,23 +119,12 @@ qb:structure a rdf:Property, owl:ObjectProperty;
     rdfs:range qb:DataStructureDefinition;
     .
 
-qb:ComponentSet a rdfs:Class, owl:Class;
-    rdfs:label "Component set"@en;
-    rdfs:comment "Abstraction of structure definitions which reference a set of ComponentProperties"@en;
-    . 
-    
-qb:component a rdf:Property, owl:ObjectProperty;
-    rdfs:label "component"@en;
-    rdfs:comment "indicates a ComponentProperty in the component set, e.g. an expected attribute/dimension on a DataSet, or a dimension fixed in a SliceKey"@en;
-    rdfs:domain qb:ComponentSet;
-    rdfs:range qb:ComponentProperty;
-    .
-    
-qb:componentOrder a rdf:Property, owl:ObjectProperty;
-    rdfs:label "component order"@en;
+   
+qb:specification a rdf:Property, owl:ObjectProperty;
+    rdfs:label "component specification"@en;
+    rdfs:comment "indicates a component specification which is included in the structure of the dataset"@en;
     rdfs:domain qb:DataStructureDefinition;
-    rdfs:range rdf:List;
-    rdfs:comment """Optional specification of the order in which dimensions (and optionally other components) should be used. Value is an rdf:List of qb:ComponentProperties or qb:ComponentSpecifications"""@en;
+    rdfs:range qb:ComponentSpecification;
     .
 
 # --- Component specifications - for qualifying component use in a DSD ---------------------------
@@ -146,17 +135,38 @@ qb:ComponentSpecification a rdfs:Class, owl:Class ;
     rdfs:subClassOf qb:ComponentSet ;
     .
 
+qb:ComponentSet a rdfs:Class, owl:Class;
+    rdfs:label "Component set"@en;
+    rdfs:comment "Abstract class of things which reference one or more ComponentProperties"@en;
+    . 
+qb:ComponentSpecification rdfs:subClassOf qb:ComponentSet .
+qb:SliceKey               rdfs:subClassOf qb:ComponentSet .
+    
+qb:component a rdf:Property, owl:ObjectProperty;
+    rdfs:label "component"@en;
+    rdfs:comment "indicates a ComponentProperty (i.e. attribute/dimension) expected on a DataSet, or a dimension fixed in a SliceKey"@en;
+    rdfs:domain qb:ComponentSet;
+    rdfs:range qb:ComponentProperty;
+    .
+    
+qb:order a rdf:Property, owl:DatatypeProperty;
+    rdfs:label "order"@en;
+    rdfs:comment """indicates a priority order for the components of sets with this structure, used to guide presentations - lower order numbers come before higher numbers, un-numbered components come last"""@en;
+    rdfs:domain qb:ComponentSpecification;
+    rdfs:range  xsd:int;
+    .
+
 qb:componentRequired a rdf:Property, owl:DatatypeProperty;
     rdfs:label "component required"@en;
     rdfs:comment """Indicates whether a component property is required (true) or optional (false) in the context of a DSD or MSD"""@en;
-    rdfs:domain qb:ComponentSpecifition;
+    rdfs:domain qb:ComponentSpecification;
     rdfs:range  xsd:boolean;
     .
 
 qb:componentAttachment a rdf:Property;
     rdfs:label "component attachment"@en;
     rdfs:comment """Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation"""@en;
-    rdfs:domain qb:ComponentSpecifition;
+    rdfs:domain qb:ComponentSpecification;
     rdfs:range  rdfs:Class;
     .
 
@@ -168,44 +178,32 @@ qb:SliceKey a rdfs:Class, owl:Class;
     rdfs:subClassOf qb:ComponentSet ;
     .
     
-qb:sliceKey a rdf:Property, owl:ObjectProperty;
-    rdfs:label "slice key"@en;
+qb:sliceStructure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice structure"@en;
     rdfs:comment "indicates the sub-key corresponding to this slice"@en;
     rdfs:domain qb:Slice;
     rdfs:range  qb:SliceKey;
     .    
-
-# --- Concept roles ---------------------------
-            
-qb:ConceptRole a rdfs:Class, owl:Class;
-    rdfs:label "Concept role (abstract)"@en;
-    rdfs:subClassOf qb:Concept;
-    rdfs:comment "Abstract superclass of classes denoting statistical roles which be played by concepts"@en;
-    .
-
-# --- Concept schemes ---------------------------
-            
-qb:ConceptScheme a rdfs:Class, owl:Class;
-    rdfs:label "Concept scheme"@en;
-    rdfs:subClassOf skos:ConceptScheme;
-    .
     
-qb:Concept a rdfs:Class, owl:Class;
-    rdfs:label "concept"@en;
-    rdfs:subClassOf skos:Concept;
-    rdfs:comment "Denotes an SDMX concept, used in the particular SDMX terminological sense, which is in principle narrower than skos:Concept";
-    .
+qb:sliceKey a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice key"@en;
+    rdfs:comment "indicates a slice key which is used for slices in this dataset"@en;
+    rdfs:domain qb:DataSet;
+    rdfs:range  qb:SliceKey;
+    .    
+
+# --- Concepts ---------------------------
     
 qb:concept a rdf:Property, owl:ObjectProperty;
     rdfs:label "concept"@en;
     rdfs:comment "gives the concept which is being measured or indicated by a ComponentProperty"@en; 
     rdfs:domain qb:ComponentProperty;
-    rdfs:range qb:Concept;
+    rdfs:range skos:Concept;
     .
         
 qb:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
     rdfs:domain qb:CodedProperty;
-    rdfs:range  qb:ConceptScheme;
+    rdfs:range  skos:ConceptScheme;
     .
     
