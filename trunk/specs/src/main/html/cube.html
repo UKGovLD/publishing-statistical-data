@@ -87,7 +87,7 @@ and Metadata eXchange), an ISO standard for exchanging and sharing
 statistical data and metadata among organizations. The Data Cube
 vocabulary is intended to support extension
 vocabularies which can enable publication of other aspects of
-statistical data flow.</p>
+statistical data flows.</p>
 
 <h2 id="status">Status of this document</h2>
 <p>This is an editor's draft without any formal standing. It is not
@@ -161,10 +161,10 @@ such as survey data, spreadsheets and OLAP [@@ref] data cubes.
 
 <p>
 The Data Cube vocabulary has been kept deliberately scoped to the web
-publication of multi-dimensional data. We envisage a series of module
+publication of multi-dimensional data. We envisage a series of modular
 vocabularies being developed which extend this core foundation. In
 particular, we see the need for a SDMX extension vocabulary to support the
-publication additional context to statistical data (such as the encompassing Data
+publication of additional context to statistical data (such as the encompassing Data
 Flows and associated Provision Agreements). Other extensions are possible to
 support metadata for surveys (so called "micro-data", as encompassed by <a
  href="http://www.ddialliance.org/">DDI</a>)
@@ -177,8 +177,7 @@ vocabularies:</p>
   <li><a href="http://www.w3.org/2004/02/skos/">SKOS</a> for ItemSchemes</li>
   <li><a href="http://sw.joanneum.at/scovo/schema.html">SCOVO</a> for
 core statistical structures</li>
-  <li><a href="http://rdfs.org/ns/void-guide">VoiD</a> for data access
-(instead of SDMX registries)</li>
+  <li><a href="http://rdfs.org/ns/void-guide">VoiD</a> for data access</li>
   <li><a href="http://xmlns.com/foaf/0.1/">FOAF</a> for organisations</li>
   <li><a href="http://purl.org/dc/terms/">Dublin Core Terms</a> for
 metadata</li>
@@ -337,7 +336,7 @@ there are exactly three dimensions (there can be more or fewer) nor
 that
 all the dimensions are somehow similar in size.</p>
 
-<p>More specifically the cube is organized according to a set of <em>dimensions</em>,
+<p>So a cube is organized according to a set of <em>dimensions</em>,
 <em>attributes</em> and <em>measures</em> (which we collectively call <em>components</em>).</p>
 
 <p>The <em>dimension</em> components serve to both identify
@@ -381,10 +380,10 @@ subsets of the whole cube if they are available to them.</p>
 slices in which a single dimension is free, i.e. vectors through the
 cube. In particular,
 to refer to vectors in which the single free dimension is time as <em>Time
-Series</em> and to refer vectors along dimensions as <em>Sections</em>.
+Series</em> and to refer vectors along non-time dimensions as <em>Sections</em>.
 Within the Data Cube vocabulary we allow arbitrary dimensionality
 slices and do not give different names to particular vector slices but
-extension vocabularies such as SDMX-RDF can easily add such additional
+extension vocabularies such as SDMX-RDF can easily add such
 concept labels.</p>
 
 <h2 id="example">3. An example</h2>
@@ -521,8 +520,8 @@ so will need an attribute to define the units (years) and the topic (life expect
 
 <h2 id="dsd">5. Creating data structure definitions</h2>
 
-<p>A <em>data structure definition</em> defines the structure of a particular
-dataset. In particular, it defines the dimensions, attributes and measures 
+<p>A <em>data structure definition</em> defines the structure of one or more
+datasets. In particular, it defines the dimensions, attributes and measures 
 used in the dataset along with qualifying information such as ordering of
   dimensions and whether attributes are required or optional. For well-formed
   data sets much of this information is implicit within the RDF component properties
@@ -539,6 +538,7 @@ used in the dataset along with qualifying information such as ordering of
 </ul>
 
 @@@@
+
 
 <h2 id="datasets">6. Expressing datasets</h2>
 
@@ -651,7 +651,7 @@ Semantic Statistics: Bringing Together SDMX and SCOVO
 <ul>
   <li>Representation of the topic in single-topic datasets?</li>
   <li>Structured values as in OLAP cubes, how does that map?</li>
-  <li>What exactly <em>is</em> a measure again? The SDMX docs are rather coy about offering a definition and we need to be clearer here.</li>
+  <li>Need to provide some coverage of the COG mapping in here</li>
 </ul>
 
 </div>
