@@ -27,7 +27,7 @@
   
 # --- Note ---------------------------
 
-# In the revised structure, as developed at OLaP2010, the core representation
+# In the revised structure, as developed at ODaP2010, the core representation
 # of multidimensional data is covered by a general purpose "data cube" vocabulary.
 
 # This SDMX-RDF vocabulary is now an extension to the Data Cube core to cover
