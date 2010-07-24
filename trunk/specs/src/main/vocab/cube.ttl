@@ -104,6 +104,20 @@ qb:CodedProperty a rdfs:Class, owl:Class;
     rdfs:comment "Superclass of all coded ComponentProperties"@en;
     .
 
+# --- Reusable general purpose component properties ---------------------------
+
+qb:obsValue a qb:MeasureProperty, rdf:Property;
+    rdfs:label "observed value"@en;
+    rdfs:comment "Generic primary measure, default property to use to give the measured value on an observation"@en;
+    rdfs:domain qb:Observation;
+    .
+    
+qb:measureType a qb:DimensionProperty, rdf:Property;
+    rdfs:label "measure type"@en;
+    rdfs:comment "Generic measure dimension, the value of this dimension indicates which measure (from the set of measures in the DSD) is being given by the obsValue (or other primary measure)"@en;
+    rdfs:range  qb:MeasureProperty;
+    .
+    
 # --- Data Structure Definitions ---------------------------
 
 qb:DataStructureDefinition a rdfs:Class, owl:Class;
