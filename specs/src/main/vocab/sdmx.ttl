@@ -7,6 +7,7 @@
 @prefix sdmx:           <http://purl.org/linked-data/sdmx#> .
 @prefix dcterms:        <http://dublincore.org/documents/dcmi-terms/>.
 @prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
 
 <http://purl.org/linked-data/sdmx>
     a owl:Ontology;
@@ -97,5 +98,17 @@ sdmx:PrimaryMeasureRole a rdfs:Class, owl:Class;
     rdfs:label "Primary measure property"@en;
     rdfs:comment "concept for a measure that plays the role of the observation in a time series"@en;
     rdfs:subClassOf sdmx:ConceptRole;
+    .
+            
+# --- Linking to the reusable generic concepts from qb ---------------------------
+
+qb:obsValue qb:concept sdmx-concept:obsValue .
+sdmx-concept:obsValue a sdmx:PrimaryMeasureRole .
+    
+qb:measureType qb:concept sdmx:measureTypeConcept .
+
+sdmx:measureTypeConcept a sdmx:MeasureTypeRole, sdmx:ConceptRole, skos:Concept;
+    rdfs:label "measureType"@en;
+    rdfs:comment "The concept corresponding to the generic measure type dimension which indicates which measure is being denoted by the primary measure on an observation"@en;
     .
             
