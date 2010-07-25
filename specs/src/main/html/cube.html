@@ -120,7 +120,15 @@ Google Group</a>.</p>
   </li>
   <li><a href="#example">3. An example</a></li>
   <li><a href="#outline">4. Outline of the vocabulary</a></li>
-  <li><a href="#dsd">5. Creating data structure definitions</a></li>
+  <li><a href="#dsd">5. Creating data structure definitions</a> 
+    <ul class="toc">
+      <li><a href="#dsd-dimensions">5.1 Dimensions, attributes and measures</a></li>
+      <li><a href="#dsd-cog">5.2 Content oriented guidelines</a></li>
+      <li><a href="#dsd-example">5.3 Example</a></li>
+      <li><a href="#dsd-dsd">5.4 ComponentSpecifications and DataStructureDefinitions</a></li>
+      <li><a href="#dsd-mm">5.5 Handling multiple measures</a></li>
+    </ul>
+  </li>
   <li><a href="#datasets">6. Expressing datasets</a> </li>
   <li><a href="#schemes">7. Concepts schemes and code lists</a> </li>
   <li><a href="#collections">8. Collections of data sets</a> </li>
@@ -536,9 +544,86 @@ used in the dataset along with qualifying information such as ordering of
   <li>supports transmission of the structure information in associated SDMX data flows.</li>
 </ul>
 
-@@@@
+<h3 id="dsd-dimensions">5.1 Dimensions, attributes and measures</h3>
 
+<p>The Data Cube vocabulary represents the dimensions, attributes and measures
+  as RDF properties. Each is an instance of the abstract <code>qb:ComponentProperty</code> 
+  class,  which in turn has sub-classes <code>qb:DimensionProperty</code>,
+  <code>qb:AttributeProperty</code> and <code>qb:MeasureProperty</code>.</p>
 
+<p>A component property encapsulates several pieces of information:</p>
+<ul>
+  <li>the concept being represented (e.g. the time to which the observation applies),</li>
+  <li>nature of the component (dimension, attribute or measure) as represented by the type of the component,</li>
+  <li>the type or code list used to represent the value.</li>
+</ul>
+
+<p>The same <em>concept</em> can be manifested in different components. For example, the concept
+  of <em>currency</em> may be used as a dimension (in a data set dealing with exchange rates) or as
+  an attribute (when describing the currency in which an observed trade took place). The concept of time
+  is typically used just as a dimension but may be encoded as a data value (e.g. an <code>xsd:dateTime</code>)
+  or as a symbolic value (e.g. a URI drawn from the reference time URI set developed by data.gov.uk).
+  In statistical agencies it is common to have a standard thesaurus of statistical concepts which 
+  underpin the components used in multiple different data sets.</p>
+
+<p>To cater for this the data cube vocabulary provides the <code>qb:concept</code> property which
+  links a <code>qb:ComponentProperty</code> to the concept which is being represented. We use the SKOS
+  vocabulary [@@ref] to represent such concepts. This is very natural for those cases where the  
+  concepts are already maintained as a controlled term list or thesaurus.
+   When developing a data structure definition for an informal data set there may not be an appropriate 
+   concept already. In those cases, if the concept is likely to be reused in other guises it is recommended to
+  mint a <code>skos:Concept</code> along with the specific <code>qb:ComponentProperty</code>. However, if
+  such reuse is not expected then it is not required to mint such a concept, the <code>qb:concept</code>
+  link is optional and a simple instance of the appropriate subclass of <code>qb:ComponentProperty</code> is
+  sufficient.</p>
+
+<p>The representation of the value of the component is described using the <code>rdfs:range</code>
+   property of the component in the usual manner. However, in statistical data sets it is common
+   for values to be encoded using some (possibly hierarchical) code list. To cater for this a 
+  component can also be optionally annotated with a <code>qb:codeList</code> denoting a <code>skos:ConceptScheme</code>.
+  A common approach is to represent such code lists using SKOS but to also define an <code>rdfs:Class</code>
+  whose members are all the <code>skos:Concept</code>s within the scheme. In that way 
+  the <code>rdfs:range</code> can be declared appropriately which enables generic RDF tools to perform
+  appropriate range checking.</p>
+
+<p>Note that in the SDMX extension vocabulary there is one further item of information to encode
+  about components - the role that they play within the structure definition. In particular, is
+  convenient for consumers to be able to easily identify which dimension is playing the role of time,
+  which component is the primary measure and so forth. It turns out that such roles are intrinsic to
+  the concepts and so this information is encoded by providing subclasses of <code>skos:Concept</code>
+  for each role. The particular choice of roles here is specific to the SDMX standard and so is not 
+  included within the core data cube vocabulary. In cases where such information is useful then it is
+  possible, indeed encouraged, these SDMX extensions.</p>
+
+<p>Before illustrating the components needed for our running example, there is one more piece
+  of machinery to introduce, a reusable set of concepts and components based on SDMX.</p>
+
+<h3 id="dsd-cog">5.2 Content oriented guidelines</h3>
+
+<p>The SDMX standard includes a set of <em>content oriented guidelines</em> (COG) which define a
+   set of common statistical concepts and associated code lists that are intended to be 
+   reusable across data sets. As part of the data cube work we have created RDF analogues
+  to the COG. The include:</p>
+  <ul>
+    <li><code>sdmx-concept</code>: SKOS Concepts for each COG defined concept;</li>
+    <li><code>sdmx-code</code>: SKOS Concepts and ConceptSchemes for each COG defined code list;</li>
+    <li><code>sdmx-dimension</code>: component properties corresponding to each COG concept that can be used as a dimension;</li>
+    <li><code>sdmx-attribute</code>: component properties corresponding to each COG concept that can be used as a attribute;</li>
+    <li><code>sdmx-measure</code>: component properties corresponding to each COG concept that can be used as a measure.</li>
+  </ul>
+
+<p>The data cube vocabulary is standalone and it is not mandatory to use the SDMX COG-derived
+   terms. However, when the concepts being expressed do match a COG concept it is recommended
+   that publishers should reuse the corresponding components and/or concept URIs to simplify comparisons
+  across data sets.</p>
+
+<h3 id="dsd-example">5.3 Example</h3>
+
+<h3 id="dsd-dsd">5.4 ComponentSpecifications and DataStructureDefinitions</h3>
+
+<h3 id="dsd-mm">5.5 Handling multiple measures</h3>
+
+   
 <h2 id="datasets">6. Expressing datasets</h2>
 
 <h2 id="schemes">7. Concepts schemes and code lists</h2>
