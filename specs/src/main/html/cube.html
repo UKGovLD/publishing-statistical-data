@@ -22,7 +22,7 @@ dl.frontmatter dt { font-weight: bold; color: black; }
 dt { font-weight: normal; font-size: 100%; }
 dd { margin-top: 0; margin-bottom: 0.5em; }
 tt { font-size: 115%; }
-pre { background-color: #ffef9f; line-height: 1.2em; font-family: monospace; margin: 1em -0.2em; padding: 1.2em 1.8em 1.5em; }
+pre { background-color: #ffefbf; line-height: 1.2em; font-family: monospace; margin: 1em -0.2em; padding: 1.2em 1.8em 1.5em; }
 code { font-family: monospace }
 blockquote { background: #ddd; border-left: 0.9em solid #aaa; color: black; padding: 0.8em 1em 1em 2em; margin: 0.8em 0; }
 ul.toc { list-style-type: none; }
@@ -131,7 +131,7 @@ Google Group</a>.</p>
   </li>
   <li><a href="#datasets">6. Expressing datasets</a> </li>
   <li><a href="#schemes">7. Concepts schemes and code lists</a> </li>
-  <li><a href="#collections">8. Collections of data sets</a> </li>
+  <li><a href="#collections">8. Slices and collections of data sets</a> </li>
   <li><a href="#metadata">9. DataSet metadata</a> </li>
   <li><a href="#publishing">10. Publishing</a></li>
   <li><a href="#reference">11. Vocabulary reference</a></li>
@@ -522,7 +522,7 @@ so will need an attribute to define the units (years) and the topic (life expect
 <img src="./qb-fig1.png" />
 
 <p>
-@@ short cut reference links to reference section (auto generate?)
+  <em>@@ short cut links to the reference section (auto generated?)</em>
 </p>
 
 <h2 id="dsd">5. Creating data structure definitions</h2>
@@ -561,24 +561,24 @@ used in the dataset along with qualifying information such as ordering of
 <p>The same <em>concept</em> can be manifested in different components. For example, the concept
   of <em>currency</em> may be used as a dimension (in a data set dealing with exchange rates) or as
   an attribute (when describing the currency in which an observed trade took place). The concept of time
-  is typically used just as a dimension but may be encoded as a data value (e.g. an <code>xsd:dateTime</code>)
+  is typically used only as a dimension but may be encoded as a data value (e.g. an <code>xsd:dateTime</code>)
   or as a symbolic value (e.g. a URI drawn from the reference time URI set developed by data.gov.uk).
   In statistical agencies it is common to have a standard thesaurus of statistical concepts which 
   underpin the components used in multiple different data sets.</p>
 
 <p>To cater for this the data cube vocabulary provides the <code>qb:concept</code> property which
-  links a <code>qb:ComponentProperty</code> to the concept which is being represented. We use the SKOS
+  links a <code>qb:ComponentProperty</code> to the concept it represents. We use the SKOS
   vocabulary [@@ref] to represent such concepts. This is very natural for those cases where the  
   concepts are already maintained as a controlled term list or thesaurus.
    When developing a data structure definition for an informal data set there may not be an appropriate 
    concept already. In those cases, if the concept is likely to be reused in other guises it is recommended to
   mint a <code>skos:Concept</code> along with the specific <code>qb:ComponentProperty</code>. However, if
-  such reuse is not expected then it is not required to mint such a concept, the <code>qb:concept</code>
+  such reuse is not expected then it is not required to do so, the <code>qb:concept</code>
   link is optional and a simple instance of the appropriate subclass of <code>qb:ComponentProperty</code> is
   sufficient.</p>
 
 <p>The representation of the value of the component is described using the <code>rdfs:range</code>
-   property of the component in the usual manner. However, in statistical data sets it is common
+   property of the component in the usual RDF manner. However, in statistical data sets it is common
    for values to be encoded using some (possibly hierarchical) code list. To cater for this a 
   component can also be optionally annotated with a <code>qb:codeList</code> denoting a <code>skos:ConceptScheme</code>.
   A common approach is to represent such code lists using SKOS but to also define an <code>rdfs:Class</code>
@@ -587,23 +587,24 @@ used in the dataset along with qualifying information such as ordering of
   appropriate range checking.</p>
 
 <p>Note that in the SDMX extension vocabulary there is one further item of information to encode
-  about components - the role that they play within the structure definition. In particular, is
+  about components - the role that they play within the structure definition. In particular, is sometimes
   convenient for consumers to be able to easily identify which dimension is playing the role of time,
   which component is the primary measure and so forth. It turns out that such roles are intrinsic to
   the concepts and so this information is encoded by providing subclasses of <code>skos:Concept</code>
   for each role. The particular choice of roles here is specific to the SDMX standard and so is not 
-  included within the core data cube vocabulary. In cases where such information is useful then it is
-  possible, indeed encouraged, these SDMX extensions.</p>
+  included within the core data cube vocabulary. In cases where such roles are appropriate then we 
+  encourage applications of the data cube vocabulary to also supply the relevant SDMX-derived role
+  information.</p>
 
 <p>Before illustrating the components needed for our running example, there is one more piece
   of machinery to introduce, a reusable set of concepts and components based on SDMX.</p>
 
 <h3 id="dsd-cog">5.2 Content oriented guidelines</h3>
 
-<p>The SDMX standard includes a set of <em>content oriented guidelines</em> (COG) which define a
+<p>The SDMX standard includes a set of <em>content oriented guidelines</em> (COG) [@@ref] which define a
    set of common statistical concepts and associated code lists that are intended to be 
    reusable across data sets. As part of the data cube work we have created RDF analogues
-  to the COG. The include:</p>
+  to the COG. These include:</p>
   <ul>
     <li><code>sdmx-concept</code>: SKOS Concepts for each COG defined concept;</li>
     <li><code>sdmx-code</code>: SKOS Concepts and ConceptSchemes for each COG defined code list;</li>
@@ -615,21 +616,160 @@ used in the dataset along with qualifying information such as ordering of
 <p>The data cube vocabulary is standalone and it is not mandatory to use the SDMX COG-derived
    terms. However, when the concepts being expressed do match a COG concept it is recommended
    that publishers should reuse the corresponding components and/or concept URIs to simplify comparisons
-  across data sets.</p>
+  across data sets. Given this background we will reuse the relevant COG components in our worked example.</p>
 
 <h3 id="dsd-example">5.3 Example</h3>
 
+<p>Turning to our example data set then we can see there are three dimensions to represent
+   - time period, region (unitary authority) and sex of the population. There is a single
+   (primary) measure which corresponds to the topic of the data set (life expectancy) and
+  encodes a value in years. So we need the follow components.</p>
+
+<p><b>Time.</b> There is a suitable predefined concept in the SMDX-COG for this, REF_PERIOD, so 
+  we could reuse the corresponding component property <code>sdmx-dimension:refPeriod</code>. However,
+  to represent the time period itself it would be convenient to use the data.gov.uk reference
+  time service and to declare this within the data structure definition.</p>
+
+<pre>
+  eg:refPeriod  a rdf:Property, qb:DimensionProperty;
+      rdfs:label "reference period"@en;
+      rdfs:subPropertyOf sdmx-dimension:refPeriod;
+      rdfs:range interval:BusinessYear;
+      qb:concept sdmx-concept:refPeriod . </pre>
+
+<p><b>Region.</b> Again there is s suitable COG concept and associated component that
+we can use for this, and again we can customize the range of the component. In this case
+  we can use the Ordanance Survey administrative geography ontology [@@Ref].</p>
+
+<pre>
+  eg:refArea  a rdf:Property, qb:DimensionProperty;
+      rdfs:label "reference area"@en;
+      rdfs:subPropertyOf sdmx-dimension:refArea;
+      rdfs:range admingeo:UnitaryAuthority;
+      qb:concept sdmx-concept:refArea . </pre>
+
+<p><b>Sex.</b> In this case we can use the corresponding COG component <code>sdmx-dimension:sex</code> 
+    directly, since the default code list for it includes the terms we need.</p>
+
+<p><b>Primary measure.</b> This property will give the value of each observation.  
+  The default for this is the predefined Measure <code>qb:obsValue</code>, which in the
+  SDMX extension vocabulary is linked to the COG concept <code>OBS_VALUE</code> and defined
+  to be a PrimaryMeasureRole.</p>
+
+<p><b>Unit measure attribute.</b> The primary measure on its own is a plain decimal value.
+  To correctly interpret this value we need to define what units it is measured in (years in this case).
+  This is defined using attributes which qualify the interpretation of the observed value.
+  Specifically in this example we can use the predefined <code>sdmx-attribute:unitMeasure</code>
+  which in turn corresponds to the COG concept of <code>UNIT_MEASURE</code>.</p>
+
+<p>This covers the minimal components needed to define the structure of this data set. 
+  Note that one thing we haven't defined at this point is what it is that has been measured,
+  life expectancy in out example.
+  One approach to this is to annotate the data set with metadata defining it's subject -
+  for example by defining the concept in SKOS <em>@@Do we want to define a standard Attribute
+    to support this? If not what do we recommend people use, dc:subject?@@</em>. Another 
+  approach is possible using the machinery for multiple measures, we will return to this shortly.</p>
+
 <h3 id="dsd-dsd">5.4 ComponentSpecifications and DataStructureDefinitions</h3>
 
+<p>To combine the components into a specification for the structure of this (and any
+  similarly structured) datasets which need to declare a <code>qb:DataStuctureDefinition</code>
+  resource which in turn will reference a set of <code>qb:ComponentSpecification</code> resources.</p>
+
+<p>In the simplest case the <code>qb:ComponentSpecification</code> simply references the
+  corresponding <code>qb:ComponentProperty</code>. However, it is also possible to quality the
+  component specification in several ways.</p>
+
+<ul>
+  <li>An Attribute may be optional in which case the specification should set 
+    <code>qb:componentRequired "false"^^xsd:boolean.</code></li>
+  <li>The components may be ordered by giving an integer value for <code>qb:order</code>. 
+    This order carries no semantics but may be useful for consuming agents to help generate
+    appropriate user interfaces.</li>
+  <li>By default the values of all of the components will be attached to each individual observation,
+    a so called <em>flattened</em> representation.
+    This allows such observations to stand alone so that a SPARQL query to retrieve the observation
+    can immediately locate the attributes which enable the observation to be interpreted. However,
+    it is also permissible to attach attributes at other levels of the structure such as the
+    overall data set, an intervening slice or a specific Measure (in the case of multiple measures).
+    This reduces some of the redundancy in the encoding of the instance data. To declare such as 
+    non-flat structure the <code>qb:componentAttachment</code> property of the specification should
+    reference the Class corresponding to the attachment level (e.g. <code>qb:DataSet</code> for attributes
+    that will be attached to the overall data set).</li>
+</ul>
+
+<p>In the case of our running example the dimensions can be usefully ordered. There is only one
+   attribute, the unit measure, and this required. In the interests of illustrating the vocabulary
+   use we will declare that this attribute will be attached at the level of the data set, however 
+  flattened representations are in general easier to query and combine.</p>
+
+<p>So the structure of our example data set (and other similar datasets) can be declared by:</p>
+
+<pre>
+  eg:dsd1 a qb:DataStructureDefinition;
+      # The dimensions
+      qb:specification [qb:component eg:refArea;         qb:order 1];
+      qb:specification [qb:component eg:refPeriod;       qb:order 2];
+      qb:specification [qb:component sdmx-dimension:sex; qb:order 3];
+      # The measure(s)
+      qb:specification [qb:component qb:obsValue];
+      # The attributes
+      qb:specification [qb:component sdmx-attribute:unitMeasure; 
+                        qb:componentAttachment qb:DataSet;] .</pre>
+      
 <h3 id="dsd-mm">5.5 Handling multiple measures</h3>
 
-   
+<p>Our example data set is particularly simple in having a single observable (in this case "life expectancy") 
+  that is being measured. In other data sets there can be multiple measures. These measures
+  may be of similar nature (e.g. a data set on local government performance might provide
+  multiple different performance indicators for each region) or quite different (e.g. a data set
+  on trades might provide quantity, value, weight for each trade). In the data cube vocabulary,
+  based on the SDMX information model, this situation is represented by defining an extra dimension
+  for the data set which indicates the measure. The data structure definition should declare
+  a <code>qb:MeasureComponent</code> to represent each measure and the primary measure should
+  allow a superset of all the possible values for each measure. Then each observation will
+  convey a single value corresponding to the measure indicated by the <em>measure dimension</em>.
+  For convenience the vocabulary includes a predefined measure dimension - <code>qb:measureType</code>.</p>
+
+<p>Typically the attributes which qualify the interpretation of the observed value
+   (e.g. the units in which the value is measured, or a unit multiplier) will vary
+   by measure. In flattened data sets the attribute value is associate with the observation
+   in any case and so represents a single value of the measure specified by the measure dimension.
+   In non-flattened datasets it is possible to associate the relevant attributes with the Measure itself.
+  This is done by declaring the <code>qb:componentAttachment</code> for the attribute to be
+  <code>qb:MeasureProperty</code> and then directly annotating the <code>qb:MeasureProperty</code> 
+  instances with the relevant values for the attribute.</p>
+
+<p><em>@@To be reviewed, we haven't decided whether to go this route.</em> From the point of view of a RDF consumer
+    it can be more convenient if different RDF properties are used to convey the different measure
+    values. This allows the <code>rdfs:range</code> to be declared appropriately in each case
+    and can make it easier to translate between record structured data
+    and the data cube representation (with a distinct observation for each value).
+    To facilitate this we recommend that each declared <code>qb:MeasureProperty</code>
+    should be <code>rdfs:subPropertyOf</code> <code>qb:obsValue</code>. In serialized data
+    the specific measure property may be used in place of <code>qb:obsValue</code>. @@</p>
+
+<p><em>@@To be reviewed, this only makes sense if we take the above approach to measures.</em>
+  Now that we have described more of the handling of measures we can see an alternative approach
+  to documenting the topic of the data set. Instead of using a metadata annotation would code
+  define a specific measure:
+</p>
+
+<pre>
+  eg:lifeExpectancy a rdf:Property, qb:MeasureProperty;
+      rdfs:label "life expectancy"@en;
+      qb:concept  <...>;
+      rdfs:subPropertyOf  qb:obsValue . </pre>   
+
+<p>Then instead of <code>qb:obsValue</code> each observation could use <code>eg:lifeExpectancy</code>
+  thus making it clear what it is that has been measured by the observation. </p>
+
 <h2 id="datasets">6. Expressing datasets</h2>
 
 <h2 id="schemes">7. Concepts schemes and code lists</h2>
 mention COG
 
-<h2 id="collections">8. Collections of data sets</h2>
+<h2 id="collections">8. Slices and collections of data sets</h2>
 
 <h2 id="metadata">9. DataSet metadata</h2>
 
