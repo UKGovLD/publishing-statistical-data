@@ -179,7 +179,7 @@ qb:componentRequired a rdf:Property, owl:DatatypeProperty;
 
 qb:componentAttachment a rdf:Property;
     rdfs:label "component attachment"@en;
-    rdfs:comment """Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation"""@en;
+    rdfs:comment """Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation, or a qb:MeasureProperty."""@en;
     rdfs:domain qb:ComponentSpecification;
     rdfs:range  rdfs:Class;
     .
