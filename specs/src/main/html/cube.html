@@ -634,7 +634,7 @@ used in the dataset along with qualifying information such as ordering of
   eg:refPeriod  a rdf:Property, qb:DimensionProperty;
       rdfs:label "reference period"@en;
       rdfs:subPropertyOf sdmx-dimension:refPeriod;
-      rdfs:range interval:BusinessYear;
+      rdfs:range interval:Interval;
       qb:concept sdmx-concept:refPeriod . </pre>
 
 <p><b>Region.</b> Again there is s suitable COG concept and associated component that
@@ -747,7 +747,7 @@ we can use for this, and again we can customize the range of the component. In t
     and the data cube representation (with a distinct observation for each value).
     To facilitate this we recommend that each declared <code>qb:MeasureProperty</code>
     should be <code>rdfs:subPropertyOf</code> <code>qb:obsValue</code>. In serialized data
-    the specific measure property may be used in place of <code>qb:obsValue</code>. @@</p>
+    the specific measure property may be used in place of <code>qb:obsValue</code>. </p>
 
 <p><em>@@To be reviewed, this only makes sense if we take the above approach to measures.</em>
   Now that we have described more of the handling of measures we can see an alternative approach
@@ -761,10 +761,76 @@ we can use for this, and again we can customize the range of the component. In t
       qb:concept  <...>;
       rdfs:subPropertyOf  qb:obsValue . </pre>   
 
-<p>Then instead of <code>qb:obsValue</code> each observation could use <code>eg:lifeExpectancy</code>
+<p>Then instead of <code>qb:obsValue</code> each observation can use <code>eg:lifeExpectancy</code>
+  to convey the observed value,
   thus making it clear what it is that has been measured by the observation. </p>
 
 <h2 id="datasets">6. Expressing datasets</h2>
+
+<p>A dataset is a collection of statistical data that corresponds to a given data structure definition. 
+The data in a dataset can be roughly described as belonging to one of the following kinds:</p>
+
+<dl>
+  <dt>Observations</dt>
+  <dd>This is the actual data, the measured numbers. In a statistical table, the observations 
+       would be the numbers in the table cells.</dd>
+
+  <dt>Organizational structure</dt>
+  <dd>To locate an observation within the hypercube, one has at least to know the value of each 
+      dimension at which the observation is located, so these values must be specified for each observation. 
+      Datasets can have additional organizational structure in the form of <em>slices</em> 
+    as described earlier in <a href="#cubes-slices">section 2.2</a>.
+
+  <dt>Internal metadata</dt>
+  <dd>Having located an observation, we need certain metadata in order to be able to interpret it. 
+    What is the unit of measurement? Is it a normal value or a series break? 
+    Is the value measured or estimated? These metadata are provided as <em>attributes</em> and can 
+    be attached to individual observations, or to higher levels as defined by the ComponentSpecification
+    described earlier.</dd>
+
+  <dt>External metadata</dt>
+  <dd>This is metadata that describes the dataset as a whole, such as categorization of the 
+       dataset, its publisher, and a SPARQL endpoint where it can be accessed. 
+      External metadata is described in <a href="@@">@@</a>.</dd>
+</dl>
+
+<h3 id="dataset-instance">6.1 The dataset instance</h3>
+
+<p>A resource representing the entire data set is created and typed as <code>qb:DataSet</code>.</p>
+
+<p><strong>Pitfall</strong>: Note the capitalization of <tt>qb:<strong>D</strong>ata<strong>S</strong>et</tt>, 
+which differs from the capitalization in other vocabularies, such as <a href="@@@">dct:Dataset</a>, 
+<a href="@@@">void:Dataset</a>, <a href="@@@">dcat:Dataset</a>. This unusual capitalization is chosen for compatibility
+with the SDMX standard.</p>
+
+<p>The data set resource is connected to the defining data structure definition via the <tt>qb:structure</tt> property.</p>
+
+<h3 id="dataset-observations">6.2 Observations</h3>
+
+<p>The measured value is provided as the value of the primary measure property</a> (typically <code>qb:obsValue</code>).</p>
+
+<p>In the basic representation, an RDF resource is created for each observation and typed as a <code>qb:Observation</code>. 
+  It is connected to the <code>qb:DataSet</code> via the <code>qb:dataset</code> property. 
+  Optionally, instances of <code>qb:Slice</code> can group observations according to particular dimensional
+  values in which case the data set connects to the slice via <code>qb:slice</code> which then connect to
+  the observations via <code>qb:observation</code>.</p>
+
+<p>Values for the attributes, dimensions and measurements are attached directly to the observation. 
+   Remember that attributes, dims and measurements are all RDF properties, so we use them as the predicate 
+  and the respective value as the object of RDF statements. </p>
+
+<h3 id="dataset-example">6.2 Example</h3>
+
+<p>To make this description more concrete we'll show a small part of the data from our example:</p>
+
+<pre>
+  eg:dataset1 a qg:DataSet;
+      rdfs:label "Life expectancy"@en;
+      rdfs:comment "Life expectancy Welsh Unitary authorities from @@@@@@@@@@@
+</pre>
+
+<h3 id="dataset-slices">6.2 Slices</h3>
+@@
 
 <h2 id="schemes">7. Concepts schemes and code lists</h2>
 mention COG
