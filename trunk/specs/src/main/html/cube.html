@@ -74,19 +74,18 @@ Ltd</a>)</dd>
 </div>
 
 <h2 id="abstract">Abstract</h2>
-<p>There are many situations were it would be useful to be able to
+<p>There are many situations where it would be useful to be able to
 publish
 multi-dimensional data, such as statistics, on the web in such a way
 that it can be linked to related data sets and concepts. The Data Cube
-vocabulary provides a means to
-to do this using the W3C <a href="http://www.w3.org/TR/REC-rdf-syntax/">RDF</a>
+vocabulary provides a means to do this using the W3C <a href="http://www.w3.org/TR/REC-rdf-syntax/">RDF</a>
 (Resource Description Framework) standard. The model underpinning the
 Data Cube vocabulary is
-compatible with the cube model that underlies SDMX (Statistical Data
+compatible with the cube model that underlies <a href="http://sdmx.org">SDMX</a> (Statistical Data
 and Metadata eXchange), an ISO standard for exchanging and sharing
 statistical data and metadata among organizations. The Data Cube
-vocabulary is intended to support extension
-vocabularies which can enable publication of other aspects of
+vocabulary is a core foundation which supports extension
+vocabularies to enable publication of other aspects of
 statistical data flows.</p>
 
 <h2 id="status">Status of this document</h2>
@@ -109,7 +108,7 @@ Google Group</a>.</p>
       <li><a href="#intro-sdmx">1.3 SDMX and related standards</a></li>
       <li><a href="#intro-scovo">1.4 Relationship to SCOVO</a></li>
       <li><a href="#intro-audience">1.5 Audience and scope</a></li>
-      <li><a href="#introconventions">1.6 Document conventions</a></li>
+      <li><a href="#intro-conventions">1.6 Document conventions</a></li>
     </ul>
   </li>
   <li><a href="#data-cubes">2. Data cubes</a>
@@ -130,6 +129,12 @@ Google Group</a>.</p>
     </ul>
   </li>
   <li><a href="#datasets">6. Expressing datasets</a> </li>
+    <ul class="toc">
+      <li><a href="#dataset-instance"></a>6.1 The dataset instance</li>
+      <li><a href="#dataset-observations"></a>6.2 Observations</li>
+      <li><a href="#dataset-example"></a>6.3 Example</li>
+      <li><a href="#dataset-slices"></a>6.4 Slices</li>
+    </ul>
   <li><a href="#schemes">7. Concepts schemes and code lists</a> </li>
   <li><a href="#collections">8. Slices and collections of data sets</a> </li>
   <li><a href="#metadata">9. DataSet metadata</a> </li>
@@ -146,32 +151,33 @@ in this document</a></li>
 
 <h3 id="intro-cube">1.1 A Data Cube vocabulary</h3>
 <p>
-Statistical data underpins many of the mash-ups and visualisations
-we see on the web, as well as being the foundation for policy
-prediction, planning and adjustments. There is strong interest
+Statistical data foundation is a for policy
+prediction, planning and adjustments and
+underpins many of the mash-ups and visualisations
+we see on the web. There is strong interest
 in being able to publish statistical data in a web-friendly format
 to enable it to be linked and combined with related information.
 </p>
 
 <p>
 At the heart of a statistical dataset is a set of observed values
-organized along a group of dimensions, along with associated metadata.
+organized along a group of dimensions, together with associated metadata.
 The Data Cube vocabulary enables such information to be represented
 using the the W3C <a href="http://www.w3.org/TR/REC-rdf-syntax/">RDF</a>
 (Resource Description Framework) standard and published following the
 principles of
 <a href="http://linkeddata.org/">linked data</a>.
-The vocabulary is based upon the model used by the SDMX ISO standard
+The vocabulary is based upon the approach used by the SDMX ISO standard
 for statistical data exchange. This <em>cube</em> model is very
 general and so the Data Cube vocabulary can be used for other data sets
 such as survey data, spreadsheets and OLAP [@@ref] data cubes.
 </p>
 
 <p>
-The Data Cube vocabulary has been kept deliberately scoped to the web
-publication of multi-dimensional data. We envisage a series of modular
+The Data Cube vocabulary is focused purely on the
+publication of multi-dimensional data on the web. We envisage a series of modular
 vocabularies being developed which extend this core foundation. In
-particular, we see the need for a SDMX extension vocabulary to support the
+particular, we see the need for an SDMX extension vocabulary to support the
 publication of additional context to statistical data (such as the encompassing Data
 Flows and associated Provision Agreements). Other extensions are possible to
 support metadata for surveys (so called "micro-data", as encompassed by <a
@@ -193,19 +199,18 @@ metadata</li>
 
 <h3 id="intro-rdf">1.2 RDF and Linked Data</h3>
 
-<p><em>Linked data</em> is an approach to publication of data on the web.
-It is a set of best practices to enable systems to use the Web to connect
-related data that wasn't previously linked, or lower the barriers to
-linking data currently linked using other methods. The approach [@@ref]
+<p><em>Linked data</em> is an approach to publishing data on the web, enabling
+datasets to be linked together through references to common concepts.
+The approach [@@ref]
 recommends use of HTTP URIs to name the entities and concepts so that consumers of
-the data can lookup those URIs to get more information, including links
+the data can look-up those URIs to get more information, including links
 to other related URIs.
 RDF [@@ref] provides a standard for the representation of the
 information that describes those entities and concepts, and is returned
 by dereferencing the URIs. </p>
 
-<p>There are a number of benefits to being able to publish statistical
-and similar data using RDF and the linked data approach:</p>
+<p>There are a number of benefits to being able to publish multi-dimensional data, such as statistics,
+using RDF and the linked data approach:</p>
 <ul>
   <li>The individual observations, and groups of observations, become
 (web) addressable. This allows publishers and third parties to annotate
@@ -220,6 +225,7 @@ data becomes an integral part of the broader web of linked data.</li>
 publishing as linked-data offers a flexible, non-proprietary, machine
 readable means of publication that supports an out-of-the-box web API
 for programmatic access.</li>
+  <li>It enables reuse of standardized tools and components.</li>
 </ul>
 
 <h3 id="intro-sdmx">1.3 SDMX and related standards</h3>
@@ -234,7 +240,7 @@ to support policy. They also disseminate data at the supra-national
 and international levels.</p>
 
 <p>
-There have been several important results from this work: two
+There have been a number of important results from this work: two
 versions of a set of technical specifications - ISO:TS 17369
 (SDMX) - and the release of several recommendations for
 structuring and harmonising cross-domain statistics, the SDMX
@@ -248,7 +254,7 @@ SDMX as the preferred standard for statistics in 2007.
 </p>
 
 <p>The SDMX specification defines a core <em>information model</em>
-which is reflected in concrete form in two syntaxes - SDMX-ML (and XML
+which is reflected in concrete form in two syntaxes - SDMX-ML (an XML
 syntax) and SDMX-EDI.
 The Data Cube vocabulary builds upon the core of the SDMX information
 model.
@@ -258,8 +264,8 @@ model.
 the <strong>Content-Oriented Guidelines</strong> (COGs), a set of
 cross-domain concepts, code lists, and categories that support
 interoperability and comparability between datasets by providing a
-shared language between SDMX implementers. RDF versions of these
-artifacts are available separately for use along with the Data Cube
+shared terminology between SDMX implementers. RDF versions of these
+terms are available separately for use along with the Data Cube
 vocabulary.
 </p>
 
@@ -299,14 +305,14 @@ statistical or other multi-dimension data in RDF.
 Mechanics of cross-format translation from other
 formats such as SDMX-ML will be covered elsewhere.</p>
 
-<h3>1.7 Document conventions</h3>
+<h3 id="intro-conventions">1.6 Document conventions</h3>
 
 <p>
 The names of RDF entities -- classes, predicates, instances, etc -- are
 URIs. These are usually expressed using a compact notation where the
-name is written <code>prefix:localname</code>, where the <code>prefix</code>
-identifies a <i>namespace URI</i> which is to be prepended to the <code>localname</code>
-to obtain the full URI.
+name is written <code>prefix:localname</code>, and where the <code>prefix</code>
+identifies a <i>namespace URI</i>. The namesapce identified by the prefix is 
+ prepended to the <code>localname</code> to obtain the full URI.
 </p>
 
 <p>
@@ -322,7 +328,7 @@ In this document we shall use the conventional prefix names for the
   <li><code>scovo</code> -- Statistical Core Vocabulary</li>
 </ul>
 <p>We also introduce the prefix <code>qb</code> for the Data Cube
-namespace.</p>
+  namespace.</p>
 
 <h2 id="data-cubes">2. Data cubes</h2>
 
@@ -330,11 +336,11 @@ namespace.</p>
 measures</h3>
 
 <p>A statistical data set comprises a collection of observations made
-at some points across a logical space. The set can be characterized by
-a set of dimensions that define what the observation applies to (time,
+at some points across some logical space. The collection can be characterized by
+a set of dimensions that define what the observation applies to (e.g. time,
 area, population) along with metadata describing what has been
 measured (e.g. economic activity), how it was measured and how the
-observations are expressed (e.g. units, multipliers, status). We thus
+observations are expressed (e.g. units, multipliers, status). We can
 think of the statistical data set as multi-dimensional
 space, or hyper-cube, indexed by those dimensions. This space is
 commonly referred to
@@ -345,19 +351,19 @@ that
 all the dimensions are somehow similar in size.</p>
 
 <p>So a cube is organized according to a set of <em>dimensions</em>,
-<em>attributes</em> and <em>measures</em> (which we collectively call <em>components</em>).</p>
+<em>attributes</em> and <em>measures</em>. We collectively call these <em>components</em>.</p>
 
-<p>The <em>dimension</em> components serve to both identify
-and describe the observations. A set of values for all the dimension
+<p>The <em>dimension</em> components serve to identify
+the observations. A set of values for all the dimension
 components
 is sufficient to identify a single observation. Examples of dimensions
 include the
-time to which the observation applies or a geographic region.</p>
+time to which the observation applies, or a geographic region which the observation covers.</p>
 
-<p>The <em>measure</em> components represent the phenomena being
+<p>The <em>measure</em> components represent the phenomenon being
 observed.</p>
 
-<p>The <em>attribute</em> components allow useto qualify and
+<p>The <em>attribute</em> components allow us to qualify and
 interpret the observed value. They enable specification of the units of
 measures, any scaling factors and metadata such as the status
 of the observation (e.g. <em>estimated</em>, <em>provisional</em>).</p>
@@ -365,32 +371,29 @@ of the observation (e.g. <em>estimated</em>, <em>provisional</em>).</p>
 <h3 id="cubes-slices">2.2 Slices</h3>
 
 <p>It is frequently useful to group subsets of observations within a
-dataset, in particular to fix all but one (or a small subset) of the
+dataset. In particular to fix all but one (or a small subset) of the
 dimensions and be able to refer to all observations with those
-dimension values as a unit. We call such a selection a <em>slice</em>
-through the cube. For example, a slice in which in which the only free
-dimension is time, through a data
-on regional performance indicators, would represent a time series of
-observations of a given indicator at the same location.</p>
+dimension values as a single entity. We call such a selection a <em>slice</em>
+through the cube. For example, given a data set on regional performance
+indicators then we might group all the observations about a given indicator
+and a given region into a slices, each slice would then represent a time series of observed values.</p>
 
 <p>A data publisher may identify slices through the data for various
-purposes. The may be used to associate metadata, for example to note a
+purposes. They can be a useful grouping to which metadata might be attached, for example to note a
 change in measurement process which
-affects a particular time or region. They also allow the publisher to
-identify and label particular slices which should be presented to the
-user. This allows a consuming application
-to easily construct the appropriate graph or chart for presentation.
-Though consuming applications can, in principle, select different
-subsets of the whole cube if they are available to them.</p>
+affects a particular time or region. Slices also enable the publisher to
+identify and label particular subsets of the data which should be presented to the
+user.  The can enable the application to more easily
+  construct the appropriate graph or chart for presentation.</p>
 
 <p>In statistical applications it is common to work with
-slices in which a single dimension is free, i.e. vectors through the
-cube. In particular,
-to refer to vectors in which the single free dimension is time as <em>Time
-Series</em> and to refer vectors along non-time dimensions as <em>Sections</em>.
+slices in which a single dimension is left unspecified. 
+In particular,
+to refer to such slices in which the single free dimension is time as <em>Time
+Series</em> and to refer slices along non-time dimensions as <em>Sections</em>.
 Within the Data Cube vocabulary we allow arbitrary dimensionality
-slices and do not give different names to particular vector slices but
-extension vocabularies such as SDMX-RDF can easily add such
+slices and do not give different names to particular types of slice but
+extension vocabularies, such as SDMX-RDF, can easily add such
 concept labels.</p>
 
 <h2 id="example">3. An example</h2>
@@ -400,7 +403,7 @@ use a small demonstration
 data set extracted from
 <a href="http://statswales.wales.gov.uk/index.htm">StatsWales</a> report
 number 003311 which describes life expectancy broken down by region
-(unitary authority), age and time. The small extract is:<br>
+(unitary authority), age and time. The extract we will use is:<br>
 </p>
 
 <table style="text-align: left; width: 80%;" border="1" cellpadding="2"
@@ -517,6 +520,11 @@ Tydfil<br>
   region, sex. Each observation represents the life expectancy for that population
 so will need an attribute to define the units (years) and the topic (life expectancy).</p>
 
+<p>An example of slicing the data would be to define slices in which the time and sex are
+fixed for each slice. Such slices then show the variation in life expectancy across the 
+  different regions, i.e. corresponding to the columns in the above tabular layout.</p>
+
+
 <h2 id="outline">4. Outline of the vocabulary</h2>
 
 <img src="./qb-fig1.png" />
@@ -527,7 +535,7 @@ so will need an attribute to define the units (years) and the topic (life expect
 
 <h2 id="dsd">5. Creating data structure definitions</h2>
 
-<p>A <em>data structure definition</em> defines the structure of one or more
+<p>A <code>qb:DataStructureDefinition</code> defines the structure of one or more
 datasets. In particular, it defines the dimensions, attributes and measures 
 used in the dataset along with qualifying information such as ordering of
   dimensions and whether attributes are required or optional. For well-formed
@@ -536,13 +544,18 @@ used in the dataset along with qualifying information such as ordering of
   several benefits:</p>
 
 <ul>
-  <li>enables verification that the data set matches the expected structure,
+  <li>it enables verification that the data set matches the expected structure,
    in particular helps with detection of incoherent sets obtained by 
    combining differently structured source data;</li>
-  <li>allows a consumer to easily determine what dimensions are available for query
+  <li>it allows a consumer to easily determine what dimensions are available for query
     and their presentational order, which in turn simplifies UI construction;</li>
-  <li>supports transmission of the structure information in associated SDMX data flows.</li>
+  <li>it supports transmission of the structure information in associated SDMX data flows.</li>
 </ul>
+
+<p>It is common, when publishing statistical data, to have a regular series of publications which
+all follow the same structure. The notion of a Data Structure Definition allows us to define
+that structure once and then reuse it for each publication in the series. Consumers can then be
+  confident that the structure of the data has not changed.</p>
 
 <h3 id="dsd-dimensions">5.1 Dimensions, attributes and measures</h3>
 
@@ -553,8 +566,8 @@ used in the dataset along with qualifying information such as ordering of
 
 <p>A component property encapsulates several pieces of information:</p>
 <ul>
-  <li>the concept being represented (e.g. the time to which the observation applies),</li>
-  <li>nature of the component (dimension, attribute or measure) as represented by the type of the component,</li>
+  <li>the concept being represented (e.g. time or geographic area),</li>
+  <li>the nature of the component (dimension, attribute or measure) as represented by the type of the component property,</li>
   <li>the type or code list used to represent the value.</li>
 </ul>
 
@@ -566,29 +579,34 @@ used in the dataset along with qualifying information such as ordering of
   In statistical agencies it is common to have a standard thesaurus of statistical concepts which 
   underpin the components used in multiple different data sets.</p>
 
-<p>To cater for this the data cube vocabulary provides the <code>qb:concept</code> property which
+<p>To support this reuse of general statistical concepts the data cube vocabulary provides the <code>qb:concept</code> property which
   links a <code>qb:ComponentProperty</code> to the concept it represents. We use the SKOS
   vocabulary [@@ref] to represent such concepts. This is very natural for those cases where the  
   concepts are already maintained as a controlled term list or thesaurus.
    When developing a data structure definition for an informal data set there may not be an appropriate 
    concept already. In those cases, if the concept is likely to be reused in other guises it is recommended to
-  mint a <code>skos:Concept</code> along with the specific <code>qb:ComponentProperty</code>. However, if
-  such reuse is not expected then it is not required to do so, the <code>qb:concept</code>
+   publish a <code>skos:Concept</code> along with the specific <code>qb:ComponentProperty</code>. However, if
+  such reuse is not expected then it is not required to do so. The <code>qb:concept</code>
   link is optional and a simple instance of the appropriate subclass of <code>qb:ComponentProperty</code> is
   sufficient.</p>
 
-<p>The representation of the value of the component is described using the <code>rdfs:range</code>
-   property of the component in the usual RDF manner. However, in statistical data sets it is common
-   for values to be encoded using some (possibly hierarchical) code list. To cater for this a 
+<p>The representation of the possible values of the component is described using the <code>rdfs:range</code>
+   property of the component in the usual RDF manner. Thus, for example, values of a time dimension might
+  be represented using literals of type <code>xsd:dateTime</code> or as URIs drawn from a time reference service.</p>
+
+<p>In statistical data sets it is common
+   for values to be encoded using some (possibly hierarchical) code list and it can be useful to be 
+   able to easily identify the overall code list in some more structured form. To cater for this a 
   component can also be optionally annotated with a <code>qb:codeList</code> denoting a <code>skos:ConceptScheme</code>.
-  A common approach is to represent such code lists using SKOS but to also define an <code>rdfs:Class</code>
-  whose members are all the <code>skos:Concept</code>s within the scheme. In that way 
-  the <code>rdfs:range</code> can be declared appropriately which enables generic RDF tools to perform
+  In such a case the <code>rdfs:range</code> of the component might be left as simply <code>skos:Concept</code> but 
+  a useful design pattern is to also define an <code>rdfs:Class</code>
+  whose members are all the <code>skos:Concept</code>s within a particular scheme. In that way 
+  the <code>rdfs:range</code> can be made more specific which enables generic RDF tools to perform
   appropriate range checking.</p>
 
 <p>Note that in the SDMX extension vocabulary there is one further item of information to encode
   about components - the role that they play within the structure definition. In particular, is sometimes
-  convenient for consumers to be able to easily identify which dimension is playing the role of time,
+  convenient for consumers to be able to easily identify which is the time dimension,
   which component is the primary measure and so forth. It turns out that such roles are intrinsic to
   the concepts and so this information is encoded by providing subclasses of <code>skos:Concept</code>
   for each role. The particular choice of roles here is specific to the SDMX standard and so is not 
@@ -597,7 +615,8 @@ used in the dataset along with qualifying information such as ordering of
   information.</p>
 
 <p>Before illustrating the components needed for our running example, there is one more piece
-  of machinery to introduce, a reusable set of concepts and components based on SDMX.</p>
+  of machinery to introduce, a reusable set of concepts and components based on SDMX. 
+</p>
 
 <h3 id="dsd-cog">5.2 Content oriented guidelines</h3>
 
@@ -664,37 +683,39 @@ we can use for this, and again we can customize the range of the component. In t
 
 <p>This covers the minimal components needed to define the structure of this data set. 
   Note that one thing we haven't defined at this point is what it is that has been measured,
-  life expectancy in out example.
-  One approach to this is to annotate the data set with metadata defining it's subject -
+  life expectancy in our example.
+  One approach to this is to annotate the data set with metadata defining its subject -
   for example by defining the concept in SKOS <em>@@Do we want to define a standard Attribute
     to support this? If not what do we recommend people use, dc:subject?@@</em>. Another 
   approach is possible using the machinery for multiple measures, we will return to this shortly.</p>
 
 <h3 id="dsd-dsd">5.4 ComponentSpecifications and DataStructureDefinitions</h3>
 
-<p>To combine the components into a specification for the structure of this (and any
-  similarly structured) datasets which need to declare a <code>qb:DataStuctureDefinition</code>
-  resource which in turn will reference a set of <code>qb:ComponentSpecification</code> resources.</p>
+<p>To combine the components into a specification for the structure of this
+  datasets we need to declare a <code>qb:DataStuctureDefinition</code>
+  resource which in turn will reference a set of <code>qb:ComponentSpecification</code> resources.
+  The <code>qb:DataStuctureDefinition</code> will be reusable across other data sets with the same structure.</p>
 
 <p>In the simplest case the <code>qb:ComponentSpecification</code> simply references the
-  corresponding <code>qb:ComponentProperty</code>. However, it is also possible to quality the
+  corresponding <code>qb:ComponentProperty</code>. However, it is also possible to qualify the
   component specification in several ways.</p>
 
 <ul>
   <li>An Attribute may be optional in which case the specification should set 
     <code>qb:componentRequired "false"^^xsd:boolean.</code></li>
   <li>The components may be ordered by giving an integer value for <code>qb:order</code>. 
-    This order carries no semantics but may be useful for consuming agents to help generate
-    appropriate user interfaces.</li>
+    This order carries no semantics but can be useful to aid consuming agents in generating
+    appropriate user interfaces. It can also be useful in the publication chain to enable
+    synthesis of appropriate URIs for observations.</li>
   <li>By default the values of all of the components will be attached to each individual observation,
     a so called <em>flattened</em> representation.
-    This allows such observations to stand alone so that a SPARQL query to retrieve the observation
+    This allows such observations to stand alone, so that a SPARQL query to retrieve the observation
     can immediately locate the attributes which enable the observation to be interpreted. However,
     it is also permissible to attach attributes at other levels of the structure such as the
     overall data set, an intervening slice or a specific Measure (in the case of multiple measures).
-    This reduces some of the redundancy in the encoding of the instance data. To declare such as 
-    non-flat structure the <code>qb:componentAttachment</code> property of the specification should
-    reference the Class corresponding to the attachment level (e.g. <code>qb:DataSet</code> for attributes
+    This reduces some of the redundancy in the encoding of the instance data. To declare such a 
+    non-flat structure, the <code>qb:componentAttachment</code> property of the specification should
+    reference the class corresponding to the attachment level (e.g. <code>qb:DataSet</code> for attributes
     that will be attached to the overall data set).</li>
 </ul>
 
@@ -708,18 +729,25 @@ we can use for this, and again we can customize the range of the component. In t
 <pre>
   eg:dsd1 a qb:DataStructureDefinition;
       # The dimensions
-      qb:specification [qb:component eg:refArea;         qb:order 1];
-      qb:specification [qb:component eg:refPeriod;       qb:order 2];
-      qb:specification [qb:component sdmx-dimension:sex; qb:order 3];
+      qb:component [qb:componentProperty eg:refArea;         qb:order 1];
+      qb:component [qb:componentProperty eg:refPeriod;       qb:order 2];
+      qb:component [qb:componentProperty sdmx-dimension:sex; qb:order 3];
       # The measure(s)
-      qb:specification [qb:component qb:obsValue];
+      qb:component [qb:componentProperty qb:obsValue];
       # The attributes
-      qb:specification [qb:component sdmx-attribute:unitMeasure; 
+      qb:component [qb:componentProperty sdmx-attribute:unitMeasure; 
                         qb:componentAttachment qb:DataSet;] .</pre>
+
+<p>Note that we have given the data structure definition (DSD) a URI since it will be
+ reused across different datasets with the same structure. Similarly the component properties
+ themselves can be reused across different DSDs. However, the component specifications
+ are only useful within the scope of a particular DSD and so we have chosen the represent
+ them using blank nodes.
+</p>
       
 <h3 id="dsd-mm">5.5 Handling multiple measures</h3>
 
-<p>Our example data set is particularly simple in having a single observable (in this case "life expectancy") 
+<p>Our example data set is relatively simple in having a single observable (in this case "life expectancy") 
   that is being measured. In other data sets there can be multiple measures. These measures
   may be of similar nature (e.g. a data set on local government performance might provide
   multiple different performance indicators for each region) or quite different (e.g. a data set
@@ -729,11 +757,11 @@ we can use for this, and again we can customize the range of the component. In t
   a <code>qb:MeasureComponent</code> to represent each measure and the primary measure should
   allow a superset of all the possible values for each measure. Then each observation will
   convey a single value corresponding to the measure indicated by the <em>measure dimension</em>.
-  For convenience the vocabulary includes a predefined measure dimension - <code>qb:measureType</code>.</p>
+  For convenience the vocabulary includes a predefined measure dimension: <code>qb:measureType</code>.</p>
 
 <p>Typically the attributes which qualify the interpretation of the observed value
    (e.g. the units in which the value is measured, or a unit multiplier) will vary
-   by measure. In flattened data sets the attribute value is associate with the observation
+   by measure. In flattened data sets the attribute value is associated with the observation
    in any case and so represents a single value of the measure specified by the measure dimension.
    In non-flattened datasets it is possible to associate the relevant attributes with the Measure itself.
   This is done by declaring the <code>qb:componentAttachment</code> for the attribute to be
@@ -819,7 +847,7 @@ with the SDMX standard.</p>
    Remember that attributes, dims and measurements are all RDF properties, so we use them as the predicate 
   and the respective value as the object of RDF statements. </p>
 
-<h3 id="dataset-example">6.2 Example</h3>
+<h3 id="dataset-example">6.3 Example</h3>
 
 <p>To make this description more concrete we'll show a small part of the data from our example:</p>
 
@@ -829,7 +857,7 @@ with the SDMX standard.</p>
       rdfs:comment "Life expectancy Welsh Unitary authorities from @@@@@@@@@@@
 </pre>
 
-<h3 id="dataset-slices">6.2 Slices</h3>
+<h3 id="dataset-slices">6.4 Slices</h3>
 @@
 
 <h2 id="schemes">7. Concepts schemes and code lists</h2>
