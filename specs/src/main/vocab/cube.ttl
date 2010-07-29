@@ -134,7 +134,7 @@ qb:structure a rdf:Property, owl:ObjectProperty;
     .
 
    
-qb:specification a rdf:Property, owl:ObjectProperty;
+qb:component a rdf:Property, owl:ObjectProperty;
     rdfs:label "component specification"@en;
     rdfs:comment "indicates a component specification which is included in the structure of the dataset"@en;
     rdfs:domain qb:DataStructureDefinition;
@@ -156,7 +156,7 @@ qb:ComponentSet a rdfs:Class, owl:Class;
 qb:ComponentSpecification rdfs:subClassOf qb:ComponentSet .
 qb:SliceKey               rdfs:subClassOf qb:ComponentSet .
     
-qb:component a rdf:Property, owl:ObjectProperty;
+qb:componentProperty a rdf:Property, owl:ObjectProperty;
     rdfs:label "component"@en;
     rdfs:comment "indicates a ComponentProperty (i.e. attribute/dimension) expected on a DataSet, or a dimension fixed in a SliceKey"@en;
     rdfs:domain qb:ComponentSet;
@@ -217,7 +217,8 @@ qb:concept a rdf:Property, owl:ObjectProperty;
         
 qb:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
+    rdfs:comment "gives the code list associated with a CodedProperty"@en;
     rdfs:domain qb:CodedProperty;
-    rdfs:range  skos:ConceptScheme;
+    rdfs:range skos:ConceptScheme;
     .
     
