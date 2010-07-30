@@ -139,4 +139,11 @@ If a dataset requires attribute attachment to an individual measure on an indivi
 Using the measure dimension approach it is possible to define a slice of observations corresponding to a single measure (i.e. fixing the value of the measure dimension).
 
 We contemplated machinery to support this even within an MMO model (through the use of magic dimension) but rejected this for now. If you need to slice along measures then use the measure dimension representation. We will document this as possible future extension point depending on experience with the vocabulary.
+
 === DSD aliases ===
+
+As an aside we noted that the current DSD structure does not make the nature of the different components immediately clear (they are defined by the `rdf:type` of the component. 
+
+We may want to introduce sub-properties of either `qb:componentProperty` (`qb:measure`, `qb:dimension`, `qb:attribute` and `qb:measureDimension`) with restricted ranges. This would make DSDs more easily readable at a small cost of redundancy.
+
+We haven't decided on this and it is not critical path.
