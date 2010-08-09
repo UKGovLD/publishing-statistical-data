@@ -203,7 +203,7 @@ qb:measureDimension a rdf:Property, owl:ObjectProperty;
     rdfs:label "measure dimension"@en;
     rdfs:comment "An alternative to qb:componentProperty which makes explicit that the component is a measure dimension"@en;
     rdfs:subPropertyOf qb:componentProperty;
-    rdfs:range qb:MeasureDimensionProperty;
+    rdfs:range qb:DimensionProperty;
     .
         
 # --- Slice definitions ---------------------------
