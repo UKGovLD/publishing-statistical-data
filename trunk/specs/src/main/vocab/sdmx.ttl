@@ -28,7 +28,7 @@
   
 # --- Note ---------------------------
 
-# In the revised structure, as developed at ODaP2010, the core representation
+# In the revised structure, as developed at ODaF2010, the core representation
 # of multidimensional data is covered by a general purpose "data cube" vocabulary.
 
 # This SDMX-RDF vocabulary is now an extension to the Data Cube core to cover
@@ -38,6 +38,14 @@
 # Future work will develop the SDMX vocabulary in more detail, based upon 
 # the earlier SDMX-RDF draft.
 
+# --- DataStructureDefinitions ---------------------------
+
+sdmx:DataStructureDefintion a rdfs:Class, owl:Class;
+    rdfs:label "Data Structure Definition"@en;
+    rdfs:comment "A specialization of qb:DataStructureDefinition which additional constraints: if there are multiple measures then a MeasureDimensionProperty must be included in the DSD"@en;
+    rdfs:subClassOf qb:DataStructureDefinition ;
+    .
+    
 # --- Concepts ---------------------------
             
 sdmx:CodeList a rdfs:Class, owl:Class;
@@ -102,9 +110,6 @@ sdmx:PrimaryMeasureRole a rdfs:Class, owl:Class;
             
 # --- Linking to the reusable generic concepts from qb ---------------------------
 
-qb:obsValue qb:concept sdmx-concept:obsValue .
-sdmx-concept:obsValue a sdmx:PrimaryMeasureRole .
-    
 qb:measureType qb:concept sdmx:measureTypeConcept .
 
 sdmx:measureTypeConcept a sdmx:MeasureTypeRole, sdmx:ConceptRole, skos:Concept;
