@@ -106,12 +106,6 @@ qb:CodedProperty a rdfs:Class, owl:Class;
 
 # --- Reusable general purpose component properties ---------------------------
 
-qb:obsValue a qb:MeasureProperty, rdf:Property;
-    rdfs:label "observed value"@en;
-    rdfs:comment "Generic primary measure, default property to use to give the measured value on an observation"@en;
-    rdfs:domain qb:Observation;
-    .
-    
 qb:measureType a qb:DimensionProperty, rdf:Property;
     rdfs:label "measure type"@en;
     rdfs:comment "Generic measure dimension, the value of this dimension indicates which measure (from the set of measures in the DSD) is being given by the obsValue (or other primary measure)"@en;
@@ -183,7 +177,35 @@ qb:componentAttachment a rdf:Property;
     rdfs:domain qb:ComponentSpecification;
     rdfs:range  rdfs:Class;
     .
-
+    
+qb:dimension a rdf:Property, owl:ObjectProperty;
+    rdfs:label "dimension"@en;
+    rdfs:comment "An alternative to qb:componentProperty which makes explicit that the component is a dimension"@en;
+    rdfs:subPropertyOf qb:componentProperty;
+    rdfs:range qb:DimensionProperty;
+    .
+        
+qb:measure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "measure"@en;
+    rdfs:comment "An alternative to qb:componentProperty which makes explicit that the component is a measure"@en;
+    rdfs:subPropertyOf qb:componentProperty;
+    rdfs:range qb:MeasureProperty;
+    .
+        
+qb:attribute a rdf:Property, owl:ObjectProperty;
+    rdfs:label "attribute"@en;
+    rdfs:comment "An alternative to qb:componentProperty which makes explicit that the component is a attribute"@en;
+    rdfs:subPropertyOf qb:componentProperty;
+    rdfs:range qb:AttributeProperty;
+    .
+        
+qb:measureDimension a rdf:Property, owl:ObjectProperty;
+    rdfs:label "measure dimension"@en;
+    rdfs:comment "An alternative to qb:componentProperty which makes explicit that the component is a measure dimension"@en;
+    rdfs:subPropertyOf qb:componentProperty;
+    rdfs:range qb:MeasureDimensionProperty;
+    .
+        
 # --- Slice definitions ---------------------------
 
 qb:SliceKey a rdfs:Class, owl:Class;
