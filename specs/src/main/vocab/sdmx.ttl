@@ -116,4 +116,12 @@ sdmx:measureTypeConcept a sdmx:MeasureTypeRole, sdmx:ConceptRole, skos:Concept;
     rdfs:label "measureType"@en;
     rdfs:comment "The concept corresponding to the generic measure type dimension which indicates which measure is being denoted by the primary measure on an observation"@en;
     .
+
+# --- Support for round-tripping the primary measure ---------------------------
             
+sdmx:primaryMeasure a rdf:Property, owl:ObjectProperty;
+    rdfs:label "primary measure"@en;
+    rdfs:comment "Indicates an additional component used as the primary measure within the SDMX data. In the case of multi-measure data sets the RDF representation uses the specific measure rather than a subsuming overall measure. This property records the subsuming primary measure (typically sdmx-measure:obsValue) to enable round tripping of this information."@en; 
+    rdfs:domain sdmx:DataStructureDefinition;
+    rdfs:range  qb:MeasureProperty ;
+    .            
