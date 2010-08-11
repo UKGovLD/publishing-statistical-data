@@ -40,7 +40,7 @@
 
 # --- DataStructureDefinitions ---------------------------
 
-sdmx:DataStructureDefintion a rdfs:Class, owl:Class;
+sdmx:DataStructureDefinition a rdfs:Class, owl:Class;
     rdfs:label "Data Structure Definition"@en;
     rdfs:comment "A specialization of qb:DataStructureDefinition which additional constraints: if there are multiple measures then a MeasureDimensionProperty must be included in the DSD"@en;
     rdfs:subClassOf qb:DataStructureDefinition ;
