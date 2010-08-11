@@ -34,21 +34,6 @@ qb:DataSet a rdfs:Class, owl:Class;
     owl:equivalentClass scovo:Dataset;
     .
     
-# --- Slices ---------------------------
-
-qb:Slice a rdfs:Class, owl:Class;
-    rdfs:label "Slice"@en;
-    rdfs:comment "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en;
-    rdfs:subClassOf qb:Attachable;
-    .
-
-qb:slice a rdf:Property, owl:ObjectProperty;
-    rdfs:label "slice"@en;
-    rdfs:comment "Indicates a subset of a DataSet defined by fixing a subset of the dimensional values"@en;
-    rdfs:domain qb:DataSet;
-    rdfs:range qb:Slice;
-    .
-     
 # --- Observations ---------------------------
 
 qb:Observation a rdfs:Class, owl:Class;
@@ -70,6 +55,28 @@ qb:observation a rdf:Property, owl:ObjectProperty;
     rdfs:range qb:Observation;
     .
         
+# --- Slices ---------------------------
+
+qb:Slice a rdfs:Class, owl:Class;
+    rdfs:label "Slice"@en;
+    rdfs:comment "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en;
+    rdfs:subClassOf qb:Attachable;
+    .
+
+qb:SliceOrObservation a rdfs:Class, owl:Class;
+    rdfs:label "Slice or Observation";
+    owl:unionOf (qb:Slice, qb:Observation) .
+    
+qb:Slice       rdfs:subClassOf qb:SliceOrObservation .    
+qb:Observation rdfs:subClassOf qb:SliceOrObservation .    
+    
+qb:slice a rdf:Property, owl:ObjectProperty;
+    rdfs:label "slice"@en;
+    rdfs:comment "Indicates a subset of a DataSet defined by fixing a subset of the dimensional values"@en;
+    rdfs:domain qb:DataSet;
+    rdfs:range qb:SliceOrObservation;
+    .
+     
 # --- Dimensions, Attributes, Measures ---------------------------
 
 qb:Attachable a rdfs:Class, owl:Class;
