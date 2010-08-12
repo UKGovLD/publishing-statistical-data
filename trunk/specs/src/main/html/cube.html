@@ -67,8 +67,6 @@ ul.toc { list-style-type: none; }
   <dd>Dave Reynolds (<a href="http://www.epimorphics.com">Epimorphics
 Ltd</a>)</dd>
   <dd>Jeni Tennison (<a href="http://www.jenitennison.com/blog/">TSO</a>)</dd>
-  <dd>Chris Dollin (<a href="http://www.epimorphics.com">Epimorphics Ltd</a>)</dd>
-  <dd>@@@ add yourself!</dd>
 </dl>
 <hr>
 </div>
@@ -169,7 +167,7 @@ principles of
 The vocabulary is based upon the approach used by the SDMX ISO standard
 for statistical data exchange. This <em>cube</em> model is very
 general and so the Data Cube vocabulary can be used for other data sets
-such as survey data, spreadsheets and OLAP [@@ref] data cubes.
+such as survey data, spreadsheets and OLAP data cubes <a href="#ref-OLAP">[OLAP]</a>.
 </p>
 
 <p>
@@ -200,11 +198,12 @@ metadata</li>
 
 <p><em>Linked data</em> is an approach to publishing data on the web, enabling
 datasets to be linked together through references to common concepts.
-The approach [@@ref]
+  The approach <a href="#ref-linked-data">[LOD]</a>
 recommends use of HTTP URIs to name the entities and concepts so that consumers of
 the data can look-up those URIs to get more information, including links
 to other related URIs.
-RDF [@@ref] provides a standard for the representation of the
+RDF <a href="#ref-rdf">[RDF]</a>
+provides a standard for the representation of the
 information that describes those entities and concepts, and is returned
 by dereferencing the URIs. </p>
 
@@ -270,7 +269,7 @@ vocabulary.
 
 <h3 id="intro-scovo">1.4 Relationship to SCOVO</h3>
 
-<p>The Statistical Core Vocabulary (SCOVO) [@@ref] is a lightweight
+<p>The Statistical Core Vocabulary (SCOVO) <a href="#ref-scovo">[SCOVO]</a> is a lightweight
 RDF vocabulary for expressing statistical data. Its relative
 simplicity allows easy adoption by data producers and consumers, and
 it can be combined with other RDF vocabularies for greater effect. The
@@ -580,7 +579,7 @@ that structure once and then reuse it for each publication in the series. Consum
 
 <p>To support this reuse of general statistical concepts the data cube vocabulary provides the <code>qb:concept</code> property which
   links a <code>qb:ComponentProperty</code> to the concept it represents. We use the SKOS
-  vocabulary [@@ref] to represent such concepts. This is very natural for those cases where the  
+  vocabulary <a href="#ref-skos">[SKOS]</a> to represent such concepts. This is very natural for those cases where the  
   concepts are already maintained as a controlled term list or thesaurus.
    When developing a data structure definition for an informal data set there may not be an appropriate 
    concept already. In those cases, if the concept is likely to be reused in other guises it is recommended to
@@ -619,7 +618,8 @@ that structure once and then reuse it for each publication in the series. Consum
 
 <h3 id="dsd-cog">5.2 Content oriented guidelines</h3>
 
-<p>The SDMX standard includes a set of <em>content oriented guidelines</em> (COG) [@@ref] which define a
+<p>The SDMX standard includes a set of <em>content oriented guidelines</em> (COG) <a href="#ref-cog">[COG]</a>
+ which define a
    set of common statistical concepts and associated code lists that are intended to be 
    reusable across data sets. As part of the data cube work we have created RDF analogues
   to the COG. These include:</p>
@@ -657,7 +657,7 @@ that structure once and then reuse it for each publication in the series. Consum
 
 <p><b>Region.</b> Again there is a suitable COG concept and associated component that
 we can use for this, and again we can customize the range of the component. In this case
-  we can use the Ordanance Survey administrative geography ontology [@@Ref].</p>
+  we can use the Ordanance Survey administrative geography ontology <a href="#ref-admingeo">[OS-GEO]</a>.</p>
 
 <pre>
   eg:refArea  a rdf:Property, qb:DimensionProperty;
@@ -889,7 +889,7 @@ The data in a data set can be roughly described as belonging to one of the follo
   <dt>External metadata</dt>
   <dd>This is metadata that describes the dataset as a whole, such as categorization of the 
        dataset, its publisher, and a SPARQL endpoint where it can be accessed. 
-      External metadata is described in <a href="@@">@@</a>.</dd>
+      External metadata is described in <a href="#metadata">section 9</a>.</dd>
 </dl>
 
 <h3 id="dataset-basic">6.1 Data sets and observations</h3>
@@ -898,8 +898,8 @@ The data in a data set can be roughly described as belonging to one of the follo
   linked to the corresponding data structure definition via the <tt>qb:structure</tt> property.</p>
 
 <p><strong>Pitfall</strong>: Note the capitalization of <tt>qb:<strong>D</strong>ata<strong>S</strong>et</tt>, 
-which differs from the capitalization in other vocabularies, such as <a href="@@@">dct:Dataset</a>, 
-<a href="@@@">void:Dataset</a>, <a href="@@@">dcat:Dataset</a>. This unusual capitalization is chosen for compatibility
+which differs from the capitalization in other vocabularies, such as
+<a href="http://semanticweb.org/wiki/VoiD">void:Dataset</a> and <a href="http://www.w3.org/egov/wiki/Data_Catalog_Vocabulary">dcat:Dataset</a>. This unusual capitalization is chosen for compatibility
 with the SDMX standard.</p>
 
 <p>Each observation is represented as an instance of type <code>qb:Observation</code>.
@@ -1272,7 +1272,7 @@ vocabulary for places.</p>
 <p>The organization that publishes a dataset should be recorded as part of the dataset metadata.
 Again we recommend use of the Dublin Core term <code>dcterms:publisher</code> for this.
 The organization should be represented as an instance of <code>foaf:Agent</code>, or
-some more specific subclass such as <code>org:Organization</code> [@@ref].</p>
+some more specific subclass such as <code>org:Organization</code> <a href="#ref-org">[ORG]</a>.</p>
 
 <pre>
 eg:dataset1 a qb:DataSet;
@@ -1300,31 +1300,36 @@ for a core Data Cube representation.</p>
 suggestions and support for this work.</p>
 
 <h2 id="references">References</h2>
-@@@ [SCOVO] http://sw.joanneum.at/scovo/schema.html, The Statistical
-Core Vocabulary
-<br>
-@@@ [SCOVO] http://sw-app.org/pub/eswc09-inuse-scovo.pdf, SCOVO: Using
-Statistics on the Web of data
-<br>
-@@@ [SDMX]
-http://www.sdmx.org/docs/2_0/SDMX_2_0%20SECTION_02_InformationModel.pdf,
-SDMX Information Model
-<br>
-@@@ [RDF] http://www.w3.org/standards/techs/rdf#w3c_all, RDF Current
-Status
-<br>
-@@@ [SCOVO, SDMX]
-http://events.linkeddata.org/ldow2010/papers/ldow2010_paper03.pdf,
-Semantic Statistics: Bringing Together SDMX and SCOVO
-<br>
-@@@
-[SDMX COG SMD] <a
- href="http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/03_sdmx_cog_annex_3_smd_2009.pdf</a>
-<br>
-@@@
-[SDMX COG CL] <a
- href="http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf">http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf</a>
- 
+
+<dl>
+  <dt id="ref-OLAP">[OLAP]</dt>
+  <dd>Online Analytical Processing Data Cubes, <a href="http://en.wikipedia.org/wiki/OLAP_cube">http://en.wikipedia.org/wiki/OLAP_cube</a></dd>
+
+  <dt id="ref-linked-data">[LOD]</dt>
+  <dd>Linked Data, <a href="http://linkeddata.org/">http://linkeddata.org/</a></dd>
+
+  <dt id="ref-rdf">[RDF]</dt>
+  <dd>Resource Description Framework, <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></dd>
+
+  <dt id="ref-scovo">[SCOVO]</dt>
+  <dd>The Statistical Core Vocabulary, <a href="http://sw.joanneum.at/scovo/schema.html">http://sw.joanneum.at/scovo/schema.html</a> <br />
+       SCOVO: Using Statistics on the Web of data, <a href="http://sw-app.org/pub/eswc09-inuse-scovo.pdf">http://sw-app.org/pub/eswc09-inuse-scovo.pdf</a>
+</dd>
+
+  <dt id="ref-skos">[SKOS]</dt>
+  <dd>Simple Knowledge Organization System, <a href="http://www.w3.org/2004/02/skos/">http://www.w3.org/2004/02/skos/</a></dd>
+
+  <dt id="ref-cog">[COG]</dt>
+  <dd>SDMX Contnent Oriented Guidelines, <a href="http://sdmx.org/?page_id=11">http://sdmx.org/?page_id=11</a></dd>
+
+  <dt id="ref-admingeo">[OS-GEO]</dt>
+  <dd>Ordnance Survey Administrative Geography Ontology v1, <a href="http://www.ordnancesurvey.co.uk/ontology/v1/AdministrativeGeography.rdf">http://www.ordnancesurvey.co.uk/ontology/v1/AdministrativeGeography.rdf</a></dd>
+
+  <dt id="ref-org">[ORG]</dt>
+  <dd>An Organization Ontology, <a href="http://www.epimorphics.com/public/vocabulary/org.html">http://www.epimorphics.com/public/vocabulary/org.html</a></dd>
+
+</dl>
+
 <h2 id="namespaces-used-appendix">Appendix 1: namespaces used in this document</h2>
 
 <table class="spare-table" style="margin-left: 5ex;">
