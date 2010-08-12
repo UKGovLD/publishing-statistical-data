@@ -65,7 +65,7 @@ qb:Slice a rdfs:Class, owl:Class;
 
 qb:SliceOrObservation a rdfs:Class, owl:Class;
     rdfs:label "Slice or Observation";
-    owl:unionOf (qb:Slice, qb:Observation) .
+    owl:unionOf (qb:Slice qb:Observation) .
     
 qb:Slice       rdfs:subClassOf qb:SliceOrObservation .    
 qb:Observation rdfs:subClassOf qb:SliceOrObservation .    
