@@ -130,20 +130,19 @@ Google Group</a>.</p>
   </li>
   <li><a href="#datasets">6. Expressing datasets</a> </li>
     <ul class="toc">
-      <li><a href="#dataset-instance"></a>6.1 The dataset instance</li>
-      <li><a href="#dataset-observations"></a>6.2 Observations</li>
-      <li><a href="#dataset-example"></a>6.3 Example</li>
-      <li><a href="#dataset-slices"></a>6.4 Slices</li>
+      <li><a href="#dataset-basic">6.1 The datasets and observations</a></li>
     </ul>
-  <li><a href="#schemes">7. Concepts schemes and code lists</a> </li>
-  <li><a href="#collections">8. Slices and collections of data sets</a> </li>
+  <li><a href="#slices">7. Slices</a> </li>
+  <li><a href="#schemes">8. Concept schemes and code lists</a> </li>
   <li><a href="#metadata">9. DataSet metadata</a> </li>
-  <li><a href="#publishing">10. Publishing</a></li>
-  <li><a href="#reference">11. Vocabulary reference</a></li>
+    <ul class="toc">
+      <li><a href="#metadata-categorization">9.1 Categorizing a data set</a></li>
+      <li><a href="#metadata-publishers">9.2 Describing publishers</a></li>
+    </ul>
   <li><a href="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#references">References</a></li>
-  <li><a href="#namespaces-used-appendix">Appendix 1: namespaces used
-in this document</a></li>
+  <li><a href="#namespaces-used-appendix">Appendix 1: namespaces used in this document</a></li>
+  <li><a href="#appendix-vocab-reference">Appendix 2: vocabulary reference</a></li>
 </ul>
 <hr>
 
@@ -1139,7 +1138,7 @@ by declaring different attachment levels for the dimensions. For example:
   Some tool chains may support (dynamic or static) generation flattened representations from 
   abbreviated data sets.</p>
   
-<h2 id="schemes">8. Concepts schemes and code lists</h2>
+<h2 id="schemes">8. Concept schemes and code lists</h2>
 
 <p>The values for dimensions within a data set must be unambiguously
    defined. They may be typed values (e.g. <code>xsd:dateTime</code> for time instances)
@@ -1237,7 +1236,7 @@ descriptive comment (<code>rdfs:comment</code>) and creation date (<code>dcterms
 are common to most resources. We recommend use of Dublin Core Terms
 for representing the key metadata annotations commonly needed for DataSets.</p>
 
-<h3 id="categorization">9.1 Categorizing a dataset</h3>
+<h3 id="metadata-categorization">9.1 Categorizing a data set</h3>
 
 <p>Publishers of statistics often categorize their data sets into different statistical 
 domains, such as <em>Education</em>, <em>Labour</em>, or <em>Transportation</em>.
@@ -1268,7 +1267,7 @@ at <a href="http://purl.org/linked-data/sdmx/2009/subject">http://purl.org/linke
 <p>where <code>eg:Wales</code> is a <code>skos:Concept</code> drawn from an appropriate controlled
 vocabulary for places.</p>
 
-<h3 id="agencies">9.2 Describing publishers and maintenance agencies</h3>
+<h3 id="metadata-publishers">9.2 Describing publishers</h3>
 
 <p>The organization that publishes a dataset should be recorded as part of the dataset metadata.
 Again we recommend use of the Dublin Core term <code>dcterms:publisher</code> for this.
