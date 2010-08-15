@@ -1015,7 +1015,7 @@ with the SDMX standard.</p>
 <p>We first define the structure of the slices we want by associating a "slice key" which the
    data structure definition. This is done by creating a <code>qb:SliceKey</code> which
    lists the component properties (which must be dimensions) which will be fixed in the
-   slice. The key is attached to the DSD using <code>qb:sliceStructure</code>. For example: </p>
+   slice. The key is attached to the DSD using <code>qb:sliceKey</code>. For example: </p>
    
 <pre>
   eg:sliceByRegion a qb:SliceKey;
@@ -1030,11 +1030,12 @@ with the SDMX standard.</p>
           [qb:dimension sdmx-dimension:sex; qb:order 3];
           [qb:measure eg:lifeExpectancy];
           [qb:attribute sdmx-attribute:unitMeasure; qb:componentAttachment qb:DataSet;] ;
-      qb:sliceStructure eg:sliceByRegion .
+      qb:sliceKey eg:sliceByRegion .
 </pre>   
 
 <p>In the instance data then slices are represented by instances of <code>qb:Slice</code> which 
-  link to the observations in the slice via <code>qb:observation</code>. Data sets indicate
+  link to the observations in the slice via <code>qb:observation</code> and to they key by means
+  of <code>qb:slicestructure</code>. Data sets indicate
   the slices they contain by means of <code>qb:slice</code>. Thus in our example we would have:</p>
 
 <pre>
@@ -1047,6 +1048,7 @@ with the SDMX standard.</p>
       .
   
   eg:slice2 a qb:Slice;
+      qb:sliceStructure  eg:sliceByRegion ;
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
       qb:observation eg:o1b, eg:o2b; eg:o3b, ... .
@@ -1102,7 +1104,8 @@ by declaring different attachment levels for the dimensions. For example:
       qb:slice eg:slice3 ;
       .
   
-  eg:slice4 a qb:Slice;
+  eg:slice3 a qb:Slice;
+      qb:sliceStructure  eg:sliceByRegion ;
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
       qb:observation eg:o1c, eg:o2c; eg:o3c, ... .
