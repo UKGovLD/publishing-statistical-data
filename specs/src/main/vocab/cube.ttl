@@ -38,12 +38,14 @@ qb:DataSet a rdfs:Class, owl:Class;
 
 qb:Observation a rdfs:Class, owl:Class;
     rdfs:label "Observation"@en;
+    rdfs:comment "A single observation in the cube, may have one or more associated measured values"@en;
     rdfs:subClassOf qb:Attachable;
     owl:equivalentClass scovo:Item;
     .
 
 qb:dataSet a rdf:Property, owl:ObjectProperty;
     rdfs:label "data set"@en;
+    rdfs:comment "indicates the data set of which this observation is a part"@en;
     rdfs:domain qb:Observation;
     rdfs:range qb:DataSet;
     owl:equivalentProperty scovo:dataset;
@@ -51,6 +53,7 @@ qb:dataSet a rdf:Property, owl:ObjectProperty;
     
 qb:observation a rdf:Property, owl:ObjectProperty;
     rdfs:label "observation"@en;
+    rdfs:comment "indicates a observation contained within this slice of the data set"@en;
     rdfs:domain qb:Slice;
     rdfs:range qb:Observation;
     .
@@ -91,17 +94,20 @@ qb:ComponentProperty a rdfs:Class, owl:Class;
     .
 qb:DimensionProperty a rdfs:Class, owl:Class;
     rdfs:label "Dimension property"@en;
+    rdfs:comment "The class of components which represent the dimensions of the cube"@en;    
     rdfs:subClassOf qb:ComponentProperty;
     rdfs:subClassOf qb:CodedProperty;
     owl:disjointWith qb:MeasureProperty;
     .
 qb:AttributeProperty a rdfs:Class, owl:Class;
     rdfs:label "Attribute property"@en;
+    rdfs:comment "The class of components which represent attributes of observations in the cube, e.g. unit of measurement"@en;    
     rdfs:subClassOf qb:ComponentProperty;
     owl:disjointWith qb:MeasureProperty;
     .
 qb:MeasureProperty a rdfs:Class, owl:Class;
     rdfs:label "Measure property"@en;
+    rdfs:comment "The class of components which represent the measured value of the phenomenon being observered"@en;    
     rdfs:subClassOf qb:ComponentProperty;
     owl:disjointWith qb:AttributeProperty;
     owl:disjointWith qb:DimensionProperty;
