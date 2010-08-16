@@ -5,14 +5,17 @@
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix scovo:   <http://purl.org/NET/scovo#> .
 @prefix void:    <http://rdfs.org/ns/void#> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
 @prefix sdmx:    <http://purl.org/linked-data/sdmx#> .
 @prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
-@prefix sdmx-dimension:    <http://purl.org/linked-data/sdmx/2009/dimension#> .
-@prefix sdmx-attribute:    <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
 @prefix sdmx-measure:    <http://purl.org/linked-data/sdmx/2009/measure#> .
-@prefix sdmx-code:    <http://purl.org/linked-data/sdmx/2009/code#> .
+@prefix sdmx-metadata:   <http://purl.org/linked-data/sdmx/2009/metadata#> .
+@prefix sdmx-code:       <http://purl.org/linked-data/sdmx/2009/code#> .
 @prefix sdmx-subject:    <http://purl.org/linked-data/sdmx/2009/subject#> .
-@prefix dcterms: <http://dublincore.org/documents/dcmi-terms/>.
+@prefix dcterms:         <http://dublincore.org/documents/dcmi-terms/>.
+@prefix qb:              <http://purl.org/linked-data/cube#> .
 
 # CL_DECIMALS
 sdmx-code:decimals a skos:ConceptScheme, sdmx:CodeList;
