@@ -66,19 +66,18 @@ qb:Slice a rdfs:Class, owl:Class;
     rdfs:subClassOf qb:Attachable;
     .
 
-qb:SliceOrObservation a rdfs:Class, owl:Class;
-    rdfs:label "Slice or Observation";
-    rdfs:comment "Internal class to represent the union of Slice and Observation"@en;
-    owl:unionOf (qb:Slice qb:Observation) .
-    
-qb:Slice       rdfs:subClassOf qb:SliceOrObservation .    
-qb:Observation rdfs:subClassOf qb:SliceOrObservation .    
-    
 qb:slice a rdf:Property, owl:ObjectProperty;
     rdfs:label "slice"@en;
     rdfs:comment "Indicates a subset of a DataSet defined by fixing a subset of the dimensional values"@en;
     rdfs:domain qb:DataSet;
-    rdfs:range qb:SliceOrObservation;
+    rdfs:range qb:Observation;
+    .
+     
+qb:subSlice a rdf:Property, owl:ObjectProperty;
+    rdfs:label "sub slice"@en;
+    rdfs:comment "Indicates a narrower slice which has additional fixed dimensional values, for example a time-series slice might a subSlice of a slice which spans both time and geographic area"@en;
+    rdfs:domain qb:Slice;
+    rdfs:range qb:Slice;
     .
      
 # --- Dimensions, Attributes, Measures ---------------------------
