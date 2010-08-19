@@ -68,7 +68,7 @@ qb:Slice a rdfs:Class, owl:Class;
 
 qb:SliceOrObservation a rdfs:Class, owl:Class;
     rdfs:label "Slice or Observation";
-    rdfs:comment "Internal class to represent the union of Slice and Obsercation"@en;
+    rdfs:comment "Internal class to represent the union of Slice and Observation"@en;
     owl:unionOf (qb:Slice qb:Observation) .
     
 qb:Slice       rdfs:subClassOf qb:SliceOrObservation .    
@@ -108,7 +108,7 @@ qb:AttributeProperty a rdfs:Class, owl:Class;
     .
 qb:MeasureProperty a rdfs:Class, owl:Class;
     rdfs:label "Measure property"@en;
-    rdfs:comment "The class of components which represent the measured value of the phenomenon being observered"@en;    
+    rdfs:comment "The class of components which represent the measured value of the phenomenon being observed"@en;    
     rdfs:subClassOf qb:ComponentProperty;
     owl:disjointWith qb:AttributeProperty;
     owl:disjointWith qb:DimensionProperty;
