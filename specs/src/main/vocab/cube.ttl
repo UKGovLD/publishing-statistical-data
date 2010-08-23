@@ -9,7 +9,7 @@
 @prefix qb:             <http://purl.org/linked-data/cube#> .
 @prefix dcterms:        <http://dublincore.org/documents/dcmi-terms/>.
 
-<http://purl.org/linked-data/data-cube>
+<http://purl.org/linked-data/cube#>
     a owl:Ontology;
     owl:versionInfo "0.1";
     rdfs:label "The data cube vocabulary";
