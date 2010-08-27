@@ -14,7 +14,7 @@
 @prefix sdmx-metadata:   <http://purl.org/linked-data/sdmx/2009/metadata#> .
 @prefix sdmx-code:       <http://purl.org/linked-data/sdmx/2009/code#> .
 @prefix sdmx-subject:    <http://purl.org/linked-data/sdmx/2009/subject#> .
-@prefix dcterms:         <http://dublincore.org/documents/dcmi-terms/>.
+@prefix dcterms:         <http://purl.org/dc/terms/>.
 @prefix qb:              <http://purl.org/linked-data/cube#> .
 
 # CL_DECIMALS
