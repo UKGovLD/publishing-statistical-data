@@ -153,7 +153,7 @@ qb:component a rdf:Property, owl:ObjectProperty;
 
 qb:ComponentSpecification a rdfs:Class, owl:Class ;
     rdfs:label "Component specification"@en;
-    rdfs:comment """Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD. This is used by including instances of qb:ComponentSpecification in place of the qb:ComponentProperty in an qb:componentOrder list"""@en;
+    rdfs:comment """Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD."""@en;
     rdfs:subClassOf qb:ComponentSet ;
     .
 
