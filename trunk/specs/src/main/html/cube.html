@@ -529,38 +529,40 @@ fixed for each slice. Such slices then show the variation in life expectancy acr
 
   <h3>Vocabulary index</h3>
   <p><b>Classes:</b>
+    <a href='#ref_qb_Attachable'>qb:Attachable</a>
+    <a href='#ref_qb_AttributeProperty'>qb:AttributeProperty</a>
+    <a href='#ref_qb_CodedProperty'>qb:CodedProperty</a>
+    <a href='#ref_qb_ComponentProperty'>qb:ComponentProperty</a>
+    <a href='#ref_qb_ComponentSet'>qb:ComponentSet</a>
+    <a href='#ref_qb_ComponentSpecification'>qb:ComponentSpecification</a>
     <a href='#ref_qb_DataSet'>qb:DataSet</a>
+    <a href='#ref_qb_DataStructureDefinition'>qb:DataStructureDefinition</a>
+    <a href='#ref_qb_DimensionProperty'>qb:DimensionProperty</a>
+    <a href='#ref_qb_MeasureProperty'>qb:MeasureProperty</a>
     <a href='#ref_qb_Observation'>qb:Observation</a>
     <a href='#ref_qb_Slice'>qb:Slice</a>
-    <a href='#ref_qb_SliceOrObservation'>qb:SliceOrObservation</a>
-    <a href='#ref_qb_Attachable'>qb:Attachable</a>
-    <a href='#ref_qb_ComponentProperty'>qb:ComponentProperty</a>
-    <a href='#ref_qb_DimensionProperty'>qb:DimensionProperty</a>
-    <a href='#ref_qb_AttributeProperty'>qb:AttributeProperty</a>
-    <a href='#ref_qb_MeasureProperty'>qb:MeasureProperty</a>
-    <a href='#ref_qb_CodedProperty'>qb:CodedProperty</a>
-    <a href='#ref_qb_DataStructureDefinition'>qb:DataStructureDefinition</a>
-    <a href='#ref_qb_ComponentSpecification'>qb:ComponentSpecification</a>
-    <a href='#ref_qb_ComponentSet'>qb:ComponentSet</a>
     <a href='#ref_qb_SliceKey'>qb:SliceKey</a>
   </p>
   <p><b>Properties:</b>
-    <a href='#ref_qb_dataSet'>qb:dataSet</a>
-    <a href='#ref_qb_observation'>qb:observation</a>
-    <a href='#ref_qb_slice'>qb:slice</a>
-    <a href='#ref_qb_measureType'>qb:measureType</a>
-    <a href='#ref_qb_structure'>qb:structure</a>
+    <a href='#ref_qb_attribute'>qb:attribute</a>
+    <a href='#ref_qb_codeList'>qb:codeList</a>
     <a href='#ref_qb_component'>qb:component</a>
-    <a href='#ref_qb_componentProperty'>qb:componentProperty</a>
-    <a href='#ref_qb_order'>qb:order</a>
-    <a href='#ref_qb_componentRequired'>qb:componentRequired</a>
     <a href='#ref_qb_componentAttachment'>qb:componentAttachment</a>
+    <a href='#ref_qb_componentProperty'>qb:componentProperty</a>
+    <a href='#ref_qb_componentRequired'>qb:componentRequired</a>
+    <a href='#ref_qb_concept'>qb:concept</a>
+    <a href='#ref_qb_dataSet'>qb:dataSet</a>
     <a href='#ref_qb_dimension'>qb:dimension</a>
     <a href='#ref_qb_measure'>qb:measure</a>
-    <a href='#ref_qb_attribute'>qb:attribute</a>
     <a href='#ref_qb_measureDimension'>qb:measureDimension</a>
-    <a href='#ref_qb_sliceStructure'>qb:sliceStructure</a>
+    <a href='#ref_qb_measureType'>qb:measureType</a>
+    <a href='#ref_qb_observation'>qb:observation</a>
+    <a href='#ref_qb_order'>qb:order</a>
+    <a href='#ref_qb_slice'>qb:slice</a>
     <a href='#ref_qb_sliceKey'>qb:sliceKey</a>
+    <a href='#ref_qb_sliceStructure'>qb:sliceStructure</a>
+    <a href='#ref_qb_structure'>qb:structure</a>
+    <a href='#ref_qb_subSlice'>qb:subSlice</a>
   </p>
 
 <h2 id="dsd">5. Creating data structure definitions</h2>
@@ -1066,7 +1068,7 @@ with the SDMX standard.</p>
 </pre>   
 
 <p>In the instance data then slices are represented by instances of <code>qb:Slice</code> which 
-  link to the observations in the slice via <code>qb:observation</code> and to they key by means
+  link to the observations in the slice via <code>qb:observation</code> and to the key by means
   of <code>qb:sliceStructure</code>. Data sets indicate
   the slices they contain by means of <code>qb:slice</code>. Thus in our example we would have:</p>
 
@@ -1165,7 +1167,7 @@ by declaring different attachment levels for the dimensions. For example:
 
 <p>The Data Cube vocabulary allows slices to be nested. We can declare
   multiple slice keys in a DSD and it is possible for one slice key to
-  be a narrower version of another. In that case, when providing non-flattened
+  be a narrower version of another, represented using <code>qb:subSlice</code>. In that case, when providing non-flattened
   data with dimensions attached to the slice level, then
   it is permissible to nest the <code>qb:Slice</code> instances and so 
   further reduce the duplication stating of dimension values. However, 
@@ -1421,7 +1423,6 @@ suggestions and support for this work.</p>
 <h2 id="appendix-vocab-reference">Appendix 2: vocabulary reference</h2>
 
   <h3>DataSets </h3>
-
 <dl class='vocab_reference'>
 
   <dt id="ref_qb_DataSet">
@@ -1431,7 +1432,7 @@ suggestions and support for this work.</p>
     <em>Equivalent to: </em>
       <code>scovo:Dataset</code>
   </dt>
-  <dd>Represents a collection of observations, possibly organized into various slices, conforming to some common dimensional structure.</dd>
+ <dd>Represents a collection of observations, possibly organized into various slices, conforming to some common dimensional structure.</dd>
 </dl>
   <h3>Observations </h3>
 <dl class='vocab_reference'>
@@ -1443,7 +1444,7 @@ suggestions and support for this work.</p>
     <em>Equivalent to: </em>
       <code>scovo:Item</code>
   </dt>
-  <dd>A single observation in the cube, may have one or more associated measured values</dd>
+ <dd>A single observation in the cube, may have one or more associated measured values</dd>
 
   <dt id="ref_qb_dataSet">
     <em>Property:</em> <code>qb:dataSet</code>
@@ -1451,7 +1452,7 @@ suggestions and support for this work.</p>
     <code>qb:Observation</code>
     -> 
     <code>qb:DataSet</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates the data set of which this observation is a part</dd>
 
@@ -1461,7 +1462,7 @@ suggestions and support for this work.</p>
     <code>qb:Slice</code>
     -> 
     <code>qb:Observation</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates a observation contained within this slice of the data set</dd>
 </dl>
@@ -1472,24 +1473,28 @@ suggestions and support for this work.</p>
     <em>Class:</em> <code>qb:Slice</code>
     <em>Sub class of: </em>
       <code>qb:Attachable</code>
-      <code>qb:SliceOrObservation</code>
   </dt>
-  <dd>Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice</dd>
-
-  <dt id="ref_qb_SliceOrObservation">
-    <em>Class:</em> <code>qb:SliceOrObservation</code>
-  </dt>
-  <dd>Internal class to represent the union of Slice and Obsercation</dd>
+ <dd>Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice</dd>
 
   <dt id="ref_qb_slice">
     <em>Property:</em> <code>qb:slice</code>
     (
     <code>qb:DataSet</code>
     -> 
-    <code>qb:SliceOrObservation</code>
-    ) 
+    <code>qb:Observation</code>
+  ) 
   </dt>
   <dd>Indicates a subset of a DataSet defined by fixing a subset of the dimensional values</dd>
+
+  <dt id="ref_qb_subSlice">
+    <em>Property:</em> <code>qb:subSlice</code>
+    (
+    <code>qb:Slice</code>
+    -> 
+    <code>qb:Slice</code>
+  ) 
+  </dt>
+  <dd>Indicates a narrower slice which has additional fixed dimensional values, for example a time-series slice might a subSlice of a slice which spans both time and geographic area</dd>
 </dl>
   <h3>Dimensions, Attributes, Measures </h3>
 <dl class='vocab_reference'>
@@ -1497,14 +1502,14 @@ suggestions and support for this work.</p>
   <dt id="ref_qb_Attachable">
     <em>Class:</em> <code>qb:Attachable</code>
   </dt>
-  <dd>Abstract superclass for everything that can have attributes and dimensions</dd>
+ <dd>Abstract superclass for everything that can have attributes and dimensions</dd>
 
   <dt id="ref_qb_ComponentProperty">
     <em>Class:</em> <code>qb:ComponentProperty</code>
     <em>Sub class of: </em>
       <code>rdf:Property</code>
   </dt>
-  <dd>Abstract super-property of all properties representing dimensions, attributes or measures</dd>
+ <dd>Abstract super-property of all properties representing dimensions, attributes or measures</dd>
 
   <dt id="ref_qb_DimensionProperty">
     <em>Class:</em> <code>qb:DimensionProperty</code>
@@ -1512,28 +1517,28 @@ suggestions and support for this work.</p>
       <code>qb:ComponentProperty</code>
       <code>qb:CodedProperty</code>
   </dt>
-  <dd>The class of components which represent the dimensions of the cube</dd>
+ <dd>The class of components which represent the dimensions of the cube</dd>
 
   <dt id="ref_qb_AttributeProperty">
     <em>Class:</em> <code>qb:AttributeProperty</code>
     <em>Sub class of: </em>
       <code>qb:ComponentProperty</code>
   </dt>
-  <dd>The class of components which represent attributes of observations in the cube, e.g. unit of measurement</dd>
+ <dd>The class of components which represent attributes of observations in the cube, e.g. unit of measurement</dd>
 
   <dt id="ref_qb_MeasureProperty">
     <em>Class:</em> <code>qb:MeasureProperty</code>
     <em>Sub class of: </em>
       <code>qb:ComponentProperty</code>
   </dt>
-  <dd>The class of components which represent the measured value of the phenomenon being observered</dd>
+ <dd>The class of components which represent the measured value of the phenomenon being observed</dd>
 
   <dt id="ref_qb_CodedProperty">
     <em>Class:</em> <code>qb:CodedProperty</code>
     <em>Sub class of: </em>
       <code>qb:ComponentProperty</code>
   </dt>
-  <dd>Superclass of all coded ComponentProperties</dd>
+ <dd>Superclass of all coded ComponentProperties</dd>
 </dl>
   <h3>Reusable general purpose component properties </h3>
 <dl class='vocab_reference'>
@@ -1543,7 +1548,7 @@ suggestions and support for this work.</p>
     (
     -> 
     <code>qb:MeasureProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>Generic measure dimension, the value of this dimension indicates which measure (from the set of measures in the DSD) is being given by the obsValue (or other primary measure)</dd>
 </dl>
@@ -1555,7 +1560,7 @@ suggestions and support for this work.</p>
     <em>Sub class of: </em>
       <code>qb:ComponentSet</code>
   </dt>
-  <dd>Defines the structure of a DataSet or slice</dd>
+ <dd>Defines the structure of a DataSet or slice</dd>
 
   <dt id="ref_qb_structure">
     <em>Property:</em> <code>qb:structure</code>
@@ -1563,7 +1568,7 @@ suggestions and support for this work.</p>
     <code>qb:DataSet</code>
     -> 
     <code>qb:DataStructureDefinition</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates the structure to which this data set conforms</dd>
 
@@ -1573,7 +1578,7 @@ suggestions and support for this work.</p>
     <code>qb:DataStructureDefinition</code>
     -> 
     <code>qb:ComponentSpecification</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates a component specification which is included in the structure of the dataset</dd>
 </dl>
@@ -1585,12 +1590,12 @@ suggestions and support for this work.</p>
     <em>Sub class of: </em>
       <code>qb:ComponentSet</code>
   </dt>
-  <dd>Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD. This is used by including instances of qb:ComponentSpecification in place of the qb:ComponentProperty in an qb:componentOrder list</dd>
+ <dd>Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD.</dd>
 
   <dt id="ref_qb_ComponentSet">
     <em>Class:</em> <code>qb:ComponentSet</code>
   </dt>
-  <dd>Abstract class of things which reference one or more ComponentProperties</dd>
+ <dd>Abstract class of things which reference one or more ComponentProperties</dd>
 
   <dt id="ref_qb_componentProperty">
     <em>Property:</em> <code>qb:componentProperty</code>
@@ -1598,7 +1603,7 @@ suggestions and support for this work.</p>
     <code>qb:ComponentSet</code>
     -> 
     <code>qb:ComponentProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates a ComponentProperty (i.e. attribute/dimension) expected on a DataSet, or a dimension fixed in a SliceKey</dd>
 
@@ -1608,7 +1613,7 @@ suggestions and support for this work.</p>
     <code>qb:ComponentSpecification</code>
     -> 
     <code>xsd:int</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates a priority order for the components of sets with this structure, used to guide presentations - lower order numbers come before higher numbers, un-numbered components come last</dd>
 
@@ -1618,7 +1623,7 @@ suggestions and support for this work.</p>
     <code>qb:ComponentSpecification</code>
     -> 
     <code>xsd:boolean</code>
-    ) 
+  ) 
   </dt>
   <dd>Indicates whether a component property is required (true) or optional (false) in the context of a DSD or MSD</dd>
 
@@ -1628,7 +1633,7 @@ suggestions and support for this work.</p>
     <code>qb:ComponentSpecification</code>
     -> 
     <code>rdfs:Class</code>
-    ) 
+  ) 
   </dt>
   <dd>Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation, or a qb:MeasureProperty.</dd>
 
@@ -1639,7 +1644,7 @@ suggestions and support for this work.</p>
     <code>qb:DimensionProperty</code>
     ; <em>sub property of: </em>
     <code>qb:componentProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>An alternative to qb:componentProperty which makes explicit that the component is a dimension</dd>
 
@@ -1650,7 +1655,7 @@ suggestions and support for this work.</p>
     <code>qb:MeasureProperty</code>
     ; <em>sub property of: </em>
     <code>qb:componentProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>An alternative to qb:componentProperty which makes explicit that the component is a measure</dd>
 
@@ -1661,7 +1666,7 @@ suggestions and support for this work.</p>
     <code>qb:AttributeProperty</code>
     ; <em>sub property of: </em>
     <code>qb:componentProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>An alternative to qb:componentProperty which makes explicit that the component is a attribute</dd>
 
@@ -1672,7 +1677,7 @@ suggestions and support for this work.</p>
     <code>qb:DimensionProperty</code>
     ; <em>sub property of: </em>
     <code>qb:componentProperty</code>
-    ) 
+  ) 
   </dt>
   <dd>An alternative to qb:componentProperty which makes explicit that the component is a measure dimension</dd>
 </dl>
@@ -1684,7 +1689,7 @@ suggestions and support for this work.</p>
     <em>Sub class of: </em>
       <code>qb:ComponentSet</code>
   </dt>
-  <dd>Denotes a subset of the component properties of a DataSet which are fixed in the corresponding slices</dd>
+ <dd>Denotes a subset of the component properties of a DataSet which are fixed in the corresponding slices</dd>
 
   <dt id="ref_qb_sliceStructure">
     <em>Property:</em> <code>qb:sliceStructure</code>
@@ -1692,7 +1697,7 @@ suggestions and support for this work.</p>
     <code>qb:Slice</code>
     -> 
     <code>qb:SliceKey</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates the sub-key corresponding to this slice</dd>
 
@@ -1702,12 +1707,33 @@ suggestions and support for this work.</p>
     <code>qb:DataSet</code>
     -> 
     <code>qb:SliceKey</code>
-    ) 
+  ) 
   </dt>
   <dd>indicates a slice key which is used for slices in this dataset</dd>
 </dl>
+  <h3>Concepts </h3>
+<dl class='vocab_reference'>
 
-<hr>
-</div>
+  <dt id="ref_qb_concept">
+    <em>Property:</em> <code>qb:concept</code>
+    (
+    <code>qb:ComponentProperty</code>
+    -> 
+    <code>skos:Concept</code>
+  ) 
+  </dt>
+  <dd>gives the concept which is being measured or indicated by a ComponentProperty</dd>
+
+  <dt id="ref_qb_codeList">
+    <em>Property:</em> <code>qb:codeList</code>
+    (
+    <code>qb:CodedProperty</code>
+    -> 
+    <code>skos:ConceptScheme</code>
+  ) 
+  </dt>
+  <dd>gives the code list associated with a CodedProperty</dd>
+</dl>
+
 </body>
 </html>
