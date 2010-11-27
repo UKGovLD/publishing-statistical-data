@@ -15,7 +15,7 @@
     rdfs:label "The data cube vocabulary";
     rdfs:comment "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).";
     dcterms:created "2010-07-12"^^xsd:date;
-    dcterms:modified "2010-08-09"^^xsd:date;
+    dcterms:modified "2010-11-27"^^xsd:date;
     dcterms:title "Vocabulary for multi-dimensional (e.g. statistical) data publishing";
     dcterms:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dcterms:contributor [foaf:mbox "richard@cyganiak.de"],
