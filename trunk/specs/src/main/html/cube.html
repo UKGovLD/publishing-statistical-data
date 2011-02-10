@@ -799,13 +799,13 @@ we can use for this, and again we can customize the range of the component. In t
   then a single "cell" in the data cube will typically represent multiple facts about a single transaction.</p>
   
 <p>The data cube vocabulary permits either representation approach to be used though they cannot be mixed
-  within the sample data set.</p>
+  within the same data set.</p>
   
 <h4>Multi-measure observations</h4>
   
 <p> This approach allows multiple observed values to be attached
   to an individual observation. Is suited to representation of things like sensor data and OLAP cubes.
-  The use this representation you simply declare multiple <code>qb:MeasureProperty</code> components
+  To use this representation you simply declare multiple <code>qb:MeasureProperty</code> components
   in the data structure definition and attach an instance of each property to the observations within 
   the data set.</p>
 
