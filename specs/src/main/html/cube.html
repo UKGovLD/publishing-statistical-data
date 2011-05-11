@@ -934,12 +934,12 @@ The data in a data set can be roughly described as belonging to one of the follo
 <p><strong>Pitfall</strong>: Note the capitalization of <tt>qb:<strong>D</strong>ata<strong>S</strong>et</tt>, 
 which differs from the capitalization in other vocabularies, such as
 <a href="http://semanticweb.org/wiki/VoiD">void:Dataset</a> and <a href="http://www.w3.org/egov/wiki/Data_Catalog_Vocabulary">dcat:Dataset</a>. This unusual capitalization is chosen for compatibility
-with the SDMX standard.</p>
+with the SDMX standard. The same applies to the related property <tt>qb:data<strong>S</strong>et</tt>.</p>
 
 <p>Each observation is represented as an instance of type <code>qb:Observation</code>.
   In the basic case then values for each of the attributes, dimensions and measurements are attached directly to the observation (remember 
   that these components are all RDF properties). The observation is linked to the containing
-  data set using the <code>qb:dataset</code> property. For example:</p>
+  data set using the <code>qb:dataSet</code> property. For example:</p>
 
 <p>Thus for our running example we might expect to have:</p>
 
@@ -951,7 +951,7 @@ with the SDMX standard.</p>
       .  
 
   eg:o1 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:newport_00pr ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -960,7 +960,7 @@ with the SDMX standard.</p>
       .
 
   eg:o2 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:cardiff_00pt ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -969,7 +969,7 @@ with the SDMX standard.</p>
       .
 
   eg:o3 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:monmouthshire_00pp ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -997,7 +997,7 @@ with the SDMX standard.</p>
       .
       
   eg:o1 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:newport_00pr ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1005,7 +1005,7 @@ with the SDMX standard.</p>
       .
       
   eg:o2 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:cardiff_00pt ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1013,7 +1013,7 @@ with the SDMX standard.</p>
       .
 
   eg:o3 a qb:Observation;
-      qb:dataset  eg:dataset-le1 ;
+      qb:dataSet  eg:dataset-le1 ;
       eg:refArea                 admingeo:monmouthshire_00pp ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1088,7 +1088,7 @@ with the SDMX standard.</p>
       qb:observation eg:o1b, eg:o2b; eg:o3b, ... .
 
   eg:o1b a qb:Observation;
-      qb:dataset  eg:dataset-le2 ;
+      qb:dataSet  eg:dataset-le2 ;
       eg:refArea                 admingeo:newport_00pr ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1096,7 +1096,7 @@ with the SDMX standard.</p>
       .
       
   eg:o2b a qb:Observation;
-      qb:dataset  eg:dataset-le2 ;
+      qb:dataSet  eg:dataset-le2 ;
       eg:refArea                 admingeo:cardiff_00pt ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1104,7 +1104,7 @@ with the SDMX standard.</p>
       .
 
   eg:o3b a qb:Observation;
-      qb:dataset  eg:dataset-le2 ;
+      qb:dataSet  eg:dataset-le2 ;
       eg:refArea                 admingeo:monmouthshire_00pp ;                  
       eg:refPeriod               &lt;http://reference.data.gov.uk/id/gregorian-interval/2004-01-01T00:00:00/P3Y> ;
       sdmx-dimension:sex         sdmx-code:sex-M ;
@@ -1145,19 +1145,19 @@ by declaring different attachment levels for the dimensions. For example:
       qb:observation eg:o1c, eg:o2c; eg:o3c, ... .
 
   eg:o1c a qb:Observation;
-      qb:dataset  eg:dataset-le3 ;
+      qb:dataSet  eg:dataset-le3 ;
       eg:refArea                 admingeo:newport_00pr ;                  
       eg:lifeExpectancy          76.7 ;
       .
       
   eg:o2c a qb:Observation;
-      qb:dataset  eg:dataset-le3 ;
+      qb:dataSet  eg:dataset-le3 ;
       eg:refArea                 admingeo:cardiff_00pt ;                  
       eg:lifeExpectancy          78.7 ;
       .
 
   eg:o3c a qb:Observation;
-      qb:dataset  eg:dataset-le3 ;
+      qb:dataSet  eg:dataset-le3 ;
       eg:refArea                 admingeo:monmouthshire_00pp ;                  
       eg:lifeExpectancy          76.6 ;
       .
