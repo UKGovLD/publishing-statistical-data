@@ -17,6 +17,36 @@
 @prefix dcterms:         <http://purl.org/dc/terms/>.
 @prefix qb:              <http://purl.org/linked-data/cube#> .
 
+# CL_CURRENCY
+sdmx-code:currency a skos:ConceptScheme, sdmx:CodeList;
+    skos:prefLabel "code list for Currency (CURRENCY) - codelist scheme"@en;
+    rdfs:label "code list for Currency (CURRENCY) - codelist scheme"@en;
+    skos:notation "CL_CURRENCY";
+    skos:note """This code list provides code values for currencies."""@en;
+    skos:definition <http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf> ;
+    rdfs:seeAlso sdmx-code:Currency .
+
+sdmx-code:Currency a rdfs:Class, owl:Class;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "code list for Currency (CURRENCY) - codelist class"@en;
+    rdfs:comment """This code list provides code values for currencies."""@en;
+    rdfs:seeAlso sdmx-code:currency .
+
+# CL_AREA
+sdmx-code:area a skos:ConceptScheme, sdmx:CodeList;
+    skos:prefLabel "Code list for providing values to concepts such as 'Reference area' and/or 'Counterpart area' - codelist scheme"@en;
+    rdfs:label "Code list for providing values to concepts such as 'Reference area' and/or 'Counterpart area' - codelist scheme"@en;
+    skos:notation "CL_AREA";
+    skos:note """: This code list provides code values for geographical areas, defined as areas included within the borders of a country, region, group of countries, etc."""@en;
+    skos:definition <http://sdmx.org/wp-content/uploads/2009/01/02_sdmx_cog_annex_2_cl_2009.pdf> ;
+    rdfs:seeAlso sdmx-code:Area .
+
+sdmx-code:Area a rdfs:Class, owl:Class;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Code list for providing values to concepts such as 'Reference area' and/or 'Counterpart area' - codelist class"@en;
+    rdfs:comment """: This code list provides code values for geographical areas, defined as areas included within the borders of a country, region, group of countries, etc."""@en;
+    rdfs:seeAlso sdmx-code:area .
+
 # CL_DECIMALS
 sdmx-code:decimals a skos:ConceptScheme, sdmx:CodeList;
     skos:prefLabel "Code list for Decimals (DECIMALS) - codelist scheme"@en;
