@@ -297,6 +297,13 @@ sdmx-attribute:coverageTime a qb:AttributeProperty, rdf:Property  ;
     rdfs:comment """The length of time for which data are available."""@en ;
     rdfs:isDefinedBy <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
 
+# CURRENCY
+sdmx-attribute:currency a qb:AttributeProperty, rdf:Property  ;
+    qb:concept sdmx-concept:currency ;
+    rdfs:label "Currency"@en ;
+    rdfs:comment """Monetary denomination of the object being measured."""@en ;
+    rdfs:isDefinedBy <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
+
 # COLL_METHOD
 sdmx-attribute:collMethod a qb:AttributeProperty, rdf:Property  ;
     qb:concept sdmx-concept:collMethod ;
@@ -886,6 +893,10 @@ sdmx-attribute:valuation a qb:AttributeProperty, rdf:Property  ;
     rdfs:isDefinedBy <http://sdmx.org/wp-content/uploads/2009/01/01_sdmx_cog_annex_1_cdc_2009.pdf> .
 
 ### Binding to the corresponding COG Code lists ###
+
+sdmx-attribute:currency a qb:CodedProperty ;
+    qb:codeList sdmx-code:currency ;
+    rdfs:range sdmx-code:Currency .
 
 sdmx-attribute:decimals a qb:CodedProperty ;
     qb:codeList sdmx-code:decimals ;
