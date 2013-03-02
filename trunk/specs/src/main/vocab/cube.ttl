@@ -80,13 +80,14 @@ qb:slice a rdf:Property, owl:ObjectProperty;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
 
-qb:subSlice a rdf:Property, owl:ObjectProperty;
-    rdfs:label "sub slice"@en;
-    rdfs:comment "Indicates a narrower slice which has additional fixed dimensional values, for example a time-series slice might a subSlice of a slice which spans both time and geographic area"@en;
-    rdfs:domain qb:Slice;
-    rdfs:range qb:Slice;
-    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
-    .
+# Removed see http://www.w3.org/2011/gld/track/issues/34
+#qb:subSlice a rdf:Property, owl:ObjectProperty;
+#    rdfs:label "sub slice"@en;
+#    rdfs:comment "Indicates a narrower slice which has additional fixed dimensional values, for example a time-series slice might a subSlice of a slice which spans both time and geographic area"@en;
+#    rdfs:domain qb:Slice;
+#    rdfs:range qb:Slice;
+#    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+#    .
 
 # --- Dimensions, Attributes, Measures ---------------------------
 
