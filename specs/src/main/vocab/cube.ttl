@@ -287,18 +287,9 @@ qb:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
     rdfs:comment "gives the code list associated with a CodedProperty"@en;
     rdfs:domain qb:CodedProperty;
-    rdfs:range qb:CodeList;
+    rdfs:range  [ owl:unionOf (skos:ConceptScheme skos:Collection qb:Hierarchy)]
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
-
-qb:CodeList a rdfs:Class, owl:Class;
-    rdfs:label "Code List"@en;
-    rdfs:comment "Superclass of things that can be used as the code lists for coded properties, includes skos:ConceptScheme and skos:Collection"@en;
-    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
-    .
-
-skos:ConceptScheme rdfs:subClassOf qb:CodeList .
-skos:Collection    rdfs:subClassOf qb:CodeList .
 
 qb:Hierarchy a rdfs:Class, owl:Class;
     rdfs:subClassOf qb:CodeList;
