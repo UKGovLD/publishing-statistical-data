@@ -58,14 +58,28 @@ qb:dataSet a rdf:Property, owl:ObjectProperty;
 qb:observation a rdf:Property, owl:ObjectProperty;
     rdfs:label "observation"@en;
     rdfs:comment "indicates a observation contained within this slice of the data set"@en;
-    rdfs:domain qb:Slice;
+    rdfs:domain qb:ObservationGroup;
     rdfs:range qb:Observation;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+    
+qb:ObservationGroup a rdfs:Class, owl:Class;
+    rdfs:label "Observation Group"@en;
+    rdfs:comment "A, possibly arbitrary, group of observations."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+qb:observationGroup a rdf:Property, owl:ObjectProperty;
+    rdfs:label "observation group"@en;
+    rdfs:comment "Indicates a group of observations. The domain of this property is left open so that a group may be attached to different resources and need not be restricted to a single DataSet"@en;
+    rdfs:range qb:ObservationGroup;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
 
 # --- Slices ---------------------------
 
 qb:Slice a rdfs:Class, owl:Class;
+    rdfs:subClassOf qb:ObservationGroup;
     rdfs:label "Slice"@en;
     rdfs:comment "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en;
     rdfs:subClassOf qb:Attachable;
