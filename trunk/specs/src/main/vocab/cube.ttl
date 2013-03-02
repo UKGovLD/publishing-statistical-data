@@ -16,6 +16,7 @@
     rdfs:comment "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).";
     dcterms:created "2010-07-12"^^xsd:date;
     dcterms:modified "2010-11-27"^^xsd:date;
+    dcterms:modified "2013-03-02"^^xsd:date;
     dcterms:title "Vocabulary for multi-dimensional (e.g. statistical) data publishing";
     dcterms:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dcterms:contributor [foaf:mbox "richard@cyganiak.de"],
@@ -286,7 +287,55 @@ qb:codeList a rdf:Property, owl:ObjectProperty;
     rdfs:label "code list"@en;
     rdfs:comment "gives the code list associated with a CodedProperty"@en;
     rdfs:domain qb:CodedProperty;
-    rdfs:range skos:ConceptScheme;
+    rdfs:range qb:CodeList;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
 
+qb:CodeList a rdfs:Class, owl:Class;
+    rdfs:label "Code List"@en;
+    rdfs:comment "Superclass of things that can be used as the code lists for coded properties, includes skos:ConceptScheme and skos:Collection"@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+skos:ConceptScheme rdfs:subClassOf qb:CodeList .
+skos:Collection    rdfs:subClassOf qb:CodeList .
+
+qb:Hierarchy a rdfs:Class, owl:Class;
+    rdfs:subClassOf qb:CodeList;
+    rdfs:label "Heirarchy"@en;
+    rdfs:comment "Represents a generalized hierarchy of concepts which can be used for coding. The hierarchy is defined by one or more roots together with a property which relates concepts in the hierarchy to either their parent or their child concept. At least one of qb:narrowingProperty or qb:broadeningProperty must be specified, it is permissible to provide both.  The same concepts may be members of multiple hierarchies provided that different qb:[narrowing/broadening]Property values are using for each hierarchy."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+qb:hierarchyRoot a rdfs:Property, owl:ObjectProperty;
+    rdfs:domain qb:Hierarchy;
+    rdfs:range skos:Concept;
+    rdfs:comment   "Specifies a root of the hierarchy. A hierarchy may have multiple roots but must have at least one."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+qb:narrowingProperty a rdfs:Property, owl:ObjectProperty;
+    rdfs:label "narrowing property"@en;
+    rdfs:domain qb:Hierarchy;
+    rdfs:range rdf:Property;
+    rdfs:comment   "Specifies a property which relates a parent concept in the hierarchy to a child concept. One of qb:narrowingProperty or qb:broadeningProperty must be given but it is not necessary to have both. Note that a child may have more than one parent."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+qb:broadeningProperty a rdfs:Property, owl:ObjectProperty;
+    rdfs:label "broadening property"@en;
+    rdfs:domain qb:Hierarchy;
+    rdfs:range rdf:Property;
+    rdfs:comment   "Specifies a property which relates a child concept in the hierarchy to a parent concept. One of qb:narrowingProperty or qb:broadeningProperty must be given but it is not necessary to have both. Note that a child may have more than one parent."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+qb:AggregatableHierarchy
+    rdfs:label "Aggregatable Hierarchy"@en;
+    rdfs:subClassOf qb:Hierarchy;
+    rdfs:comment "Indicates a hierarchy in which each parent concept is a disjoint union of its child concepts. So that measures such as simple counts may be aggregated up the hierarchy."@en;
+    rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
+    .
+
+
+   
