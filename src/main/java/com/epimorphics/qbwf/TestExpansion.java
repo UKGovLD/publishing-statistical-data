@@ -20,25 +20,23 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class TestExpansion {
 
-    Model m;
+    static final String closure = FileManager.get().readWholeFileAsUTF8("closure.ru");
+    static final String flatten = FileManager.get().readWholeFileAsUTF8("flatten.ru");
 
-    public TestExpansion(String src) {
-        m = FileManager.get().loadModel(src);
-    }
-
-    public Model expand() {
+    public static Model expand(Model m) {
         Dataset ds = DatasetFactory.create(m);
         GraphStore graphStore = GraphStoreFactory.create(ds) ;
-        UpdateAction.readExecute("src/main/resources/closure.ru", graphStore) ;
-        UpdateAction.readExecute("src/main/resources/flatten.ru", graphStore) ;
+        UpdateAction.parseExecute(closure, graphStore);
+        UpdateAction.parseExecute(flatten, graphStore);
         Model result = ModelFactory.createModelForGraph( graphStore.getDefaultGraph() );
         result.setNsPrefixes(m);
         return result;
     }
 
     public static void main(String[] args) {
-        TestExpansion test = new TestExpansion("src/test/resources/abbrv-cube.ttl");
-        test.expand().write(System.out, "Turtle");
+        Model src = FileManager.get().loadModel("src/test/resources/abbrv-cube.ttl");
+//        Model src = FileManager.get().loadModel("src/test/resources/mt-cube.ttl");
+        expand(src).write(System.out, "Turtle");
     }
 
 }

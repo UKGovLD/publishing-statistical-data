@@ -1,0 +1,10 @@
+SELECT ?obs1 ?obs2 (MIN(?equal) AS ?allEqual) WHERE {
+    ?obs1 qb:dataSet ?dataset .
+    ?obs2 qb:dataSet ?dataset .
+    FILTER (?obs1 != ?obs2)
+    ?dataset qb:structure/qb:component/qb:componentProperty ?dim .
+    ?dim a qb:DimensionProperty .
+    ?obs1 ?dim ?value1 .
+    ?obs2 ?dim ?value2 .
+    BIND( ?value1 = ?value2 AS ?equal)
+} GROUP BY ?obs1 ?obs2

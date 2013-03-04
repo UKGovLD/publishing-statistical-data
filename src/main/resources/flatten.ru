@@ -23,6 +23,18 @@ INSERT {
            qb:observation ?obs .
 };
 
+# Dimension values on slices
+INSERT {
+    ?obs  ?comp ?value
+} WHERE {
+    ?spec    qb:componentProperty ?comp .
+    ?comp a  qb:DimensionProperty .
+    ?dataset qb:structure [qb:component ?spec];
+             qb:slice ?slice .
+    ?slice ?comp ?value;
+           qb:observation ?obs .
+};
+
 # Measure property attachments
 INSERT {
     ?obs  ?comp ?value

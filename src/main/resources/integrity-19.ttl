@@ -1,0 +1,12 @@
+# Every observation has a unique associated data set (true if there is a problem)
+
+ASK {
+  {
+    ?obs a qb:Observation .
+    FILTER NOT EXISTS { ?obs qb:dataSet ?dataset1 . }
+  } UNION {
+    ?obs a qb:Observation ;
+       qb:dataSet ?dataset1, ?dataset2 .
+    FILTER (?dataset1 != ?dataset2)
+  }
+}

@@ -1,0 +1,8 @@
+# Only attributes may be marked optional
+
+ASK {
+  ?dsd qb:component ?componentSpec .
+  ?componentSpec qb:componentRequired "false"^^xsd:boolean ;
+                 qb:componentProperty ?component .
+  FILTER NOT EXISTS { ?component a qb:AttributeProperty }
+}

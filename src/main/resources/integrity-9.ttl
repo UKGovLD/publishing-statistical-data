@@ -1,0 +1,12 @@
+# Every Slice must have exactly one sliceStructure
+
+ASK {
+  {
+    ?slice a qb:Slice .
+    FILTER NOT EXISTS { ?slice qb:sliceStructure ?key }
+  } UNION {
+    ?slice a qb:Slice ;
+           qb:sliceStructure ?key1, ?key2;
+    FILTER (?key1 != ?key2)
+  }
+}

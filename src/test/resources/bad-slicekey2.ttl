@@ -1,0 +1,25 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix eg:             <http://example.com/abbrv-cube/> .
+
+eg:badsliceKey a qb:SliceKey;
+    qb:componentProperty eg:dimBad .
+
+eg:dsd  a qb:DataStructureDefinition;
+    qb:component
+        [ qb:dimension  eg:dim1 ],
+        [ qb:dimension  eg:dim2; qb:componentAttachment qb:Slice ],
+        [ qb:measure    eg:measure1 ],
+        [ qb:attribute  eg:attr1; qb:componentAttachment qb:DataSet ],
+        [ qb:attribute  eg:attr2; qb:componentAttachment qb:Slice ],
+        [ qb:attribute  eg:attr3; qb:componentAttachment qb:MeasureProperty ],
+        [ qb:attribute  eg:attr4; qb:componentRequired "false"^^xsd:boolean ] ;
+    qb:sliceKey eg:badsliceKey;
+    .
+

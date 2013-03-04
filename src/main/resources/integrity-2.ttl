@@ -1,0 +1,12 @@
+# Every DataSet has a unique associated DataStructureDefinition (true if there is a problem)
+
+ASK {
+  {
+    ?dataset a qb:DataSet .
+    FILTER NOT EXISTS { ?dataset qb:structure ?dsd . }
+  } UNION {
+    ?dataset a qb:DataSet ;
+       qb:structure ?dsd1, ?dsd2 .
+    FILTER (?dsd1 != ?dsd2)
+  }
+}

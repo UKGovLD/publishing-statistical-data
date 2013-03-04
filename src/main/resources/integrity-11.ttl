@@ -1,0 +1,7 @@
+#  Every observation has a value for each declared dimension
+
+ASK {
+    ?obs qb:dataSet/qb:structure/qb:component/qb:componentProperty ?dim .
+    ?dim a qb:DimensionProperty;
+    FILTER NOT EXISTS { ?obs ?dim [] }
+}
