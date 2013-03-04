@@ -1,0 +1,6 @@
+# Every Dimension with range skos:concept must have a codeList
+ASK {
+  ?dim a qb:DimensionProperty ;
+       rdfs:range skos:Concept .
+  FILTER NOT EXISTS { ?dim qb:codeList [] }
+}

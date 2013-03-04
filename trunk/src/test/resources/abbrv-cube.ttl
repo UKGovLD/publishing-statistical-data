@@ -18,12 +18,13 @@ eg:cube  a qb:DataSet;
 eg:dsd  a qb:DataStructureDefinition;
     qb:component
         [ qb:dimension  eg:dim1 ],
-        [ qb:dimension  eg:dim2; qb:componentAttachment qb:Slice ],
+        [ qb:dimension  eg:dim2 ],
         [ qb:measure    eg:measure1 ],
         [ qb:attribute  eg:attr1; qb:componentAttachment qb:DataSet ],
         [ qb:attribute  eg:attr2; qb:componentAttachment qb:Slice ],
         [ qb:attribute  eg:attr3; qb:componentAttachment qb:MeasureProperty ],
-        [ qb:attribute  eg:attr4; qb:componentRequired "false"^^xsd:boolean ] ;
+        [ qb:attribute  eg:attr4; qb:componentRequired "true"^^xsd:boolean ] ;
+    qb:sliceKey eg:sliceKey;
     .
 
 eg:sliceKey a qb:SliceKey;
@@ -33,11 +34,13 @@ eg:sliceKey a qb:SliceKey;
 eg:dim1 a qb:DimensionProperty;
     rdfs:label "dimension 1"@en;
     rdfs:range skos:Concept;
+    qb:codeList eg:codeListX;
     .
 
 eg:dim2 a qb:DimensionProperty;
     rdfs:label "dimension "@en;
     rdfs:range skos:Concept;
+    qb:codeList eg:codeListY;
     .
 
 eg:measure1 a qb:MeasureProperty;
@@ -67,14 +70,14 @@ eg:attr4 a qb:AttributeProperty;
     .
 
 eg:slice-y1
-    qb:sliceStricture eg:sliceKey;
+    qb:sliceStructure eg:sliceKey;
     eg:dim2 eg:y1;
     eg:attr2 "Value y1 for attr2";
     qb:observation eg:y1x1, eg:y1x2, eg:y1x3;
     .
 
 eg:slice-y2
-    qb:sliceStricture eg:sliceKey;
+    qb:sliceStructure eg:sliceKey;
     eg:dim2 eg:y2;
     eg:attr2 "Value y2 for attr2";
     qb:observation eg:y2x1, eg:y2x2, eg:y2x3;

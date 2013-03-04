@@ -1,0 +1,7 @@
+# SliceKey components must be subset of the DSD's component
+ASK {
+  ?slicekey a qb:SliceKey;
+      qb:componentProperty ?prop .
+  ?dsd qb:sliceKey ?sliceKey .
+  FILTER NOT EXISTS { ?dsd qb:component [qb:componentProperty ?prop] }
+}

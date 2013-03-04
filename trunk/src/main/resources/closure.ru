@@ -15,6 +15,12 @@ INSERT {
 };
 
 INSERT {
+    ?sk rdf:type qb:SliceKey .
+} WHERE {
+    [] qb:sliceStructure ?sk .
+};
+
+INSERT {
     ?cs qb:componentProperty ?p .
     ?p  rdf:type qb:DimensionProperty .
 } WHERE {

@@ -1,0 +1,6 @@
+#  Every SliceKey must be associated with a DataStructureDefinition
+
+ASK {
+    ?sliceKey a qb:SliceKey .
+    FILTER NOT EXISTS { [a qb:DataStructureDefinition] qb:sliceKey ?sliceKey }
+}
