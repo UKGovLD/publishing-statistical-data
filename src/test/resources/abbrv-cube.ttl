@@ -1,0 +1,89 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix eg:             <http://example.com/abbrv-cube/> .
+
+eg:cube  a qb:DataSet;
+    rdfs:label "cube"@en;
+    qb:structure eg:dsd;
+    qb:slice eg:slice-y1, eg:slice-y2;
+    eg:attr1  "Value for attr1";
+    .
+
+eg:dsd  a qb:DataStructureDefinition;
+    qb:component
+        [ qb:dimension  eg:dim1 ],
+        [ qb:dimension  eg:dim2; qb:componentAttachment qb:Slice ],
+        [ qb:measure    eg:measure1 ],
+        [ qb:attribute  eg:attr1; qb:componentAttachment qb:DataSet ],
+        [ qb:attribute  eg:attr2; qb:componentAttachment qb:Slice ],
+        [ qb:attribute  eg:attr3; qb:componentAttachment qb:MeasureProperty ],
+        [ qb:attribute  eg:attr4; qb:componentRequired "false"^^xsd:boolean ] ;
+    .
+
+eg:sliceKey a qb:SliceKey;
+    qb:componentProperty eg:dim2 ;
+    .
+
+eg:dim1 a qb:DimensionProperty;
+    rdfs:label "dimension 1"@en;
+    rdfs:range skos:Concept;
+    .
+
+eg:dim2 a qb:DimensionProperty;
+    rdfs:label "dimension "@en;
+    rdfs:range skos:Concept;
+    .
+
+eg:measure1 a qb:MeasureProperty;
+    rdfs:label "measure 1"@en;
+    rdfs:range xsd:integer;
+    eg:attr3  "Value for attr3";
+    .
+
+eg:attr1 a qb:AttributeProperty;
+    rdfs:label "attribute 1"@en;
+    rdfs:range xsd:string;
+    .
+
+eg:attr2 a qb:AttributeProperty;
+    rdfs:label "attribute 2"@en;
+    rdfs:range xsd:string;
+    .
+
+eg:attr3 a qb:AttributeProperty;
+    rdfs:label "attribute 3"@en;
+    rdfs:range xsd:string;
+    .
+
+eg:attr4 a qb:AttributeProperty;
+    rdfs:label "attribute 4"@en;
+    rdfs:range xsd:string;
+    .
+
+eg:slice-y1
+    qb:sliceStricture eg:sliceKey;
+    eg:dim2 eg:y1;
+    eg:attr2 "Value y1 for attr2";
+    qb:observation eg:y1x1, eg:y1x2, eg:y1x3;
+    .
+
+eg:slice-y2
+    qb:sliceStricture eg:sliceKey;
+    eg:dim2 eg:y2;
+    eg:attr2 "Value y2 for attr2";
+    qb:observation eg:y2x1, eg:y2x2, eg:y2x3;
+    .
+
+eg:y1x1    eg:dim1 eg:x1;    eg:attr4 "Value 1 for attr4";    eg:measure1 1; qb:dataSet eg:cube .
+eg:y1x2    eg:dim1 eg:x2;    eg:attr4 "Value 2 for attr4";    eg:measure1 2; qb:dataSet eg:cube .
+eg:y1x3    eg:dim1 eg:x3;    eg:attr4 "Value 3 for attr4";    eg:measure1 3; qb:dataSet eg:cube .
+eg:y2x1    eg:dim1 eg:x1;    eg:attr4 "Value 4 for attr4";    eg:measure1 4; qb:dataSet eg:cube .
+eg:y2x2    eg:dim1 eg:x2;    eg:attr4 "Value 5 for attr4";    eg:measure1 5; qb:dataSet eg:cube .
+eg:y2x3    eg:dim1 eg:x3;    eg:attr4 "Value 6 for attr4";    eg:measure1 6; qb:dataSet eg:cube .
+
