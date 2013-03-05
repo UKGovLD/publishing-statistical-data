@@ -1,12 +1,35 @@
-# Every observation has a unique associated data set (true if there is a problem)
+#  In a measureType cube if there is an observation for one measure, there must be a corresponding observation for all other measures at the same dimension values
 
 ASK {
   {
-    ?obs a qb:Observation .
-    FILTER NOT EXISTS { ?obs qb:dataSet ?dataset1 . }
-  } UNION {
-    ?obs a qb:Observation ;
-       qb:dataSet ?dataset1, ?dataset2 .
-    FILTER (?dataset1 != ?dataset2)
+      # Count number of other measures found at each point 
+      SELECT ?numMeasures (COUNT(?obs2) AS ?count) WHERE {
+          {
+              # Find the DSDs and check how many measures they have
+              SELECT ?dsd (COUNT(?m) AS ?numMeasures) WHERE {
+                  ?dsd qb:component/qb:componentProperty ?m.
+                  ?m a qb:MeasureProperty .
+              } GROUP BY ?dsd
+          }
+        
+          # Observation in measureType cube
+          ?obs1 qb:dataSet/qb:structure ?dsd;
+                qb:dataSet ?dataset ;
+                qb:measureType ?m1 .
+    
+          # Other observation at same dimension value
+          ?obs2 qb:dataSet ?dataset ;
+                qb:measureType ?m2 .
+          FILTER NOT EXISTS { 
+              ?dsd qb:component/qb:componentProperty ?dim .
+              FILTER (?dim != qb:measureType)
+              ?dim a qb:DimensionProperty .
+              ?obs1 ?dim ?v1 . 
+              ?obs2 ?dim ?v2. 
+              FILTER (?v1 != ?v2)
+          }
+          
+      } GROUP BY ?obs1 ?numMeasures
+        HAVING (?count != ?numMeasures)
   }
 }

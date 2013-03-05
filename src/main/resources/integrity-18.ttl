@@ -1,12 +1,7 @@
-# Every observation has a unique associated data set (true if there is a problem)
+#  if A qb:slice B and B qb:observation C then C qb:dataSet A
 
 ASK {
-  {
-    ?obs a qb:Observation .
-    FILTER NOT EXISTS { ?obs qb:dataSet ?dataset1 . }
-  } UNION {
-    ?obs a qb:Observation ;
-       qb:dataSet ?dataset1, ?dataset2 .
-    FILTER (?dataset1 != ?dataset2)
-  }
+    ?dataset qb:slice       ?slice .
+    ?slice   qb:observation ?obs .
+    FILTER NOT EXISTS { ?obs qb:dataSet ?dataset . }
 }

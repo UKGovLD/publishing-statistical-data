@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.epimorphics</groupId>
   <artifactId>qbWfTest</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>Data Cube Well-formedness tests</name>
   <url>http://maven.apache.org</url>

@@ -1,0 +1,11 @@
+#  If a dimension property has a qb:codeList, then the value of the dimension property on every observation must be in the code list
+#  Case of skos:ConceptScheme
+
+ASK {
+    ?obs qb:dataSet/qb:structure/qb:component/qb:componentProperty ?dim .
+    ?dim a qb:DimensionProperty ;
+        qb:codeList ?list .
+    ?list a skos:ConceptScheme .
+    ?obs ?dim ?v .
+    FILTER NOT EXISTS { ?v skos:inScheme ?list }
+}
