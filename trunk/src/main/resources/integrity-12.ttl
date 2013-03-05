@@ -3,6 +3,7 @@
 ASK {
   FILTER( ?allEqual )
   {
+    # For each pair of observations test if all the dimension values are the same
     SELECT (MIN(?equal) AS ?allEqual) WHERE {
         ?obs1 qb:dataSet ?dataset .
         ?obs2 qb:dataSet ?dataset .

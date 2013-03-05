@@ -1,8 +1,10 @@
 #  Every observation in a measureType cube must have a measure value corresponding to its measureType
 
 ASK {
+    # Observation in a measureType-cube
     ?obs qb:dataSet/qb:structure ?dsd ;
          qb:measureType ?measure .
     ?dsd qb:component/qb:componentProperty qb:measureType .
+    # Must have value for its measureType
     FILTER NOT EXISTS { ?obs ?measure [] }
 }
