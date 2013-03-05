@@ -36,15 +36,15 @@ INSERT {
 };
 
 # Measure property attachments
-INSERT {
-    ?obs  ?comp ?value
-} WHERE {
-    ?spec  qb:componentProperty ?comp ;
-           qb:componentAttachment qb:MeasureProperty .
-    ?dataset qb:structure [qb:component ?spec] .
-    ?comp    a qb:AttributeProperty .
-    ?measure a qb:MeasureProperty;
-             ?comp ?value .
-    ?obs     qb:dataSet ?dataset;
-             ?measure [] .
-}
+#INSERT {
+#    ?obs  ?comp ?value
+#} WHERE {
+#    ?spec  qb:componentProperty ?comp ;
+#           qb:componentAttachment qb:MeasureProperty .
+#    ?dataset qb:structure [qb:component ?spec] .
+#    ?comp    a qb:AttributeProperty .
+#    ?measure a qb:MeasureProperty;
+#             ?comp ?value .
+#    ?obs     qb:dataSet ?dataset;
+#             ?measure [] .
+#}
