@@ -1,0 +1,22 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix eg:             <http://example.com/abbrv-cube/> .
+
+eg:codeListX a qb:HierarchicalCodeList;
+    qb:hierarchyRoot eg:x1, eg:x2 ;
+    qb:parentChildProperty eg:child .
+    
+eg:x1 eg:child eg:x4 .
+eg:x2 eg:child eg:x4 .
+eg:x4 eg:child eg:x3 .
+
+eg:codeListY a skos:ConceptScheme .
+eg:y1 a skos:Concept ;    skos:inScheme eg:codeListY .
+eg:y2 a skos:Concept ;    skos:inScheme eg:codeListY .
+    

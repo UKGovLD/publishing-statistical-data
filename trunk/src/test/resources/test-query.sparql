@@ -1,10 +1,33 @@
-SELECT ?obs1 ?obs2 (MIN(?equal) AS ?allEqual) WHERE {
-    ?obs1 qb:dataSet ?dataset .
-    ?obs2 qb:dataSet ?dataset .
-    FILTER (?obs1 != ?obs2)
-    ?dataset qb:structure/qb:component/qb:componentProperty ?dim .
-    ?dim a qb:DimensionProperty .
-    ?obs1 ?dim ?value1 .
-    ?obs2 ?dim ?value2 .
-    BIND( ?value1 = ?value2 AS ?equal)
-} GROUP BY ?obs1 ?obs2
+SELECT * WHERE {
+    {
+      # Count number of other measures found at each point 
+      SELECT ?numMeasures (COUNT(?obs2) AS ?count) WHERE {
+          {
+              # Find the DSDs and check how many measures they have
+              SELECT ?dsd (COUNT(?m) AS ?numMeasures) WHERE {
+                  ?dsd qb:component/qb:componentProperty ?m.
+                  ?m a qb:MeasureProperty .
+              } GROUP BY ?dsd
+          }
+        
+          # Observation in measureType cube
+          ?obs1 qb:dataSet/qb:structure ?dsd;
+                qb:dataSet ?dataset ;
+                qb:measureType ?m1 .
+    
+          # Other observation at same dimension value
+          ?obs2 qb:dataSet ?dataset ;
+                qb:measureType ?m2 .
+          FILTER NOT EXISTS { 
+              ?dsd qb:component/qb:componentProperty ?dim .
+              FILTER (?dim != qb:measureType)
+              ?dim a qb:DimensionProperty .
+              ?obs1 ?dim ?v1 . 
+              ?obs2 ?dim ?v2. 
+              FILTER (?v1 != ?v2)
+          }
+          
+      } GROUP BY ?numMeasures ?obs1
+        HAVING (?count != ?numMeasures)
+    }
+}

@@ -23,7 +23,9 @@ public class IntegrityCheck {
             "PREFIX rdfs:           <http://www.w3.org/2000/01/rdf-schema#>\n" +
             "PREFIX skos:           <http://www.w3.org/2004/02/skos/core#>\n" +
             "PREFIX qb:             <http://purl.org/linked-data/cube#>\n" +
-            "PREFIX xsd:            <http://www.w3.org/2001/XMLSchema#>\n";
+            "PREFIX xsd:            <http://www.w3.org/2001/XMLSchema#>\n" +
+            "PREFIX eg:             <http://example.com/abbrv-cube/>\n ";   // Ugly, used to simulate query rewrite
+    
 
     public static IntegrityCheck fromFile(String qfile) {
         return new IntegrityCheck( PREFIXES + FileManager.get().readWholeFileAsUTF8( qfile), false);

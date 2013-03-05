@@ -9,6 +9,12 @@ INSERT {
 };
 
 INSERT {
+    ?o rdf:type qb:Observation .
+} WHERE {
+    ?o qb:dataSet [] .
+};
+
+INSERT {
     ?s rdf:type qb:Slice .
 } WHERE {
     [] qb:slice ?s.

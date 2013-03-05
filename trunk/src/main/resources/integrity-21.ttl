@@ -6,5 +6,5 @@ ASK {
         qb:codeList ?list .
     ?list a qb:HierarchicalCodeList .
     ?obs ?dim ?v .
-    FILTER NOT EXISTS { ?list qb:hierarchyRoot/eg:child* ?v }
+    FILTER NOT EXISTS { ?list qb:hierarchyRoot/(^eg:parent)* ?v }
 }

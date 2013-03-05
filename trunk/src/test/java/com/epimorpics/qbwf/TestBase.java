@@ -19,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 
 public class TestBase {
+   
 
     public Model loadModel(String...files) {
         Model m = ModelFactory.createDefaultModel();
@@ -38,7 +39,7 @@ public class TestBase {
 
     public void printSelect(String query, String ...files) {
         Model m = TestExpansion.expand( loadModel(files) );
-        QueryExecution qe = QueryExecutionFactory.create( IntegrityCheck.PREFIXES + query, m);
+        QueryExecution qe = QueryExecutionFactory.create( IntegrityCheck.PREFIXES+ query, m);
         try {
             ResultSet rs = qe.execSelect();
             ResultSetFormatter.out(System.out, rs);

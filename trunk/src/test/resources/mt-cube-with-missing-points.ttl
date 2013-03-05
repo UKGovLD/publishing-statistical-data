@@ -1,0 +1,66 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix void:           <http://rdfs.org/ns/void#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix eg:             <http://example.com/abbrv-cube/> .
+
+eg:cube  a qb:DataSet;
+    rdfs:label "cube"@en;
+    qb:structure eg:dsd;
+    .
+
+eg:dsd  a qb:DataStructureDefinition;
+    qb:component
+        [ qb:dimension  eg:dim1 ],
+        [ qb:dimension  eg:dim2; qb:componentAttachment qb:Slice ],
+        [ qb:dimension  qb:measureType ] ,
+        [ qb:measure    eg:measure1 ],
+        [ qb:measure    eg:measure2 ],
+        [ qb:measure    eg:measure3 ];
+    qb:sliceKey eg:sliceKey;
+    .
+
+eg:sliceKey a qb:SliceKey;
+    qb:componentProperty eg:dim2 ;
+    .
+
+eg:dim1 a qb:DimensionProperty;
+    rdfs:label "dimension 1"@en;
+    rdfs:range skos:Concept;
+    qb:codeList eg:codeListX;
+    .
+
+eg:dim2 a qb:DimensionProperty;
+    rdfs:label "dimension "@en;
+    rdfs:range skos:Concept;
+    qb:codeList eg:codeListY;
+    .
+
+eg:measure1 a qb:MeasureProperty;
+    rdfs:label "measure 1"@en;
+    rdfs:range xsd:integer;
+    .
+
+eg:measure2 a qb:MeasureProperty;
+    rdfs:label "measure 2"@en;
+    rdfs:range xsd:integer;
+    .
+
+eg:measure3 a qb:MeasureProperty;
+    rdfs:label "measure 3"@en;
+    rdfs:range xsd:integer;
+    .
+
+eg:1y1x1    eg:dim1 eg:x1; eg:dim2 eg:y1; qb:measureType eg:measure1; eg:measure1 1; qb:dataSet eg:cube .
+eg:2y1x1    eg:dim1 eg:x1; eg:dim2 eg:y1; qb:measureType eg:measure2; eg:measure2 2; qb:dataSet eg:cube .
+eg:3y1x1    eg:dim1 eg:x1; eg:dim2 eg:y1; qb:measureType eg:measure3; eg:measure3 3; qb:dataSet eg:cube .
+
+eg:1y1x2    eg:dim1 eg:x2; eg:dim2 eg:y1; qb:measureType eg:measure1; eg:measure1 1; qb:dataSet eg:cube .
+eg:2y1x2    eg:dim1 eg:x2; eg:dim2 eg:y1; qb:measureType eg:measure2; eg:measure2 2; qb:dataSet eg:cube .
+# eg:3y1x2    eg:dim1 eg:x2; eg:dim2 eg:y1; qb:measureType eg:measure3; eg:measure3 3; qb:dataSet eg:cube .
+
+

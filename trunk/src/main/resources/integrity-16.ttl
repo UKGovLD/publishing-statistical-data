@@ -1,12 +1,11 @@
-# Every observation has a unique associated data set (true if there is a problem)
+# Every observation in a measureType cube must have a value for only one measure, its measureType
 
 ASK {
-  {
-    ?obs a qb:Observation .
-    FILTER NOT EXISTS { ?obs qb:dataSet ?dataset1 . }
-  } UNION {
-    ?obs a qb:Observation ;
-       qb:dataSet ?dataset1, ?dataset2 .
-    FILTER (?dataset1 != ?dataset2)
-  }
+    ?obs qb:dataSet/qb:structure ?dsd ;
+         qb:measureType ?measure ;
+         ?omeasure [] .
+    ?dsd qb:component/qb:componentProperty qb:measureType ;
+         qb:component/qb:componentProperty ?omeasure .
+    ?omeasure a qb:MeasureProperty .
+    FILTER (?omeasure != ?measure)
 }
