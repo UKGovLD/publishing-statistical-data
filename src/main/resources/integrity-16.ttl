@@ -1,11 +1,14 @@
 # Every observation in a measureType cube must have a value for only one measure, its measureType
 
 ASK {
+    # Observation with measureType
     ?obs qb:dataSet/qb:structure ?dsd ;
          qb:measureType ?measure ;
          ?omeasure [] .
+    # Any measure on the observation
     ?dsd qb:component/qb:componentProperty qb:measureType ;
          qb:component/qb:componentProperty ?omeasure .
     ?omeasure a qb:MeasureProperty .
+    # Must be the same as the measureType
     FILTER (?omeasure != ?measure)
 }

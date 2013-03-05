@@ -2,9 +2,11 @@
 
 ASK {
   {
+    # Check observation has a data set
     ?obs a qb:Observation .
     FILTER NOT EXISTS { ?obs qb:dataSet ?dataset1 . }
   } UNION {
+    # Check has just one data set
     ?obs a qb:Observation ;
        qb:dataSet ?dataset1, ?dataset2 .
     FILTER (?dataset1 != ?dataset2)
