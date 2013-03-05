@@ -2,5 +2,5 @@
 
 ASK {
   ?dim a qb:DimensionProperty .
-  FILTER NOT EXISTS { ?dim rdfs:range ?range }
+  FILTER NOT EXISTS { ?dim rdfs:range [] }
 }
