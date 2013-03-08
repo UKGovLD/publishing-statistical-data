@@ -7,5 +7,5 @@ ASK {
         qb:codeList ?list .
     ?list a skos:Collection .
     ?obs ?dim ?v .
-    FILTER NOT EXISTS { ?list skos:member ?v }
+    FILTER NOT EXISTS { ?list skos:member+ ?v }
 }
