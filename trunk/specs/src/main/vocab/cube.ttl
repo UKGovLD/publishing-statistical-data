@@ -315,13 +315,13 @@ qb:HierarchicalCodeList a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
 
-qb:hierarchyRoot a rdfs:Property, owl:ObjectProperty;
+qb:hierarchyRoot a rdf:Property, owl:ObjectProperty;
     rdfs:domain qb:HierarchicalCodeList;
     rdfs:comment   "Specifies a root of the hierarchy. A hierarchy may have multiple roots but must have at least one."@en;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
 
-qb:parentChildProperty a rdfs:Property, owl:ObjectProperty;
+qb:parentChildProperty a rdf:Property, owl:ObjectProperty;
     rdfs:label "parent-child property"@en;
     rdfs:domain qb:HierarchicalCodeList;
     rdfs:range rdf:Property;
