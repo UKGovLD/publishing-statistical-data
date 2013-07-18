@@ -9,9 +9,10 @@ INSERT {
 };
 
 INSERT {
-    ?o rdf:type qb:Observation .
+    ?o  rdf:type qb:Observation .
+    ?ds rdf:type qb:DataSet .
 } WHERE {
-    ?o qb:dataSet [] .
+    ?o qb:dataSet ?ds .
 };
 
 INSERT {
