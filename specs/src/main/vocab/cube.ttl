@@ -17,6 +17,7 @@
     dcterms:created "2010-07-12"^^xsd:date;
     dcterms:modified "2010-11-27"^^xsd:date;
     dcterms:modified "2013-03-02"^^xsd:date;
+    dcterms:modified "2013-07-26"^^xsd:date;
     dcterms:title "Vocabulary for multi-dimensional (e.g. statistical) data publishing";
     dcterms:license <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
     dcterms:contributor [foaf:mbox "richard@cyganiak.de"],
@@ -285,7 +286,7 @@ qb:sliceStructure a rdf:Property, owl:ObjectProperty;
 qb:sliceKey a rdf:Property, owl:ObjectProperty;
     rdfs:label "slice key"@en;
     rdfs:comment "indicates a slice key which is used for slices in this dataset"@en;
-    rdfs:domain qb:DataSet;
+    rdfs:domain qb:DataStructureDefinition;
     rdfs:range  qb:SliceKey;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
