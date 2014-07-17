@@ -5,7 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 @prefix foaf:           <http://xmlns.com/foaf/0.1/> .
 @prefix sdmx:           <http://purl.org/linked-data/sdmx#> .
-@prefix dcterms:        <http://dublincore.org/documents/dcmi-terms/>.
+@prefix dcterms:        <http://purl.org/dc/terms/> .
 @prefix qb:             <http://purl.org/linked-data/cube#> .
 @prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
 
