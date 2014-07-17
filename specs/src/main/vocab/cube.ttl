@@ -310,7 +310,7 @@ qb:codeList a rdf:Property, owl:ObjectProperty;
     .
 
 qb:HierarchicalCodeList a rdfs:Class, owl:Class;
-    rdfs:subClassOf qb:CodeList;
+#    rdfs:subClassOf qb:CodeList;
     rdfs:label "Hierarchical Code List"@en;
     rdfs:comment "Represents a generalized hierarchy of concepts which can be used for coding. The hierarchy is defined by one or more roots together with a property which relates concepts in the hierarchy to thier child concept .  The same concepts may be members of multiple hierarchies provided that different qb:parentChildProperty values are used for each hierarchy."@en;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
