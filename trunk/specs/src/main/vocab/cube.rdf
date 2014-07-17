@@ -11,16 +11,22 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <owl:Ontology rdf:about="http://purl.org/linked-data/cube">
     <owl:versionInfo>0.2</owl:versionInfo>
+    <dcterms:contributor rdf:parseType="Resource">
+      <foaf:mbox>jeni@jenitennison.com</foaf:mbox>
+    </dcterms:contributor>
     <dcterms:title>Vocabulary for multi-dimensional (e.g. statistical) data publishing</dcterms:title>
+    <dcterms:contributor rdf:parseType="Resource">
+      <foaf:mbox>dave@epimorphics.com</foaf:mbox>
+    </dcterms:contributor>
     <rdfs:label>The data cube vocabulary</rdfs:label>
     <dcterms:contributor rdf:parseType="Resource">
-      <foaf:mbox>richard@cyganiak.de</foaf:mbox>
+      <foaf:mbox>ian@epimorphics.com</foaf:mbox>
     </dcterms:contributor>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2013-07-26</dcterms:modified>
     <dcterms:license rdf:resource="http://www.opendatacommons.org/licenses/pddl/1.0/"/>
     <dcterms:contributor rdf:parseType="Resource">
-      <foaf:mbox>dave@epimorphics.com</foaf:mbox>
+      <foaf:mbox>richard@cyganiak.de</foaf:mbox>
     </dcterms:contributor>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2010-07-12</dcterms:created>
@@ -29,14 +35,8 @@
     </dcterms:contributor>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2010-11-27</dcterms:modified>
-    <dcterms:contributor rdf:parseType="Resource">
-      <foaf:mbox>ian@epimorphics.com</foaf:mbox>
-    </dcterms:contributor>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2013-03-02</dcterms:modified>
-    <dcterms:contributor rdf:parseType="Resource">
-      <foaf:mbox>jeni@jenitennison.com</foaf:mbox>
-    </dcterms:contributor>
     <rdfs:comment>This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI).</rdfs:comment>
   </owl:Ontology>
   <rdfs:Class rdf:about="http://purl.org/linked-data/cube#DataSet">
@@ -141,7 +141,6 @@
   </rdfs:Class>
   <rdfs:Class rdf:about="http://purl.org/linked-data/cube#HierarchicalCodeList">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://purl.org/linked-data/cube#CodeList"/>
     <rdfs:label xml:lang="en">Hierarchical Code List</rdfs:label>
     <rdfs:comment xml:lang="en">Represents a generalized hierarchy of concepts which can be used for coding. The hierarchy is defined by one or more roots together with a property which relates concepts in the hierarchy to thier child concept .  The same concepts may be members of multiple hierarchies provided that different qb:parentChildProperty values are used for each hierarchy.</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="http://purl.org/linked-data/cube"/>
