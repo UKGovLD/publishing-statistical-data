@@ -198,8 +198,6 @@ qb:ComponentSet a rdfs:Class, owl:Class;
     rdfs:comment "Abstract class of things which reference one or more ComponentProperties"@en;
     rdfs:isDefinedBy <http://purl.org/linked-data/cube>;
     .
-qb:ComponentSpecification rdfs:subClassOf qb:ComponentSet .
-qb:SliceKey               rdfs:subClassOf qb:ComponentSet .
 
 qb:componentProperty a rdf:Property, owl:ObjectProperty;
     rdfs:label "component"@en;
