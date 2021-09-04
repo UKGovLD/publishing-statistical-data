@@ -1,0 +1,36 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:           <http://xmlns.com/foaf/0.1/> .
+@prefix sdmx:           <http://purl.org/linked-data/sdmx#> .
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
+
+sdmx:MetadataStructureDefinition a rdfs:Class, owl:Class; 
+    rdfs:label "Metadata structure definition"@en; 
+    rdfs:comment "Defines the structure of a MetadataSet"@en; 
+    rdfs:subClassOf sdmx:Structure; 
+    .
+
+sdmx:MetadataReportStructure a rdfs:Class, owl:Class; 
+    rdfs:label "Metadata report structure"@en; 
+    rdfs:comment "Defines the structure of a single report within an MSD"@en; 
+    .
+
+sdmx:metadataReportStructure a rdf:Property, owl:ObjectProperty; 
+    rdfs:label "metadata report structure"@en; 
+    rdfs:comment """designates a single report structure within an overall metadata structure definition"""@en; 
+    rdfs:domain sdmx:MetadataStructureDefinition; 
+    rdfs:range sdmx:MetadataReportStructure ; 
+    .
+
+sdmx:MetadataProperty a rdfs:Class, owl:Class; 
+    rdfs:label "Metadata property"@en; rdfs:comment """Class of properties used to provide metadata values in metadata reports (sdmx:MetadataSet)"""@en; 
+    rdfs:subClassOf sdmx:ComponentProperty; 
+    owl:disjointWith sdmx:MeasureProperty; 
+    owl:disjointWith sdmx:AttributeProperty; 
+    owl:disjointWith sdmx:DimensionProperty; 
+    .
