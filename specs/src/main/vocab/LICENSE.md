@@ -1,6 +1,6 @@
 # LICENSE
 
-The SDMX vocabulary files provided here are mechanical transcriptions into RDF Turtle format of the [SDMX Content Oriented Guidelines](https://sdmx.org/?page_id=4345) (COG).
+The SDMX vocabulary files (`sdmx-xxx.ttl`) provided here are mechanical transcriptions into RDF Turtle format of the [SDMX Content Oriented Guidelines](https://sdmx.org/?page_id=4345) (COG).
 
 This transcription is licensed under the same terms as the SMDX COG - they are subject to the CC BY-SA 4.0 (Attribution-Share-Alike) license. You are free to:
 
